@@ -7,17 +7,33 @@
 <body>
 <header>
 	<!-- TODO: App icon and some sort of menu. -->
-	<form>
-		<label for="username">Username:</label>
-		<input id="username" type="text">
-		<label for="password">Password:</label>
-		<input id="password" type="password">
+	<form id="login-form">
+			<input type="text" name="username" placeholder="Email">
+			<input type="password" name="password" placeholder="Password">
+		<button>Log In</button>
 	</form>
 </header>
 <hr>
 <div>
-<!-- TODO: Show some content for logged out user (eg. public contributions or registration form). -->
-	Public content or registration form
+	<h1>Sign Up!</h1>
+	<h4>By signing up you can access other people's profiles, contributions etc.</h4>
+	<form id="register-form">
+		<input type="text" name="first-name" placeholder="First Name">
+		<input type="text" name="last-name" placeholder="Last Name"><br>
+		<input type="text" name="birthday" placeholder="Date of Birth"><br>
+		<input type="email" name="email" placeholder="Email"><br>
+		<input type="password" name="password" placeholder="Password"><br>
+		<input type="password" name="repeat-password" placeholder="Repeat Password"><br>
+		<label>
+			<input type="radio" name="gender" value="female">
+			Female
+		</label>
+		<label>
+			<input type="radio" name="gender" value="male">
+			Male
+		</label><br>
+		<button>Sign Up</button>
+	</form>
 </div>
 </body>
 </html>
