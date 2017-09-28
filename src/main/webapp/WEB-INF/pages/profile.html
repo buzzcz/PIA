@@ -2,14 +2,84 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="../css/profile.css">
+	<script type="application/javascript" src="../js/jquery.min.js"></script>
+	<script type="application/javascript" src="../js/bootstrap.min.js"></script>
 	<title>User's Profile</title>
 </head>
 <body>
-<header>
-	<!-- TODO: App icon and some sort of menu. -->
-</header>
-<div>
-	<!-- TODO: Profile info of selected user. -->
+<div class="container-fluid">
+	<header class="col-xs-12">
+		<div class="col-xs-6">
+			<!-- TODO: App icon and some sort of menu. -->
+		</div>
+		<div class="col-xs-6 pull-right">
+			<a class="btn btn-link">Logged User</a>
+			<button class="btn">Log Out</button>
+		</div>
+	</header>
+	<div class="col-xs-12">
+		<!-- TODO: User image -->
+		<h1>Image | Selected User</h1>
+		<div class="row">
+			<div class="col-xs-4 right-border column">
+				<h2 class="bottom-border">Personal info:</h2>
+				<table width="50%">
+					<tr>
+						<td><h4>First Name:</h4></td>
+						<td><h4>FirstName</h4></td>
+					</tr>
+					<tr>
+						<td><h4>Last Name:</h4></td>
+						<td><h4>LastName</h4></td>
+					</tr>
+					<tr>
+						<td><h4>Birthday:</h4></td>
+						<td><h4>Birthday</h4></td>
+					</tr>
+					<tr>
+						<td><h4>Age:</h4></td>
+						<td><h4>Age</h4></td>
+					</tr>
+					<tr>
+						<td><h4>Email:</h4></td>
+						<td><h4>Email</h4></td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-xs-4 right-border column">
+				<h2 class="bottom-border">Posts:</h2>
+				<div class="bottom-border">
+					<a class="btn-link"><h3>Who posted</h3></a>
+					<h4>Text</h4>
+				</div>
+				<div class="bottom-border">
+					<a class="btn-link"><h3>Who posted</h3></a>
+					<h4>Image</h4>
+				</div>
+			</div>
+			<div class="col-xs-4 column">
+				<h2 class="bottom-border">Friends:</h2>
+				<div class="bottom-border">
+					<a class="btn-link">
+						<h3>Image | User Name</h3>
+					</a>
+				</div>
+				<div class="bottom-border">
+					<a class="btn-link">
+						<h3>Image | User Name</h3>
+					</a>
+				</div>
+				<div class="bottom-border">
+					<a class="btn-link">
+						<h3>Image | User Name</h3>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 </body>
 </html>

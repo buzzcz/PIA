@@ -1,0 +1,29 @@
+header {
+	padding: 5px;
+	border-bottom: thin solid black;
+}
+
+a {
+	cursor: pointer;
+}
+
+.row {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+}
+
+.right-border {
+	border-right: thin solid black;
+}
+
+.bottom-border {
+	border-bottom: thin solid black;
+}
