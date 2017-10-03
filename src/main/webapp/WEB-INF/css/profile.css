@@ -20,10 +20,6 @@ a {
 	flex-direction: column;
 }
 
-.right-border {
-	border-right: thin solid black;
-}
-
 .bottom-border {
 	border-bottom: thin solid black;
 }
