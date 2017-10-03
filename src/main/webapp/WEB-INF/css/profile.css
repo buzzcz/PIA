@@ -27,3 +27,7 @@ a {
 .bottom-border {
 	border-bottom: thin solid black;
 }
+
+.info-row {
+	padding-left: 5%;
+}

@@ -11,18 +11,20 @@
 </head>
 <body>
 <div class="container-fluid">
-	<header class="col-xs-12">
-		<div class="col-xs-6">
+	<header class="col-xs-12 col-sm-12">
+		<div class="col-xs-12 col-sm-6">
 			<!-- TODO: App icon and some sort of menu. -->
 		</div>
-		<form class="col-xs-6 form-inline pull-right">
-			<input class="form-control" type="text" name="username" placeholder="Email">
-			<input class="form-control" type="password" name="password" placeholder="Password">
-			<button class="btn" type="submit">Log In</button>
-		</form>
+		<div class="col-xs-12 col-sm-6 pull-right">
+			<form class="form-inline">
+				<input class="form-control" type="text" name="username" placeholder="Email">
+				<input class="form-control" type="password" name="password" placeholder="Password">
+				<button class="btn" type="submit">Log In</button>
+			</form>
+		</div>
 	</header>
-	<div class="col-xs-12">
-		<div class="col-xs-6">
+	<div class="col-xs-12 col-sm-12">
+		<div class="col-xs-12 col-sm-6">
 			<h2>Connect with your friends and meet new people.</h2>
 			<ul>
 				<li><h3>See your friends profiles, posts and photos.</h3></li>
@@ -30,7 +32,7 @@
 				<li><h3>Find new people and connect with them.</h3></li>
 			</ul>
 		</div>
-		<div class="col-xs-6">
+		<div class="col-xs-12 col-sm-6">
 			<h1>Sign Up!</h1>
 			<h4>By signing up you can access other people's profiles, contributions etc.</h4>
 			<form class="form-inline">
@@ -41,10 +43,10 @@
 				<input class="form-control" type="password" name="password" placeholder="Password">
 				<input class="form-control" type="password" name="repeat-password" placeholder="Repeat Password"><br>
 				<div class="form-group">
-				<label class="radio-inline">
-					<input type="radio" name="gender" value="female">
-					Female
-				</label>
+					<label class="radio-inline">
+						<input type="radio" name="gender" value="female">
+						Female
+					</label>
 					<label class="radio-inline">
 						<input type="radio" name="gender" value="male">
 						Male
