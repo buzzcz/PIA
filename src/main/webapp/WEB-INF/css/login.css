@@ -2,3 +2,7 @@ header {
 	padding: 5px;
 	border-bottom: thin solid black;
 }
+
+.register-form div {
+	padding-bottom: 5px;
+}

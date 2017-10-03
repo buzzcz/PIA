@@ -17,6 +17,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-6 pull-right">
 			<form class="form-inline">
+				<!-- TODO: Use 'class="sr-only"' and add label to every input. -->
 				<input class="form-control" type="text" name="username" placeholder="Email">
 				<input class="form-control" type="password" name="password" placeholder="Password">
 				<button class="btn" type="submit">Log In</button>
@@ -35,24 +36,29 @@
 		<div class="col-xs-12 col-sm-6">
 			<h1>Sign Up!</h1>
 			<h4>By signing up you can access other people's profiles, contributions etc.</h4>
-			<form class="form-inline">
-				<input class="form-control" type="text" name="first-name" placeholder="First Name">
-				<input class="form-control" type="text" name="last-name" placeholder="Last Name"><br>
-				<input class="form-control" type="text" name="birthday" placeholder="Birthday">
-				<input class="form-control" type="email" name="email" placeholder="Email"><br>
-				<input class="form-control" type="password" name="password" placeholder="Password">
-				<input class="form-control" type="password" name="repeat-password" placeholder="Repeat Password"><br>
-				<div class="form-group">
-					<label class="radio-inline">
-						<input type="radio" name="gender" value="female">
-						Female
-					</label>
-					<label class="radio-inline">
-						<input type="radio" name="gender" value="male">
-						Male
-					</label>
+			<form class="form-horizontal register-form">
+				<div class="form-inline">
+					<input class="form-control" type="text" name="first-name" placeholder="First Name">
+					<input class="form-control" type="text" name="last-name" placeholder="Last Name">
 				</div>
-				<br>
+				<div class="form-inline">
+					<input class="form-control" type="text" name="birthday" placeholder="Birthday">
+					<input class="form-control" type="email" name="email" placeholder="Email">
+				</div>
+				<div class="form-inline">
+					<input class="form-control" type="password" name="password" placeholder="Password">
+					<input class="form-control" type="password" name="repeat-password" placeholder="Repeat Password">
+				</div>
+				<div class="form-inline">
+					<div class="radio-inline">
+						<input type="radio" name="gender" id="female" value="female">
+						<label for="female">Female</label>
+					</div>
+					<div class="radio-inline">
+						<input type="radio" name="gender" id="male" value="male">
+						<label for="male">Male</label>
+					</div>
+				</div>
 				<button class="btn" type="submit">Sign Up</button>
 			</form>
 		</div>
