@@ -1,10 +1,5 @@
-header {
-	padding: 5px;
-	border-bottom: thin solid black;
-}
-
-a {
-	cursor: pointer;
+.user-menu {
+	padding-top: 5px;
 }
 
 .row {
@@ -21,7 +16,7 @@ a {
 }
 
 .bottom-border {
-	border-bottom: thin solid black;
+	border-bottom: thin solid white;
 }
 
 .info-row {

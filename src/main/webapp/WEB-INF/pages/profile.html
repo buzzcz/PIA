@@ -4,23 +4,25 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="../css/common.css">
 	<link type="text/css" rel="stylesheet" href="../css/profile.css">
 	<script type="application/javascript" src="../js/jquery.min.js"></script>
 	<script type="application/javascript" src="../js/bootstrap.min.js"></script>
 	<title>User's Profile</title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid row full-height">
 	<header class="col-xs-12 col-sm-12">
 		<div class="col-xs-12 col-sm-6">
 			<!-- TODO: App icon and some sort of menu. -->
+			<a class="btn btn-link logo">Kiv<span class="logo-border">Book</span></a>
 		</div>
-		<div class="col-xs-12 col-sm-4 pull-right">
+		<div class="col-xs-12 col-sm-4 pull-right user-menu">
 			<a class="btn btn-link">Logged User</a>
-			<button class="btn">Log Out</button>
+			<button class="btn" name="log-out">Log Out</button>
 		</div>
 	</header>
-	<div class="col-xs-12 col-sm-12">
+	<div class="col-xs-12 col-sm-12 content full-height">
 		<!-- TODO: User image -->
 		<h1>Image | Selected User</h1>
 		<div class="row">
@@ -52,30 +54,24 @@
 			<div class="col-xs-12 col-sm-4 right-border column">
 				<h2 class="bottom-border">Posts:</h2>
 				<div>
-					<a class="btn-link"><h3>Who posted</h3></a>
+					<h3>Who posted</h3>
 					<h4>Text</h4>
 				</div>
 				<div>
-					<a class="btn-link"><h3>Who posted</h3></a>
+					<h3>Who posted</h3>
 					<h4>Image</h4>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-4 column">
 				<h2 class="bottom-border">Friends:</h2>
 				<div>
-					<a class="btn-link">
-						<h3>Image | User Name</h3>
-					</a>
+					<h3>Image | User Name</h3>
 				</div>
 				<div>
-					<a class="btn-link">
-						<h3>Image | User Name</h3>
-					</a>
+					<h3>Image | User Name</h3>
 				</div>
 				<div>
-					<a class="btn-link">
-						<h3>Image | User Name</h3>
-					</a>
+					<h3>Image | User Name</h3>
 				</div>
 			</div>
 		</div>
