@@ -6,6 +6,7 @@
 	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="../css/common.css">
 	<link type="text/css" rel="stylesheet" href="../css/profile.css">
+	<link type="text/html" rel="import" href="header.html">
 	<script type="application/javascript" src="../js/jquery.min.js"></script>
 	<script type="application/javascript" src="../js/bootstrap.min.js"></script>
 	<title>User's Profile</title>
@@ -13,15 +14,13 @@
 <body>
 <div class="container-fluid row full-height">
 	<header class="col-xs-12 col-sm-12">
-		<div class="col-xs-12 col-sm-6">
-			<!-- TODO: App icon and some sort of menu. -->
-			<a class="btn btn-link logo">Kiv<span class="logo-border">Book</span></a>
-		</div>
-		<div class="col-xs-12 col-sm-4 pull-right user-menu">
-			<a class="btn btn-link">Logged User</a>
-			<button class="btn" name="log-out">Log Out</button>
-		</div>
 	</header>
+	<script>
+		var tmp =
+			document.importNode(document.querySelector('link[rel="import"]').import.querySelector('template').content, true);
+		tmp.querySelector('.log-in-form').style.display='none';
+		document.querySelector('header').appendChild(tmp);
+	</script>
 	<div class="col-xs-12 col-sm-12 content full-height">
 		<!-- TODO: User image -->
 		<h1>Image | Selected User</h1>
