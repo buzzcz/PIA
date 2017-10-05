@@ -14,14 +14,14 @@ header {
 }
 
 .logo-border {
-	border: thin solid #003B6F;
+	border: thin solid #204d8f;
 	border-radius: 10%;
-	background-color: #003B6F;
+	background-color: #204d8f;
 	color: white;
 }
 
 .content {
-	background-color: #003B6F;
+	background-color: #204d8f;
 	color: white;
 }
 
