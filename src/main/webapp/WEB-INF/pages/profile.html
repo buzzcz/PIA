@@ -2,30 +2,37 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="../css/common.css">
 	<link type="text/css" rel="stylesheet" href="../css/profile.css">
-	<link type="text/html" rel="import" href="header.html">
 	<script type="application/javascript" src="../js/jquery.min.js"></script>
 	<script type="application/javascript" src="../js/bootstrap.min.js"></script>
 	<title>User's Profile</title>
 </head>
 <body>
-<div class="container-fluid row full-height">
-	<header class="col-xs-12 col-sm-12">
-	</header>
-	<script>
-		var tmp =
-			document.importNode(document.querySelector('link[rel="import"]').import.querySelector('template').content, true);
-		tmp.querySelector('.log-in-form').style.display='none';
-		document.querySelector('header').appendChild(tmp);
-	</script>
-	<div class="col-xs-12 col-sm-12 content full-height">
-		<!-- TODO: User image -->
-		<h1>Image | Selected User</h1>
-		<div class="row">
-			<div class="col-xs-12 col-sm-4 right-border column">
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="col-xs-12 col-sm-4">
+		<a class="btn btn-link" id="logo">Kiv<span class="logo-border">Book</span></a>
+	</div>
+	<div class="col-xs-12 col-sm-4 menu">
+		<!-- TODO: Add some sort of menu. -->
+		<button class="btn btn-default glyphicon glyphicon-th-list"></button>
+		<button class="btn btn-default glyphicon glyphicon-comment"></button>
+		<button class="btn btn-default glyphicon glyphicon-search"></button>
+	</div>
+	<div class="col-xs-12 col-sm-4 user-menu">
+		<a class="btn btn-link" id="logged-user"><img id="user-picture" src="../img/profile.png"> Logged User</a>
+		<button class="btn btn-default" name="log-out" onclick="window.location.href='login.html'">Log Out</button>
+	</div>
+</nav>
+<div class="container-fluid content full-height">
+	<div class="row full-height">
+		<div class="col-xs-12">
+			<h1><img id="profile-picture" src="../img/profile.png"> Selected User</h1>
+		</div>
+		<div>
+			<div class="col-xs-12 col-sm-4 right-border">
 				<h2 class="bottom-border">Personal info:</h2>
 				<table>
 					<tr>
@@ -50,7 +57,7 @@
 					</tr>
 				</table>
 			</div>
-			<div class="col-xs-12 col-sm-4 right-border column">
+			<div class="col-xs-12 col-sm-4 right-border">
 				<h2 class="bottom-border">Posts:</h2>
 				<div>
 					<h3>Who posted</h3>
@@ -58,19 +65,23 @@
 				</div>
 				<div>
 					<h3>Who posted</h3>
-					<h4>Image</h4>
+					<h4>Text</h4>
+					<img class="post-picture" src="../img/post.png">
 				</div>
 			</div>
-			<div class="col-xs-12 col-sm-4 column">
+			<div class="col-xs-12 col-sm-4">
 				<h2 class="bottom-border">Friends:</h2>
 				<div>
-					<h3>Image | User Name</h3>
+					<button class="btn btn-link"><img class="friend-picture" src="../img/profile.png"> User Name
+					</button>
 				</div>
 				<div>
-					<h3>Image | User Name</h3>
+					<button class="btn btn-link"><img class="friend-picture" src="../img/profile.png"> User Name
+					</button>
 				</div>
 				<div>
-					<h3>Image | User Name</h3>
+					<button class="btn btn-link"><img class="friend-picture" src="../img/profile.png"> User Name
+					</button>
 				</div>
 			</div>
 		</div>

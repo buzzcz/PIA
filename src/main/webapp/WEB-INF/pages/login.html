@@ -12,23 +12,23 @@
 	<title>Login</title>
 </head>
 <body>
-<div class="container-fluid row full-height">
-	<header class="col-xs-12 col-sm-12">
-		<div class="col-xs-12 col-sm-6">
-			<!-- TODO: App icon and some sort of menu. -->
-			<a class="btn btn-link logo">Kiv<span class="logo-border">Book</span></a>
-		</div>
-		<div class="col-xs-12 col-sm-6 pull-right log-in-form">
-			<form class="form-inline" action="profile.html" method="post">
-				<label class="sr-only" for="email">Email</label>
-				<input class="form-control" type="email" id="email" name="email" placeholder="Email" required>
-				<label class="sr-only" for="password">Password</label>
-				<input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
-				<button class="btn btn-default" type="submit" name="log-in">Log In</button>
-			</form>
-		</div>
-	</header>
-	<div class="col-xs-12 col-sm-12 content full-height">
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="col-xs-12 col-sm-6">
+		<!-- TODO: App icon and some sort of menu. -->
+		<a class="btn btn-link" id="logo">Kiv<span class="logo-border">Book</span></a>
+	</div>
+	<div class="col-xs-12 col-sm-6 pull-right log-in-form">
+		<form class="form-inline" action="profile.html" method="post">
+			<label class="sr-only" for="email">Email</label>
+			<input class="form-control" type="email" id="email" name="email" placeholder="Email" required>
+			<label class="sr-only" for="password">Password</label>
+			<input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
+			<button class="btn btn-default" type="submit" name="log-in">Log In</button>
+		</form>
+	</div>
+</nav>
+<div class="container-fluid full-height">
+	<div class="row content full-height">
 		<div class="col-xs-12 col-sm-6">
 			<h2>Connect with your friends and meet new people.</h2>
 			<ul>
@@ -40,20 +40,20 @@
 		<div class="col-xs-12 col-sm-6">
 			<h1>Sign Up!</h1>
 			<h4>By signing up you can access other people's profiles, contributions etc.</h4>
-			<form class="form-horizontal register-form" method="post">
-				<div class="form-inline">
+			<form class="form-horizontal" method="post">
+				<div class="form-inline bottom-padding">
 					<label class="sr-only" for="first-name">First Name</label>
 					<input class="form-control" type="text" id="first-name" name="first-name" placeholder="First Name" required>
 					<label class="sr-only" for="last-name">Last Name</label>
 					<input class="form-control" type="text" id="last-name" name="last-name" placeholder="Last Name" required>
 				</div>
-				<div class="form-inline">
+				<div class="form-inline bottom-padding">
 					<label class="sr-only" for="birthday">Birthday</label>
 					<input class="form-control" type="text" id="birthday" name="birthday" placeholder="Birthday" required>
 					<label class="sr-only" for="email-register">Email</label>
 					<input class="form-control" type="email" id="email-register" name="email" placeholder="Email" required>
 				</div>
-				<div class="form-inline">
+				<div class="form-inline bottom-padding">
 					<label class="sr-only" for="password-register">Password</label>
 					<input class="form-control" type="password" id="password-register" name="password"
 						   placeholder="Password" required>
@@ -61,7 +61,7 @@
 					<input class="form-control" type="password" id="password-repeat" name="repeat-password"
 						   placeholder="Repeat Password" required>
 				</div>
-				<div class="form-inline">
+				<div class="form-inline bottom-padding">
 					<div class="radio-inline">
 						<input type="radio" name="gender" id="female" value="female" required>
 						<label for="female">Female</label>
@@ -71,7 +71,7 @@
 						<label for="male">Male</label>
 					</div>
 				</div>
-				<div class="form-inline">
+				<div class="form-inline bottom-padding">
 					<label>Profile Picture:</label>
 					<label class="btn btn-default" for="profile-picture">
 						<input type="file" id="profile-picture" accept="image/*">

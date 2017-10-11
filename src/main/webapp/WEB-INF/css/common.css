@@ -2,12 +2,16 @@ html, body, .full-height {
 	height: 100%;
 }
 
-header {
-	padding: 5px;
-	border-bottom: thin solid black;
+body {
+	/* TODO: Use correct padding from menu on smaller scale screens. */
+	padding-top: 60px;
 }
 
-.logo, .logo:link, .logo:visited, .logo:hover, .logo:active {
+nav {
+	padding: 5px;
+}
+
+#logo, #logo:link, #logo:visited, #logo:hover, #logo:active {
 	color: black;
 	text-decoration: none;
 	font-size: 175%;
@@ -23,6 +27,7 @@ header {
 .content {
 	background-color: #204d8f;
 	color: white;
+	overflow: auto;
 }
 
 .content button {
