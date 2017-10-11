@@ -5,3 +5,7 @@
 .register-form div {
 	padding-bottom: 5px;
 }
+
+#profile-picture {
+	display: none;
+}
