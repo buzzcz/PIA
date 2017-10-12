@@ -2,6 +2,21 @@
 	padding-top: 5px;
 }
 
+#selected-user {
+	display: table;
+	width: 100%;
+}
+
+#selected-user-name {
+	display: table-cell;
+	float: none;
+}
+
+#status {
+	display: table-cell;
+	float: none;
+}
+
 .bottom-border {
 	border-bottom: thin solid white;
 }
