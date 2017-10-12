@@ -42,15 +42,19 @@
 			<form class="form-horizontal" method="post">
 				<div class="form-inline bottom-padding">
 					<label class="sr-only" for="first-name">First Name</label>
-					<input class="form-control" type="text" id="first-name" name="first-name" placeholder="First Name" required>
+					<input class="form-control" type="text" id="first-name" name="first-name" placeholder="First Name"
+						   required>
 					<label class="sr-only" for="last-name">Last Name</label>
-					<input class="form-control" type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+					<input class="form-control" type="text" id="last-name" name="last-name" placeholder="Last Name"
+						   required>
 				</div>
 				<div class="form-inline bottom-padding">
 					<label class="sr-only" for="birthday">Birthday</label>
-					<input class="form-control" type="text" id="birthday" name="birthday" placeholder="Birthday" required>
+					<input class="form-control" type="text" id="birthday" name="birthday" placeholder="Birthday"
+						   required>
 					<label class="sr-only" for="email-register">Email</label>
-					<input class="form-control" type="email" id="email-register" name="email" placeholder="Email" required>
+					<input class="form-control" type="email" id="email-register" name="email" placeholder="Email"
+						   required>
 				</div>
 				<div class="form-inline bottom-padding">
 					<label class="sr-only" for="password-register">Password</label>
@@ -71,12 +75,14 @@
 					</div>
 				</div>
 				<div class="form-inline bottom-padding">
-					<label>Profile Picture:</label>
-					<label class="btn btn-default" for="profile-picture">
-						<input type="file" id="profile-picture" accept="image/*">
-						<span id="selected-file">No file chosen&hellip;</span>
-					</label>
-
+					<label for="selected-file">Profile Picture:</label>
+					<div class="input-group">
+						<label class="input-group-btn" for="profile-picture"><span
+								class="btn btn-default">Browse:</span>
+							<input type="file" id="profile-picture" accept="image/*">
+						</label>
+						<input class="form-control" id="selected-file" type="text" value="No file chosen&hellip;" readonly>
+					</div>
 				</div>
 				<button class="btn btn-default" type="submit" name="sign-in">Sign Up</button>
 			</form>
