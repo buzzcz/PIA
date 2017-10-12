@@ -30,3 +30,10 @@
 .friend-picture {
 	width: 10%;
 }
+
+.friend-link, .friend-link:link, .friend-link:visited, .friend-link:hover, .friend-link:active {
+	color: white;
+	text-decoration: none;
+	text-align: left;
+	font-size: 150%;
+}
