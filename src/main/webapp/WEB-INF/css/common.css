@@ -28,6 +28,7 @@ nav {
 	background-color: #204d8f;
 	color: white;
 	overflow: auto;
+	padding-bottom: 5px;
 }
 
 .content button {
