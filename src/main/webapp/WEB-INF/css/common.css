@@ -18,7 +18,7 @@ nav {
 }
 
 .logo-border {
-	border: thin solid #204d8f;
+	border: thin solid;
 	border-radius: 10%;
 	background-color: #204d8f;
 	color: white;
@@ -29,8 +29,4 @@ nav {
 	color: white;
 	overflow: auto;
 	padding-bottom: 5px;
-}
-
-.content button {
-	color: ButtonText;
 }
