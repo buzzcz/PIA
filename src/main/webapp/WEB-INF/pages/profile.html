@@ -8,20 +8,25 @@
 	<link type="text/css" rel="stylesheet" href="../css/profile.css">
 	<script type="application/javascript" src="../js/jquery.min.js"></script>
 	<script type="application/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="application/javascript" src="../js/common.js"></script>
 	<title>User's Profile</title>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="col-xs-12 col-sm-4">
+<nav class="navbar navbar-default navbar-fixed-top container-fluid row">
+	<div class="col-xs-9 col-sm-4">
 		<a class="btn btn-link" id="logo">Kiv<span class="logo-border">Book</span></a>
 	</div>
-	<div class="col-xs-12 col-sm-4 menu">
+	<div class="visible-xs col-xs-3 pull-right top-padding">
+		<button class="btn btn-default glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target=".collapsible-menu"
+				aria-expanded="true" aria-controls="collapsible-menu"></button>
+	</div>
+	<div class="collapse in col-xs-12 col-sm-4 top-padding collapsible-menu">
 		<!-- TODO: Add some sort of menu. -->
 		<button class="btn btn-default glyphicon glyphicon-th-list"></button>
 		<button class="btn btn-default glyphicon glyphicon-comment"></button>
 		<button class="btn btn-default glyphicon glyphicon-search"></button>
 	</div>
-	<div class="col-xs-12 col-sm-4 user-menu">
+	<div class="collapse in col-xs-12 col-sm-4 collapsible-menu">
 		<a class="btn btn-link" id="logged-user"><img id="user-picture" src="../img/profile.png" alt="Profile Picture">
 			Logged User</a>
 		<button class="btn btn-default" name="log-out" onclick="window.location.href='login.html'">Log Out</button>
@@ -95,9 +100,7 @@
 				<h2 class="bottom-border">Friends:</h2>
 				<div>
 					<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
-															 alt="Friend's Picture">
-						User
-						Name</a>
+															 alt="Friend's Picture"> User Name</a>
 				</div>
 				<div>
 					<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"

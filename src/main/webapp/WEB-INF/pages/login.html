@@ -8,15 +8,20 @@
 	<link type="text/css" rel="stylesheet" href="../css/login.css">
 	<script type="application/javascript" src="../js/jquery.min.js"></script>
 	<script type="application/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="application/javascript" src="../js/common.js"></script>
 	<script type="application/javascript" src="../js/login.js"></script>
 	<title>Login</title>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="col-xs-12 col-sm-6">
+<nav class="navbar navbar-default navbar-fixed-top container-fluid row">
+	<div class="col-xs-9 col-sm-3 col-md-5 col-lg-6">
 		<a class="btn btn-link" id="logo">Kiv<span class="logo-border">Book</span></a>
 	</div>
-	<div class="col-xs-12 col-sm-6 pull-right log-in-form">
+	<div class="visible-xs col-xs-3 pull-right top-padding">
+		<button class="btn btn-default glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target=".collapsible-menu"
+				aria-expanded="true" aria-controls="collapsible-menu"></button>
+	</div>
+	<div class="collapse in col-xs-12 col-sm-9 col-md-7 col-lg-6 pull-right top-padding collapsible-menu">
 		<form class="form-inline" action="profile.html" method="post">
 			<label class="sr-only" for="email">Email</label>
 			<input class="form-control" type="email" id="email" name="email" placeholder="Email" required>
@@ -79,7 +84,7 @@
 					<div class="input-group">
 						<label class="input-group-btn" for="profile-picture"><span
 								class="btn btn-default">Browse:</span>
-							<input type="file" id="profile-picture" accept="image/*">
+							<input type="file" id="profile-picture" accept="image/*" required>
 						</label>
 						<input class="form-control" id="selected-file" type="text" value="No file chosen&hellip;" readonly>
 					</div>
