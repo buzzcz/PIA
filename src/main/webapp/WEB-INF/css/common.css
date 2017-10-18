@@ -16,8 +16,9 @@ nav {
 	font-size: 175%;
 }
 
+/* TODO: Remove this because it only displays wrong on Linux. */
 @-moz-document url-prefix() {
-	.logo-border {
+	.logo-border, .badge {
 		padding-top: 5px;
 	}
 }
@@ -38,4 +39,9 @@ nav {
 
 .top-padding {
 	padding-top: 5px;
+}
+
+.well {
+	background-color: #3e66a5;
+	margin-bottom: 5px;
 }

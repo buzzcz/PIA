@@ -17,8 +17,8 @@
 		<a class="btn btn-link" id="logo">Kiv<span class="logo-border">Book</span></a>
 	</div>
 	<div class="visible-xs col-xs-3 pull-right top-padding">
-		<button class="btn btn-default glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target=".collapsible-menu"
-				aria-expanded="true" aria-controls="collapsible-menu"></button>
+		<button class="btn btn-default glyphicon glyphicon-menu-hamburger" data-toggle="collapse"
+				data-target=".collapsible-menu" aria-expanded="true" aria-controls="collapsible-menu"></button>
 	</div>
 	<div class="collapse in col-xs-12 col-sm-4 top-padding collapsible-menu">
 		<!-- TODO: Add some sort of menu. -->
@@ -72,41 +72,44 @@
 			</div>
 			<div class="col-xs-12 col-sm-4 right-border">
 				<h2 class="bottom-border">Posts:</h2>
-				<div>
+				<div class="well well-sm">
 					<div>
-						<h3>Who posted</h3>
+						<a class="btn btn-link friend-link post">Who posted</a>
 						<h4>Text</h4>
 					</div>
 					<div>
-						<button class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span> 0</button>
+						<button class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span> <span
+								class="badge">0</span></button>
 						<button class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Comments
-						</button>
+							<span class="badge">0</span></button>
 					</div>
 				</div>
-				<div>
+				<div class="well well-sm">
 					<div>
-						<h3>Who posted</h3>
+						<a class="btn btn-link friend-link post">Who posted</a>
 						<h4>Text</h4>
 						<img class="post-picture" src="../img/post.png" alt="Post Picture">
 					</div>
 					<div>
-						<button class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span> 0</button>
+						<button class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span> <span
+								class="badge">0</span></button>
 						<button class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Comments
+							<span class="badge">0</span>
 						</button>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-4">
 				<h2 class="bottom-border">Friends:</h2>
-				<div>
+				<div class="well well-sm">
 					<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
 															 alt="Friend's Picture"> User Name</a>
 				</div>
-				<div>
+				<div class="well well-sm">
 					<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
 															 alt="Friend's Picture"> User Name</a>
 				</div>
-				<div>
+				<div class="well well-sm">
 					<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
 															 alt="Friend's Picture"> User Name</a>
 				</div>
