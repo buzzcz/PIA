@@ -4,10 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="../css/bootstrap-datepicker3.min.css">
 	<link type="text/css" rel="stylesheet" href="../css/common.css">
 	<link type="text/css" rel="stylesheet" href="../css/login.css">
 	<script type="application/javascript" src="../js/jquery.min.js"></script>
 	<script type="application/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="application/javascript" src="../js/bootstrap-datepicker.min.js"></script>
 	<script type="application/javascript" src="../js/common.js"></script>
 	<script type="application/javascript" src="../js/login.js"></script>
 	<title>Login</title>
@@ -55,8 +57,11 @@
 				</div>
 				<div class="form-inline bottom-padding">
 					<label class="sr-only" for="birthday">Birthday</label>
+					<div class="input-group date">
 					<input class="form-control" type="text" id="birthday" name="birthday" placeholder="Birthday"
-						   required>
+						   required><span class="input-group-addon"><span
+							class="glyphicon glyphicon-calendar"></span></span>
+					</div>
 					<label class="sr-only" for="email-register">Email</label>
 					<input class="form-control" type="email" id="email-register" name="email" placeholder="Email"
 						   required>

@@ -1,3 +1,16 @@
+function initDatepicker() {
+	$('.input-group.date').datepicker({
+		format: "dd.mm.yyyy",
+		endDate: "today",
+		maxViewMode: 2,
+		autoclose: true
+	});
+}
+
+function datepickerWidth() {
+	$('.input-group.date').width($('#email-register').outerWidth());
+}
+
 function initUpload() {
 	var profilePicture = $('#profile-picture');
 	var selectedFile = $('#selected-file');
@@ -9,4 +22,13 @@ function initUpload() {
 	});
 }
 
-$(initUpload);
+function init() {
+	initDatepicker();
+	initUpload();
+	datepickerWidth();
+	$(window).resize(function () {
+		datepickerWidth();
+	});
+}
+
+$(init);
