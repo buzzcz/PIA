@@ -26,9 +26,7 @@ function init() {
 	initDatepicker();
 	initUpload();
 	datepickerWidth();
-	$(window).resize(function () {
-		datepickerWidth();
-	});
+	$(window).resize(datepickerWidth);
 }
 
 $(init);

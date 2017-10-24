@@ -1,0 +1,30 @@
+.content {
+	padding-top: 10px;
+}
+
+#conversations-toggle {
+	margin-bottom: 10px;
+}
+
+.selected {
+	background-color: #1e3e99;
+}
+
+#messages {
+	overflow: auto;
+}
+
+.message-from {
+	max-width: 50%;
+}
+
+.message-to {
+	max-width: 50%;
+	margin-left: 50%;
+	text-align: right;
+}
+
+#message {
+	resize: none;
+	overflow: auto;
+}

@@ -1,4 +1,4 @@
-function togglePanel(){
+function toggleMenu(){
 	var w = $(window).width();
 	if (w < 768) {
 		$('.collapsible-menu').removeClass('in');
@@ -8,10 +8,8 @@ function togglePanel(){
 }
 
 function init() {
-	togglePanel();
-	$(window).resize(function () {
-		togglePanel();
-	});
+	toggleMenu();
+	$(window).resize(toggleMenu);
 }
 
 $(init);

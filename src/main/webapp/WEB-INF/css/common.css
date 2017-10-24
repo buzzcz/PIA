@@ -1,5 +1,6 @@
 html, body, .full-height {
 	height: 100%;
+	font-family: Arial, sans-serif;
 }
 
 body {
@@ -16,15 +17,7 @@ nav {
 	font-size: 175%;
 }
 
-/* TODO: Remove this because it only displays wrong on Linux. */
-@-moz-document url-prefix() {
-	.logo-border, .badge {
-		padding-top: 5px;
-	}
-}
-
 .logo-border {
-	border: thin solid;
 	border-radius: 10%;
 	background-color: #204d8f;
 	color: white;
@@ -41,7 +34,24 @@ nav {
 	padding-top: 5px;
 }
 
+#user-picture {
+	height: 30px;
+}
+
+#logged-user {
+	color: black;
+}
+
 .well {
 	background-color: #3e66a5;
 	margin-bottom: 5px;
+}
+
+.friend-picture {
+	width: 75px;
+}
+
+.friend-link, .friend-link:link, .friend-link:visited, .friend-link:hover, .friend-link:active {
+	color: white;
+	font-size: 150%;
 }

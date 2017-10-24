@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="../css/bootstrap-datepicker3.min.css">
+	<link type="text/css" rel="stylesheet" href="../css/common.css">
+	<link type="text/css" rel="stylesheet" href="../css/messages.css">
+	<script type="application/javascript" src="../js/jquery.min.js"></script>
+	<script type="application/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="application/javascript" src="../js/bootstrap-datepicker.min.js"></script>
+	<script type="application/javascript" src="../js/common.js"></script>
+	<script type="application/javascript" src="../js/messages.js"></script>
+	<title>Messages</title>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top container-fluid row">
+	<div class="col-xs-9 col-sm-4">
+		<a class="btn btn-link" id="logo">Kiv<span class="logo-border">Book</span></a>
+	</div>
+	<div class="visible-xs col-xs-3 pull-right top-padding">
+		<button class="btn btn-default glyphicon glyphicon-menu-hamburger" data-toggle="collapse"
+				data-target=".collapsible-menu" aria-expanded="true" aria-controls="collapsible-menu"></button>
+	</div>
+	<div class="collapse in col-xs-12 col-sm-4 top-padding collapsible-menu">
+		<!-- TODO: Add some sort of menu. -->
+		<button class="btn btn-default glyphicon glyphicon-th-list"></button>
+		<button class="btn btn-default glyphicon glyphicon-comment"></button>
+		<button class="btn btn-default glyphicon glyphicon-search"></button>
+	</div>
+	<div class="collapse in col-xs-12 col-sm-4 collapsible-menu">
+		<a class="btn btn-link" id="logged-user"><img id="user-picture" src="../img/profile.png" alt="Profile Picture">
+			Logged User</a>
+		<button class="btn btn-default" name="log-out" onclick="window.location.href='login.html'">Log Out</button>
+	</div>
+</nav>
+<div class="container-fluid full-height">
+	<div class="row content full-height">
+		<!-- TODO: Add new message button. -->
+		<div class="visible-xs col-xs-2 full-height">
+			<button class="btn btn-default glyphicon glyphicon-user" id="conversations-toggle" data-toggle="collapse"
+					data-target="#conversations" aria-expanded="true"
+					aria-controls="conversations"></button>
+		</div>
+		<div class=" collapse in col-xs-10 col-sm-4" id="conversations">
+			<h2 class="bottom-border">Last Conversations:</h2>
+			<div class="well well-sm">
+				<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
+														 alt="Friend's Picture"> User Name</a>
+			</div>
+			<div class="well well-sm selected">
+				<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
+														 alt="Friend's Picture"> User Name</a>
+			</div>
+			<div class="well well-sm">
+				<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
+														 alt="Friend's Picture"> User Name</a>
+			</div>
+			<div class="well well-sm">
+				<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
+														 alt="Friend's Picture"> User Name</a>
+			</div>
+		</div>
+		<div class="col-xs-10 col-sm-8 full-height">
+			<div class="well well-sm" id="messages">
+				<div class="well well-sm message-from">
+					Message from friend
+				</div>
+				<div class="well well-sm message-to">
+					Message to friend
+				</div>
+				<div class="well well-sm message-to">
+					Message to friend that is really long and should be wrapped if the window is narrow
+				</div>
+				<div class="well well-sm message-from">
+					Message from friend that is<br>
+					on more than<br>
+					one line
+				</div>
+				<div class="well well-sm message-to">
+					Message to friend
+				</div>
+			</div>
+			<div class="well well-sm" id="message-well">
+				<form class="form-horizontal" method="post">
+					<label class="sr-only" for="message">Message</label>
+					<textarea class="form-control" id="message" name="message"
+							  placeholder="Type your message&hellip;"></textarea>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
