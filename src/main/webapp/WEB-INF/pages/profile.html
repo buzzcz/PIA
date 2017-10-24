@@ -9,6 +9,7 @@
 	<script type="application/javascript" src="../js/jquery.min.js"></script>
 	<script type="application/javascript" src="../js/bootstrap.min.js"></script>
 	<script type="application/javascript" src="../js/common.js"></script>
+	<script type="application/javascript" src="../js/profile.js"></script>
 	<title>User's Profile</title>
 </head>
 <body>
@@ -33,88 +34,99 @@
 	</div>
 </nav>
 <div class="container-fluid content full-height">
-	<div class="full-height">
-		<div class="row" id="selected-user">
-			<div class="col-xs-12 col-sm-4" id="selected-user-name">
-				<!-- TODO: Make the line not to break under the picture. -->
-				<h1><img id="profile-picture" src="../img/profile.png" alt="User's Profile Picture"> FirstName
-					LastName</h1>
+	<div class="row full-height">
+		<div class="col-xs-12" id="profile-info">
+			<!-- TODO: Make the line not to break under the picture. -->
+			<h1><img class="profile-picture" id="profile-picture" src="../img/profile.png"
+					 alt="User's Profile Picture"> FirstName LastName</h1>
+		</div>
+		<div class="visible-xs col-xs-12 bottom-padding" id="buttons">
+			<button class="btn btn-default glyphicon glyphicon-briefcase" id="personal-info-toggle"
+					onclick="showView('personal-info')"></button>
+			<button class="btn btn-default glyphicon glyphicon-th-list" id="posts-toggle"
+					onclick="showView('posts')"></button>
+			<button class="btn btn-default glyphicon glyphicon-user" id="friends-toggle"
+					onclick="showView('friends')"></button>
+		</div>
+		<div class="collapse in col-xs-12 col-sm-4 collapsible-view" id="personal-info">
+			<h2 class="bottom-border">Personal info:</h2>
+			<table>
+				<tr>
+					<td><h4>First Name:</h4></td>
+					<td class="info-row"><h4>FirstName</h4></td>
+				</tr>
+				<tr>
+					<td><h4>Last Name:</h4></td>
+					<td class="info-row"><h4>LastName</h4></td>
+				</tr>
+				<tr>
+					<td><h4>Birthday:</h4></td>
+					<td class="info-row"><h4>Birthday</h4></td>
+				</tr>
+				<tr>
+					<td><h4>Age:</h4></td>
+					<td class="info-row"><h4>Age</h4></td>
+				</tr>
+				<tr>
+					<td><h4>Email:</h4></td>
+					<td class="info-row"><h4>Email</h4></td>
+				</tr>
+			</table>
+			<div class="top-padding">
+				<button class="btn btn-default" name="add-friend" disabled>Already Friends <span
+						class="glyphicon glyphicon-ok"></span></button>
 			</div>
-			<div class="col-xs-12 col-sm-8" id="status">
-				<h3>Already Friends <span class="glyphicon glyphicon-ok"></span></h3>
-				<!-- TODO: Add new post button to open modal. -->
-				<!-- TODO: Add new message button to open modal. -->
+			<div class="top-padding">
+				<button class="btn btn-default" name="add-friend">New Post <span
+						class="glyphicon glyphicon-edit"></span></button>
+			</div>
+			<div class="top-padding">
+				<button class="btn btn-default" name="add-friend">New Message <span
+						class="glyphicon glyphicon-send"></span></button>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-12 col-sm-4 right-border">
-				<h2 class="bottom-border">Personal info:</h2>
-				<table>
-					<tr>
-						<td><h4>First Name:</h4></td>
-						<td class="info-row"><h4>FirstName</h4></td>
-					</tr>
-					<tr>
-						<td><h4>Last Name:</h4></td>
-						<td class="info-row"><h4>LastName</h4></td>
-					</tr>
-					<tr>
-						<td><h4>Birthday:</h4></td>
-						<td class="info-row"><h4>Birthday</h4></td>
-					</tr>
-					<tr>
-						<td><h4>Age:</h4></td>
-						<td class="info-row"><h4>Age</h4></td>
-					</tr>
-					<tr>
-						<td><h4>Email:</h4></td>
-						<td class="info-row"><h4>Email</h4></td>
-					</tr>
-				</table>
-			</div>
-			<div class="col-xs-12 col-sm-4 right-border">
-				<h2 class="bottom-border">Posts:</h2>
-				<div class="well well-sm">
-					<div>
-						<a class="btn btn-link friend-link post">Who posted</a>
-						<h4>Text</h4>
-					</div>
-					<div>
-						<button class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span> <span
-								class="badge">0</span></button>
-						<button class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Comments
-							<span class="badge">0</span></button>
-					</div>
+		<div class="collapse in col-xs-12 col-sm-4 collapsible-view" id="posts">
+			<h2 class="bottom-border">Posts:</h2>
+			<div class="well well-sm">
+				<div>
+					<a class="btn btn-link friend-link post">Who posted</a>
+					<h4>Text</h4>
 				</div>
-				<div class="well well-sm">
-					<div>
-						<a class="btn btn-link friend-link post">Who posted</a>
-						<h4>Text</h4>
-						<img class="post-picture" src="../img/post.png" alt="Post Picture">
-					</div>
-					<div>
-						<button class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span> <span
-								class="badge">0</span></button>
-						<button class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Comments
-							<span class="badge">0</span>
-						</button>
-					</div>
+				<div>
+					<button class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span> <span
+							class="badge">0</span></button>
+					<button class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Comments
+						<span class="badge">2</span></button>
 				</div>
 			</div>
-			<div class="col-xs-12 col-sm-4">
-				<h2 class="bottom-border">Friends:</h2>
-				<div class="well well-sm">
-					<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
-															 alt="Friend's Picture"> User Name</a>
+			<div class="well well-sm">
+				<div>
+					<a class="btn btn-link friend-link post">Who posted</a>
+					<h4>Text</h4>
+					<img class="post-picture" src="../img/post.png" alt="Post Picture">
 				</div>
-				<div class="well well-sm">
-					<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
-															 alt="Friend's Picture"> User Name</a>
+				<div>
+					<button class="btn btn-default"><span class="glyphicon glyphicon-star"></span> <span
+							class="badge">1</span></button>
+					<button class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Comments
+						<span class="badge">0</span>
+					</button>
 				</div>
-				<div class="well well-sm">
-					<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
-															 alt="Friend's Picture"> User Name</a>
-				</div>
+			</div>
+		</div>
+		<div class="collapse in col-xs-12 col-sm-4 collapsible-view" id="friends">
+			<h2 class="bottom-border">Friends:</h2>
+			<div class="well well-sm">
+				<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
+														 alt="Friend's Picture"> User Name</a>
+			</div>
+			<div class="well well-sm">
+				<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
+														 alt="Friend's Picture"> User Name</a>
+			</div>
+			<div class="well well-sm">
+				<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
+														 alt="Friend's Picture"> User Name</a>
 			</div>
 		</div>
 	</div>

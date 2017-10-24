@@ -5,8 +5,6 @@ function toggleConversations(){
 	} else {
 		$('#conversations').addClass('in');
 	}
-
-	conversationHeight();
 }
 
 function messageHeight() {
@@ -20,16 +18,17 @@ function messageHeight() {
 			message.height(150);
 		}
 	}
-
-	conversationHeight();
 }
 
-function conversationHeight() {
-	var message = $('#message');
-	var conversation = $('#messages');
-	var parent = conversation.parent();
-	conversation.height(0);
-	conversation.height(parent.height() - message.height() - 60);
+function showConversations() {
+	var conversations = $('#conversations');
+	if (conversations.hasClass('in')) {
+		conversations.removeClass('in');
+		$('#messages').parent().addClass('in');
+	} else {
+		conversations.addClass('in');
+		$('#messages').parent().removeClass('in');
+	}
 }
 
 function init() {

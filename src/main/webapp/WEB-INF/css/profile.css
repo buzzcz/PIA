@@ -6,8 +6,12 @@
 	padding-left: 5px;
 }
 
-#profile-picture {
+.profile-picture {
 	width: 125px;
+}
+
+.profile-picture-small {
+	width: 50px;
 }
 
 .post-picture {
