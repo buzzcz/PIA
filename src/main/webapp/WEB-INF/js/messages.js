@@ -31,11 +31,22 @@ function showConversations() {
 	}
 }
 
+function sendMessage(e) {
+	if (e.which == 13 && !e.shiftKey) {
+		e.preventDefault();
+		//	TODO: Send message.
+	}
+}
+
 function init() {
 	toggleConversations();
 	$(window).resize(toggleConversations);
 	messageHeight();
-	$('#message').keyup(messageHeight);
+	var message = $('#message');
+	message.keyup(messageHeight);
+	message.keydown(function (e) {
+		sendMessage(e);
+	});
 }
 
 $(init);
