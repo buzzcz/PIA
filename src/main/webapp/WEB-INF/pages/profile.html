@@ -19,18 +19,20 @@
 	</div>
 	<div class="visible-xs col-xs-3 pull-right top-padding">
 		<button class="btn btn-default glyphicon glyphicon-menu-hamburger" data-toggle="collapse"
-				data-target=".collapsible-menu" aria-expanded="true" aria-controls="collapsible-menu"></button>
+				data-target=".collapsible-menu" aria-expanded="true" aria-controls="collapsible-menu"
+				title="Menu"></button>
 	</div>
 	<div class="collapse in col-xs-12 col-sm-4 top-padding collapsible-menu">
 		<!-- TODO: Add some sort of menu. -->
-		<button class="btn btn-default glyphicon glyphicon-th-list"></button>
-		<button class="btn btn-default glyphicon glyphicon-comment"></button>
-		<button class="btn btn-default glyphicon glyphicon-search"></button>
+		<button class="btn btn-default glyphicon glyphicon-th-list" title="Posts"></button>
+		<button class="btn btn-default glyphicon glyphicon-comment" title="Messages"></button>
+		<button class="btn btn-default glyphicon glyphicon-search" title="Search"></button>
 	</div>
 	<div class="collapse in col-xs-12 col-sm-4 collapsible-menu">
 		<a class="btn btn-link" id="logged-user"><img id="user-picture" src="../img/profile.png" alt="Profile Picture">
 			Logged User</a>
-		<button class="btn btn-default" name="log-out" onclick="window.location.href='login.html'">Log Out</button>
+		<button class="btn btn-default" name="log-out" onclick="window.location.href='login.html'" title="Log Out">Log
+			Out</button>
 	</div>
 </nav>
 <div class="container-fluid content full-height">
@@ -42,11 +44,11 @@
 		</div>
 		<div class="visible-xs col-xs-12 bottom-padding" id="buttons">
 			<button class="btn btn-default glyphicon glyphicon-briefcase" id="personal-info-toggle"
-					onclick="showView('personal-info')"></button>
+					onclick="showView('personal-info')" title="Personal Info"></button>
 			<button class="btn btn-default glyphicon glyphicon-th-list" id="posts-toggle"
-					onclick="showView('posts')"></button>
+					onclick="showView('posts')" title="Posts"></button>
 			<button class="btn btn-default glyphicon glyphicon-user" id="friends-toggle"
-					onclick="showView('friends')"></button>
+					onclick="showView('friends')" title="Friends"></button>
 		</div>
 		<div class="collapse in col-xs-12 col-sm-4 collapsible-view" id="personal-info">
 			<h2 class="bottom-border">Personal info:</h2>
@@ -74,15 +76,15 @@
 			</table>
 			<div class="top-padding">
 				<button class="btn btn-default" name="add-friend" disabled>Already Friends <span
-						class="glyphicon glyphicon-ok"></span></button>
+						class="glyphicon glyphicon-ok" title="Friendship Status"></span></button>
 			</div>
 			<div class="top-padding">
 				<button class="btn btn-default" name="add-friend">New Post <span
-						class="glyphicon glyphicon-edit"></span></button>
+						class="glyphicon glyphicon-edit" title="New Post"></span></button>
 			</div>
 			<div class="top-padding">
 				<button class="btn btn-default" name="add-friend">New Message <span
-						class="glyphicon glyphicon-send"></span></button>
+						class="glyphicon glyphicon-send" title="New Message"></span></button>
 			</div>
 		</div>
 		<div class="collapse in col-xs-12 col-sm-4 collapsible-view" id="posts">
@@ -93,10 +95,10 @@
 					<h4>Text</h4>
 				</div>
 				<div>
-					<button class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></span> <span
-							class="badge">0</span></button>
-					<button class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Comments
-						<span class="badge">2</span></button>
+					<button class="btn btn-default" title="Like"><span class="glyphicon glyphicon-star-empty"></span>
+						<span class="badge">0</span></button>
+					<button class="btn btn-default" title="Comment"><span class="glyphicon glyphicon-list-alt"></span>
+						Comments <span class="badge">2</span></button>
 				</div>
 			</div>
 			<div class="well well-sm">
@@ -106,9 +108,10 @@
 					<img class="post-picture" src="../img/post.png" alt="Post Picture">
 				</div>
 				<div>
-					<button class="btn btn-default"><span class="glyphicon glyphicon-star"></span> <span
+					<button class="btn btn-default" title="Like"><span class="glyphicon glyphicon-star"></span> <span
 							class="badge">1</span></button>
-					<button class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Comments
+					<button class="btn btn-default" title="Comment"><span class="glyphicon glyphicon-list-alt"></span>
+						Comments
 						<span class="badge">0</span>
 					</button>
 				</div>
