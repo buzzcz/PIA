@@ -38,11 +38,13 @@
 <div class="container-fluid full-height">
 	<div class="row content full-height">
 		<!-- TODO: Add new message button. -->
-		<div class="visible-xs col-xs-12" id="conversations-toggle-button">
+		<div class="visible-xs col-xs-12" id="toggle-buttons">
 			<button class="btn btn-default glyphicon glyphicon-user" id="conversations-toggle"
-					onclick="showConversations()"></button>
+					onclick="showView('conversations')"></button>
+			<button class="btn btn-default glyphicon glyphicon-comment" id="messages-toggle"
+					onclick="showView('messages')"></button>
 		</div>
-		<div class="collapse in col-xs-12 col-sm-4 full-height" id="conversations">
+		<div class="collapse in col-xs-12 col-sm-4 full-height collapsible-view" id="conversations">
 			<h2 class="bottom-border">Last Conversations:</h2>
 			<div class="well well-sm">
 				<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
@@ -61,8 +63,9 @@
 														 alt="Friend's Picture"> User Name</a>
 			</div>
 		</div>
-		<div class="collapse in col-xs-12 col-sm-8 full-height">
-			<div class="well well-sm" id="messages">
+		<div class="collapse in col-xs-12 col-sm-8 full-height collapsible-view" id="messages">
+			<h2 class="bottom-border">User Name:</h2>
+			<div class="well well-sm">
 				<div class="well well-sm message-from">
 					Message from friend
 				</div>

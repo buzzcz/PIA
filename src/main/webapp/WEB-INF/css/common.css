@@ -38,6 +38,10 @@ nav {
 	padding-bottom: 5px;
 }
 
+.bottom-border {
+	border-bottom: thin solid white;
+}
+
 #user-picture {
 	height: 30px;
 }

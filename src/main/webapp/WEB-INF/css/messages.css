@@ -2,16 +2,12 @@
 	padding-top: 10px;
 }
 
-#conversations-toggle {
+#toggle-buttons {
 	margin-bottom: 10px;
 }
 
 .selected {
 	background-color: #1e3e99;
-}
-
-#messages {
-	overflow: auto;
 }
 
 .message-from {

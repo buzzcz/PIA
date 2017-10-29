@@ -1,10 +1,13 @@
-function toggleConversations(){
+function toggleViews(){
 	var w = $(window).width();
 	if (w < 768) {
-		$('#conversations').removeClass('in');
-	} else {
+		$('.collapsible-view').removeClass('in');
 		$('#conversations').addClass('in');
+	} else {
+		$('.collapsible-view').addClass('in');
 	}
+
+	messageHeight();
 }
 
 function messageHeight() {
@@ -20,27 +23,23 @@ function messageHeight() {
 	}
 }
 
-function showConversations() {
-	var conversations = $('#conversations');
-	if (conversations.hasClass('in')) {
-		conversations.removeClass('in');
-		$('#messages').parent().addClass('in');
-	} else {
-		conversations.addClass('in');
-		$('#messages').parent().removeClass('in');
-	}
+function showView(viewToShow) {
+	var view = $('#' + viewToShow);
+	$('.collapsible-view').removeClass('in');
+	view.addClass('in');
+	messageHeight();
 }
 
 function sendMessage(e) {
-	if (e.which == 13 && !e.shiftKey) {
+	if (e.which === 13 && !e.shiftKey) {
 		e.preventDefault();
 		//	TODO: Send message.
 	}
 }
 
 function init() {
-	toggleConversations();
-	$(window).resize(toggleConversations);
+	toggleViews();
+	$(window).resize(toggleViews);
 	messageHeight();
 	var message = $('#message');
 	message.keyup(messageHeight);
