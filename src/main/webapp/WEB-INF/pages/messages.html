@@ -21,16 +21,16 @@
 	</div>
 	<div class="visible-xs col-xs-3 pull-right top-padding">
 		<button class="btn btn-default glyphicon glyphicon-menu-hamburger" data-toggle="collapse"
-				data-target=".collapsible-menu" aria-expanded="true" aria-controls="collapsible-menu"
+				data-target=".collapsible-menu" aria-expanded="true" aria-controls="menu log-out-form"
 				title="Menu"></button>
 	</div>
-	<div class="collapse in col-xs-12 col-sm-4 top-padding collapsible-menu">
+	<div class="collapse in col-xs-12 col-sm-4 top-padding collapsible-menu" id="menu">
 		<!-- TODO: Add some sort of menu. -->
 		<button class="btn btn-default glyphicon glyphicon-th-list" title="Posts"></button>
 		<button class="btn btn-default glyphicon glyphicon-comment" title="Messages"></button>
 		<button class="btn btn-default glyphicon glyphicon-search" title="Search"></button>
 	</div>
-	<div class="collapse in col-xs-12 col-sm-4 collapsible-menu">
+	<div class="collapse in col-xs-12 col-sm-4 collapsible-menu" id="log-out-form">
 		<a class="btn btn-link" id="logged-user"><img id="user-picture" src="../img/profile.png" alt="Profile Picture">
 			Logged User</a>
 		<button class="btn btn-default" name="log-out" onclick="window.location.href='login.html'" title="Log Out">Log
