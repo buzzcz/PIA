@@ -1,10 +1,14 @@
-function toggleViews(){
+function toggleViews() {
 	var w = $(window).width();
 	if (w < 768) {
-		$('.collapsible-view').removeClass('in');
-		$('#conversations').addClass('in');
+		var conversations = $('#conversations');
+		var collapsible = $('.collapsible-view.in').not(conversations);
+		collapsible.first().collapse('hide');
+		collapsible.one('hidden.bs.collapse', function () {
+			conversations.collapse('show');
+		});
 	} else {
-		$('.collapsible-view').addClass('in');
+		$('.collapsible-view').collapse('show');
 	}
 
 	messageHeight();
@@ -25,9 +29,14 @@ function messageHeight() {
 
 function showView(viewToShow) {
 	var view = $('#' + viewToShow);
-	$('.collapsible-view').removeClass('in');
-	view.addClass('in');
-	messageHeight();
+	if (!view.hasClass('in')) {
+		var collapsible = $('.collapsible-view.in');
+		collapsible.collapse('hide');
+		collapsible.first().one('hidden.bs.collapse', function () {
+			view.collapse('show');
+			messageHeight();
+		});
+	}
 }
 
 function sendMessage(e) {
