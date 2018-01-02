@@ -18,7 +18,7 @@ CREATE TABLE `klaus_kivbook`.`post`(
   `userId` INT NOT NULL,
   `text` MEDIUMTEXT,
   `picture` VARCHAR(255),
-  `private` BOOL NOT NULL,
+  `privacy` BOOL NOT NULL,
   FOREIGN KEY (`userId`) REFERENCES `klaus_kivbook`.`user`(`id`),
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
