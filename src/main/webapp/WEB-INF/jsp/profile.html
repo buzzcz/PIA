@@ -3,13 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
-	<link type="text/css" rel="stylesheet" href="../css/common.css">
-	<link type="text/css" rel="stylesheet" href="../css/profile.css">
-	<script type="application/javascript" src="../js/jquery.min.js"></script>
-	<script type="application/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="application/javascript" src="../js/common.js"></script>
-	<script type="application/javascript" src="../js/profile.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../../../static/css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="../../../../static/css/common.css">
+	<link type="text/css" rel="stylesheet" href="../../../../static/css/profile.css">
+	<script type="application/javascript" src="../../../../static/js/jquery.min.js"></script>
+	<script type="application/javascript" src="../../../../static/js/bootstrap.min.js"></script>
+	<script type="application/javascript" src="../../../../static/js/common.js"></script>
+	<script type="application/javascript" src="../../../../static/js/profile.js"></script>
 	<title>User's Profile</title>
 </head>
 <body>
@@ -29,9 +29,9 @@
 		<button class="btn btn-default glyphicon glyphicon-search" title="Search"></button>
 	</div>
 	<div class="collapse in col-xs-12 col-sm-4 collapsible-menu" id="log-out-form">
-		<a class="btn btn-link" id="logged-user"><img id="user-picture" src="../img/profile.png" alt="Profile Picture">
+		<a class="btn btn-link" id="logged-user"><img id="user-picture" src="../../../../static/img/profile.png" alt="Profile Picture">
 			Logged User</a>
-		<button class="btn btn-default" name="log-out" onclick="window.location.href='login.html'" title="Log Out">Log
+		<button class="btn btn-default" name="log-out" onclick="window.location.href='login.jsp'" title="Log Out">Log
 			Out</button>
 	</div>
 </nav>
@@ -39,7 +39,7 @@
 	<div class="row full-height">
 		<div class="col-xs-12" id="profile-info">
 			<!-- TODO: Make the line not to break under the picture. -->
-			<h1><img class="profile-picture" id="profile-picture" src="../img/profile.png"
+			<h1><img class="profile-picture" id="profile-picture" src="../../../../static/img/profile.png"
 					 alt="User's Profile Picture"> FirstName LastName</h1>
 		</div>
 		<div class="visible-xs col-xs-12 bottom-padding" id="buttons">
@@ -105,7 +105,7 @@
 				<div>
 					<a class="btn btn-link friend-link post">Who posted</a>
 					<h4>Text</h4>
-					<img class="post-picture" src="../img/post.png" alt="Post Picture">
+					<img class="post-picture" src="../../../../static/img/post.png" alt="Post Picture">
 				</div>
 				<div>
 					<button class="btn btn-default" title="Like"><span class="glyphicon glyphicon-star"></span> <span
@@ -120,15 +120,15 @@
 		<div class="collapse in col-xs-12 col-sm-4 collapsible-view" id="friends">
 			<h2 class="bottom-border">Friends:</h2>
 			<div class="well well-sm">
-				<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
+				<a class="btn btn-link friend-link"><img class="friend-picture" src="../../../../static/img/profile.png"
 														 alt="Friend's Picture"> User Name</a>
 			</div>
 			<div class="well well-sm">
-				<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
+				<a class="btn btn-link friend-link"><img class="friend-picture" src="../../../../static/img/profile.png"
 														 alt="Friend's Picture"> User Name</a>
 			</div>
 			<div class="well well-sm">
-				<a class="btn btn-link friend-link"><img class="friend-picture" src="../img/profile.png"
+				<a class="btn btn-link friend-link"><img class="friend-picture" src="../../../../static/img/profile.png"
 														 alt="Friend's Picture"> User Name</a>
 			</div>
 		</div>

@@ -1,17 +1,18 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
-	<link type="text/css" rel="stylesheet" href="../css/bootstrap-datepicker3.min.css">
-	<link type="text/css" rel="stylesheet" href="../css/common.css">
-	<link type="text/css" rel="stylesheet" href="../css/login.css">
-	<script type="application/javascript" src="../js/jquery.min.js"></script>
-	<script type="application/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="application/javascript" src="../js/bootstrap-datepicker.min.js"></script>
-	<script type="application/javascript" src="../js/common.js"></script>
-	<script type="application/javascript" src="../js/login.js"></script>
+	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-datepicker3.min.css">
+	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+	<script type="application/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+	<script type="application/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script type="application/javascript" src="${pageContext.request.contextPath}/js/bootstrap-datepicker.min.js"></script>
+	<script type="application/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
+	<script type="application/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
 	<title>Login</title>
 </head>
 <body>
@@ -79,7 +80,8 @@
 				</div>
 				<div class="form-inline bottom-padding">
 					<label class="sr-only" for="username">Username</label>
-					<input class="form-control" type="text" id="username" name="username" placeholder="Username"
+					<input class="form-control" type="text" id="username-register" name="username"
+						   placeholder="Username"
 						   required>
 				</div>
 				<div class="form-inline bottom-padding">
