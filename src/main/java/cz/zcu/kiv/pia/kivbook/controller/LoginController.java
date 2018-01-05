@@ -1,7 +1,11 @@
 package cz.zcu.kiv.pia.kivbook.controller;
 
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
+import cz.zcu.kiv.pia.kivbook.persistence.service.UserPersistenceService;
+import cz.zcu.kiv.pia.kivbook.service.auth.SecurityService;
+import cz.zcu.kiv.pia.kivbook.service.auth.UserValidatorImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +21,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 public class LoginController {
 
+	@Autowired
+	private UserPersistenceService userPersistenceService;
+
+	@Autowired
+	private SecurityService securityService;
+
+	@Autowired
+	private UserValidatorImpl userValidator;
+
 	@GetMapping({"/", "/login"})
 	public ModelAndView showLogin() {
 		log.debug("Entering showLogin method.");
@@ -29,7 +42,7 @@ public class LoginController {
 		log.debug("Entering authenticate method.");
 		log.debug(user.toString());
 		// TODO: Return correct view based on authentication success.
-		return new ModelAndView("login");
+		return new ModelAndView("redirect:login");
 	}
 
 	@PostMapping("/register")
@@ -37,7 +50,7 @@ public class LoginController {
 		log.debug("Entering register method.");
 		log.debug(user.toString());
 		//TODO: Return proper view.
-		return new ModelAndView("login");
+		return new ModelAndView("redirect:login");
 	}
 
 }

@@ -3,7 +3,7 @@ package cz.zcu.kiv.pia.kivbook.persistence.service;
 import cz.zcu.kiv.pia.kivbook.dto.ConversationDto;
 import cz.zcu.kiv.pia.kivbook.persistence.entity.Conversation;
 import cz.zcu.kiv.pia.kivbook.persistence.repository.ConversationRepository;
-import cz.zcu.kiv.pia.kivbook.service.DtoConvertor;
+import cz.zcu.kiv.pia.kivbook.service.util.DtoConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.LinkedList;

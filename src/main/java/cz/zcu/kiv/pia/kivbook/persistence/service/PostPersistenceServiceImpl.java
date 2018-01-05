@@ -3,7 +3,7 @@ package cz.zcu.kiv.pia.kivbook.persistence.service;
 import cz.zcu.kiv.pia.kivbook.dto.PostDto;
 import cz.zcu.kiv.pia.kivbook.persistence.entity.Post;
 import cz.zcu.kiv.pia.kivbook.persistence.repository.PostRepository;
-import cz.zcu.kiv.pia.kivbook.service.DtoConvertor;
+import cz.zcu.kiv.pia.kivbook.service.util.DtoConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.LinkedList;

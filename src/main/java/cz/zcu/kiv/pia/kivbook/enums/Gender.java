@@ -3,11 +3,11 @@ package cz.zcu.kiv.pia.kivbook.enums;
 import lombok.Getter;
 
 /**
- * Enum representing sex of a person.
+ * Enum representing gender of a person.
  *
  * @author Jaroslav Klaus
  */
-public enum Sex {
+public enum Gender {
 
 	MALE("Male"),
 	FEMALE("Female");
@@ -15,7 +15,7 @@ public enum Sex {
 	@Getter
 	private final String humanReadable;
 
-	Sex(String humanReadable) {
+	Gender(String humanReadable) {
 		this.humanReadable = humanReadable;
 	}
 }

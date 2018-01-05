@@ -1,4 +1,4 @@
-package cz.zcu.kiv.pia.kivbook.service;
+package cz.zcu.kiv.pia.kivbook.service.util;
 
 import java.util.List;
 

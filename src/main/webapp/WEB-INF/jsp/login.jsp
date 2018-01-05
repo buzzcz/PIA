@@ -62,12 +62,10 @@
 						   required>
 				</div>
 				<div class="form-inline bottom-padding">
-					<label class="sr-only" for="birthday">Birthday</label>
-					<div class="input-group date">
-					<input class="form-control" type="text" id="birthday" name="birthday" placeholder="Birthday"
-						   required><span class="input-group-addon"><span
-							class="glyphicon glyphicon-calendar"></span></span>
-					</div>
+					<label class="sr-only" for="username">Username</label>
+					<input class="form-control" type="text" id="username-register" name="username"
+						   placeholder="Username"
+						   required>
 					<label class="sr-only" for="email-register">Email</label>
 					<input class="form-control" type="email" id="email-register" name="email" placeholder="Email"
 						   required>
@@ -77,22 +75,24 @@
 					<input class="form-control" type="password" id="password-register" name="password"
 						   placeholder="Password" required>
 					<label class="sr-only" for="password-repeat">Password Repeat</label>
-					<input class="form-control" type="password" id="password-repeat" name="repeat-password"
+					<input class="form-control" type="password" id="password-repeat" name="password-repeat"
 						   placeholder="Repeat Password" required>
 				</div>
 				<div class="form-inline bottom-padding">
-					<label class="sr-only" for="username">Username</label>
-					<input class="form-control" type="text" id="username-register" name="username"
-						   placeholder="Username"
-						   required>
+					<label class="sr-only" for="birthday">Birthday</label>
+					<div class="input-group date">
+						<input class="form-control" type="text" id="birthday" name="birthday" placeholder="Birthday">
+						<span class="input-group-addon"><span
+								class="glyphicon glyphicon-calendar"></span></span>
+					</div>
 				</div>
 				<div class="form-inline bottom-padding">
 					<div class="radio-inline">
-						<input type="radio" name="gender" id="female" value="female" required>
+						<input type="radio" name="gender" id="female" value="FEMALE" required>
 						<label for="female">Female</label>
 					</div>
 					<div class="radio-inline">
-						<input type="radio" name="gender" id="male" value="male" required>
+						<input type="radio" name="gender" id="male" value="MALE" required>
 						<label for="male">Male</label>
 					</div>
 				</div>
@@ -101,7 +101,7 @@
 					<div class="input-group">
 						<label class="input-group-btn" for="profile-picture"><span
 								class="btn btn-default">Browse:</span>
-							<input type="file" id="profile-picture" accept="image/*" required>
+							<input type="file" id="profile-picture" accept="image/*">
 						</label>
 						<input class="form-control" id="selected-file" type="text" value="No file chosen&hellip;" readonly>
 					</div>

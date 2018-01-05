@@ -1,15 +1,15 @@
 CREATE SCHEMA `klaus_kivbook`;
 
 CREATE TABLE `klaus_kivbook`.`user`(
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(36) NOT NULL,
-  `first_name` VARCHAR(36) NOT NULL,
-  `last_name` VARCHAR(36) NOT NULL,
-  `birthday` DATE NOT NULL,
-  `email` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
-  `sex` ENUM('male', 'female') NOT NULL,
-  `picture` VARCHAR(255),
+  `id`         INT                     NOT NULL AUTO_INCREMENT,
+  `username`   VARCHAR(36)             NOT NULL,
+  `first_name` VARCHAR(36)             NOT NULL,
+  `last_name`  VARCHAR(36)             NOT NULL,
+  `birthday`   DATE                    NOT NULL,
+  `email`      VARCHAR(255)            NOT NULL,
+  `password`   VARCHAR(255)            NOT NULL,
+  `gender`     ENUM ('MALE', 'FEMALE') NOT NULL,
+  `picture`    VARCHAR(255),
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
@@ -70,10 +70,10 @@ CREATE TABLE `klaus_kivbook`.`message`(
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-INSERT INTO `klaus_kivbook`.`user` (username, first_name, last_name, birthday, email, password, sex, picture) VALUES
-  ('user1', 'User', 'One', '1994-01-01', 'user1@kivbook.com', '4675efbec98b0e96df6db24b6947442e2972044c', 'male',
+INSERT INTO `klaus_kivbook`.`user` (username, first_name, last_name, birthday, email, password, gender, picture) VALUES
+  ('user1', 'User', 'One', '1994-01-01', 'user1@kivbook.com', '4675efbec98b0e96df6db24b6947442e2972044c', 'MALE',
    NULL),
-  ('user2', 'User', 'Two', '1994-01-02', 'user2@kivbook.com', '4675efbec98b0e96df6db24b6947442e2972044c', 'male',
+  ('user2', 'User', 'Two', '1994-01-02', 'user2@kivbook.com', '4675efbec98b0e96df6db24b6947442e2972044c', 'MALE',
    NULL),
-  ('user3', 'User', 'Three', '1994-03-01', 'user3@kivbook.com', '4675efbec98b0e96df6db24b6947442e2972044c', 'female',
+  ('user3', 'User', 'Three', '1994-03-01', 'user3@kivbook.com', '4675efbec98b0e96df6db24b6947442e2972044c', 'FEMALE',
    NULL);

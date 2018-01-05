@@ -1,6 +1,7 @@
 package cz.zcu.kiv.pia.kivbook.dto;
 
-import cz.zcu.kiv.pia.kivbook.enums.Sex;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import cz.zcu.kiv.pia.kivbook.enums.Gender;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -21,13 +22,16 @@ public class UserDto {
 
 	private String lastName;
 
+	@JsonFormat(pattern = "dd.MM.yyyy")
 	private LocalDate birthday;
 
 	private String email;
 
 	private String password;
 
-	private Sex sex;
+	private String passwordRepeat;
+
+	private Gender gender;
 
 	private String picture;
 

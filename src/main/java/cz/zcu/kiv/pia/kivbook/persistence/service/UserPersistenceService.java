@@ -25,6 +25,14 @@ public interface UserPersistenceService {
 	UserDto get(Integer id);
 
 	/**
+	 * Retrieves user with specified username.
+	 *
+	 * @param username Username of the user to retrieve.
+	 * @return User with specified username or null if none exists.
+	 */
+	UserDto get(String username);
+
+	/**
 	 * Saves new user.
 	 *
 	 * @param user New user to save.

@@ -1,6 +1,6 @@
 package cz.zcu.kiv.pia.kivbook.persistence.entity;
 
-import cz.zcu.kiv.pia.kivbook.enums.Sex;
+import cz.zcu.kiv.pia.kivbook.enums.Gender;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -37,7 +37,7 @@ public class User {
 	private String password;
 
 	@Enumerated(EnumType.STRING)
-	private Sex sex;
+	private Gender gender;
 
 	private String picture;
 

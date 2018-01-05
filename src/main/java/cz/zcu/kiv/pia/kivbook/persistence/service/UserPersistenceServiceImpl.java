@@ -3,8 +3,9 @@ package cz.zcu.kiv.pia.kivbook.persistence.service;
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 import cz.zcu.kiv.pia.kivbook.persistence.entity.User;
 import cz.zcu.kiv.pia.kivbook.persistence.repository.UserRepository;
-import cz.zcu.kiv.pia.kivbook.service.DtoConvertor;
+import cz.zcu.kiv.pia.kivbook.service.util.DtoConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,9 @@ public class UserPersistenceServiceImpl implements UserPersistenceService {
 	@Autowired
 	private DtoConvertor mapper;
 
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+
 	@Override
 	public List<UserDto> getAll() {
 		List<User> users = repository.findAll();
@@ -40,8 +44,19 @@ public class UserPersistenceServiceImpl implements UserPersistenceService {
 	}
 
 	@Override
+	public UserDto get(String username) {
+		User user = repository.findByUsername(username);
+		if (user != null) {
+			return mapper.map(user, UserDto.class);
+		}
+
+		return null;
+	}
+
+	@Override
 	public UserDto save(UserDto user) {
 		User entity = mapper.map(user, User.class);
+		entity.setPassword(passwordEncoder.encode(user.getPassword()));
 		entity = repository.save(entity);
 		return mapper.map(entity, UserDto.class);
 	}
