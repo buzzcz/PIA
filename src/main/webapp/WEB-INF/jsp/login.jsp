@@ -27,13 +27,14 @@
 	</div>
 	<div class="collapse in col-xs-12 col-sm-9 col-md-7 col-lg-6 pull-right top-padding collapsible-menu"
 		 id="log-in-form">
-		<form class="form-inline" action="profile.html" method="post">
+		<form class="form-inline" id="loginForm" action="javascript:" onsubmit="submitForm('#loginForm',
+		'/authenticate')">
 			<label class="sr-only" for="username">Username</label>
 			<input class="form-control" type="text" id="username" name="username" placeholder="Username" required
 				   autofocus>
 			<label class="sr-only" for="password">Password</label>
 			<input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
-			<button class="btn btn-default" type="submit" name="log-in" title="Log In">Log In</button>
+			<button class="btn btn-default" type="submit" title="Log In">Log In</button>
 		</form>
 	</div>
 </nav>
@@ -50,7 +51,8 @@
 		<div class="col-xs-12 col-sm-6">
 			<h1>Sign Up!</h1>
 			<h4>By signing up you can access other people's profiles, contributions etc.</h4>
-			<form class="form-horizontal" method="post">
+			<form class="form-horizontal" id="registerForm" action="javascript:" onsubmit="submitForm('#registerForm',
+		'/register')">
 				<div class="form-inline bottom-padding">
 					<label class="sr-only" for="first-name">First Name</label>
 					<input class="form-control" type="text" id="first-name" name="first-name" placeholder="First Name"
@@ -104,7 +106,7 @@
 						<input class="form-control" id="selected-file" type="text" value="No file chosen&hellip;" readonly>
 					</div>
 				</div>
-				<button class="btn btn-default" type="submit" name="sign-in" title="Sign Up">Sign Up</button>
+				<button class="btn btn-default" type="submit" title="Sign Up">Sign Up</button>
 			</form>
 		</div>
 	</div>
