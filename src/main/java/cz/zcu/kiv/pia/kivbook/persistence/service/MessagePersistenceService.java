@@ -12,8 +12,8 @@ import java.util.List;
 public interface MessagePersistenceService {
 
 	/**
-	 * @return All messages.
 	 * @param userId1
+	 * @return All messages.
 	 */
 	List<MessageDto> getAll(Integer userId1);
 

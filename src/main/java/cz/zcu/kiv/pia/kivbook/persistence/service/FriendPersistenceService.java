@@ -1,7 +1,6 @@
 package cz.zcu.kiv.pia.kivbook.persistence.service;
 
 import cz.zcu.kiv.pia.kivbook.dto.FriendDto;
-import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 
 import java.util.List;
 

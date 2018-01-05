@@ -1,6 +1,5 @@
 package cz.zcu.kiv.pia.kivbook.service;
 
-import java.util.Collection;
 import java.util.List;
 
 /**

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Controller of the login page.
+ *
  * @author Jaroslav Klaus
  */
 @RestController

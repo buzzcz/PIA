@@ -1,7 +1,6 @@
 package cz.zcu.kiv.pia.kivbook.persistence.service;
 
 import cz.zcu.kiv.pia.kivbook.dto.CommentDto;
-import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 
 import java.util.List;
 
@@ -14,6 +13,7 @@ public interface CommentPersistenceService {
 
 	/**
 	 * Retrieves all comments for specified post.
+	 *
 	 * @param postId Id of the post of which comments to get.
 	 * @return All comments for specified post.
 	 */
