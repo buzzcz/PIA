@@ -45,23 +45,30 @@ public class SecurityServiceImpl implements SecurityService {
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, password,
 					userDetails.getAuthorities());
 
-			try {
-				authenticationManager.authenticate(token);
-
-				if (token.isAuthenticated()) {
-					log.debug("Authentication successful, user {} logged in.", username);
-					SecurityContextHolder.getContext().setAuthentication(token);
-
-					return true;
-				}
-			} catch (AuthenticationException e) {
-				log.error("Authentication failure: {}.", e.getMessage());
+			if (authenticate(username, token)) {
+				return true;
 			}
 		} catch (UsernameNotFoundException e) {
 			log.error("UserDetalsService failure: {}.", e.getMessage());
 		}
 		log.debug("Authentication failed, user {} not authenticated.", username);
 
+		return false;
+	}
+
+	private boolean authenticate(String username, UsernamePasswordAuthenticationToken token) {
+		try {
+			authenticationManager.authenticate(token);
+
+			if (token.isAuthenticated()) {
+				log.debug("Authentication successful, user {} logged in.", username);
+				SecurityContextHolder.getContext().setAuthentication(token);
+
+				return true;
+			}
+		} catch (AuthenticationException e) {
+			log.error("Authentication failure: {}.", e.getMessage());
+		}
 		return false;
 	}
 }
