@@ -2,14 +2,17 @@ package cz.zcu.kiv.pia.kivbook.service.auth;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author Jaroslav Klaus
@@ -45,7 +48,7 @@ public class SecurityServiceImpl implements SecurityService {
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, password,
 					userDetails.getAuthorities());
 
-			if (authenticate(username, token)) {
+			if (authenticate(token)) {
 				return true;
 			}
 		} catch (UsernameNotFoundException e) {
@@ -56,12 +59,23 @@ public class SecurityServiceImpl implements SecurityService {
 		return false;
 	}
 
-	private boolean authenticate(String username, UsernamePasswordAuthenticationToken token) {
+	public ModelAndView checkAuthenticated() {
+		log.debug("Entering checkAuthenticated method.");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication != null && authentication.isAuthenticated() && !(authentication instanceof
+				AnonymousAuthenticationToken)) {
+			return new ModelAndView("redirect:/feed");
+		}
+
+		return null;
+	}
+
+	private boolean authenticate(UsernamePasswordAuthenticationToken token) {
 		try {
 			authenticationManager.authenticate(token);
 
 			if (token.isAuthenticated()) {
-				log.debug("Authentication successful, user {} logged in.", username);
+				log.debug("Authentication successful, user {} logged in.", token.getName());
 				SecurityContextHolder.getContext().setAuthentication(token);
 
 				return true;

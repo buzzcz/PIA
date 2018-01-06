@@ -6,9 +6,6 @@ import cz.zcu.kiv.pia.kivbook.service.auth.SecurityService;
 import cz.zcu.kiv.pia.kivbook.service.auth.UserValidatorImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -37,22 +34,11 @@ public class LoginController {
 	@Autowired
 	private UserValidatorImpl userValidator;
 
-	public ModelAndView checkAuthenticated() {
-		log.debug("Entering checkAuthenticated method.");
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication != null && authentication.isAuthenticated() && !(authentication instanceof
-				AnonymousAuthenticationToken)) {
-			return new ModelAndView("redirect:/feed");
-		}
-
-		return null;
-	}
-
 	@GetMapping({"/", "/login"})
 	public ModelAndView showLogin() {
 		log.debug("Entering showLogin method.");
 
-		ModelAndView modelAndView = checkAuthenticated();
+		ModelAndView modelAndView = securityService.checkAuthenticated();
 
 		if (modelAndView == null) {
 			modelAndView = new ModelAndView("/login", "newUser", new UserDto());
