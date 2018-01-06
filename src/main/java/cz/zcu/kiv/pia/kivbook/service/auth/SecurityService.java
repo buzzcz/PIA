@@ -9,6 +9,6 @@ public interface SecurityService {
 
 	String getLoggedInUsername();
 
-	void authenticate(String username, String password);
+	boolean authenticate(String username, String password);
 
 }

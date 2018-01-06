@@ -28,7 +28,7 @@
 	</div>
 	<div class="collapse in col-xs-12 col-sm-9 col-md-7 col-lg-6 pull-right top-padding collapsible-menu"
 		 id="log-in-form">
-		<form:form class="form-inline" id="loginForm" action="/login" method="post" modelAttribute="user">
+        <form:form class="form-inline" id="loginForm" action="/authenticate" method="post" modelAttribute="user">
 			<form:label class="sr-only" path="username">Username</form:label>
 			<form:input class="form-control" type="text" id="username" path="username" placeholder="Username"
 						value="${username}" required="true" autofocus="true"/>

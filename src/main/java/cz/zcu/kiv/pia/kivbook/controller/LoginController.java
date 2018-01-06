@@ -6,6 +6,9 @@ import cz.zcu.kiv.pia.kivbook.service.auth.SecurityService;
 import cz.zcu.kiv.pia.kivbook.service.auth.UserValidatorImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -34,21 +37,41 @@ public class LoginController {
 	@Autowired
 	private UserValidatorImpl userValidator;
 
+	public ModelAndView checkAuthenticated() {
+		log.debug("Entering checkAuthenticated method.");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication != null && authentication.isAuthenticated() && !(authentication instanceof
+				AnonymousAuthenticationToken)) {
+			return new ModelAndView("redirect:/feed");
+		}
+
+		return null;
+	}
+
 	@GetMapping({"/", "/login"})
 	public ModelAndView showLogin() {
 		log.debug("Entering showLogin method.");
-		// TODO: Redirect somewhere else if logged in.
-		ModelAndView modelAndView = new ModelAndView("/login", "newUser", new UserDto());
-		modelAndView.addObject("user", new UserDto());
+
+		ModelAndView modelAndView = checkAuthenticated();
+
+		if (modelAndView == null) {
+			modelAndView = new ModelAndView("/login", "newUser", new UserDto());
+			modelAndView.addObject("user", new UserDto());
+		}
+
 		return modelAndView;
 	}
 
-	@PostMapping("/login")
+	@PostMapping("/authenticate")
 	public ModelAndView authenticate(@ModelAttribute UserDto user) {
 		log.debug("Entering authenticate method.");
-		log.debug(user.toString());
-		// TODO: Return correct view based on authentication success.
-		return new ModelAndView("redirect:/login");
+		if (securityService.authenticate(user.getUsername(), user.getPassword())) {
+			return new ModelAndView("redirect:/feed");
+		} else {
+			user.setPassword("");
+
+			return new ModelAndView("/login-error", "user", user);
+		}
 	}
 
 	@PostMapping("/register")
@@ -79,7 +102,7 @@ public class LoginController {
 			return modelAndView;
 		}
 
-		newUser = userPersistenceService.save(newUser);
+		userPersistenceService.save(newUser);
 		securityService.authenticate(newUser.getUsername(), newUser.getPassword());
 
 		//TODO: Return proper view.
