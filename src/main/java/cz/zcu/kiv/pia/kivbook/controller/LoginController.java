@@ -6,11 +6,10 @@ import cz.zcu.kiv.pia.kivbook.service.auth.SecurityService;
 import cz.zcu.kiv.pia.kivbook.service.auth.UserValidatorImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,11 +35,13 @@ public class LoginController {
 	public ModelAndView showLogin() {
 		log.debug("Entering showLogin method.");
 		// TODO: Redirect somewhere else if logged in.
-		return new ModelAndView("login");
+		ModelAndView modelAndView = new ModelAndView("login", "newUser", new UserDto());
+		modelAndView.addObject("user", new UserDto());
+		return modelAndView;
 	}
 
-	@PostMapping("/authenticate")
-	public ModelAndView authenticate(@RequestBody UserDto user) {
+	@PostMapping("/login")
+	public ModelAndView authenticate(@ModelAttribute UserDto user) {
 		log.debug("Entering authenticate method.");
 		log.debug(user.toString());
 		// TODO: Return correct view based on authentication success.
@@ -48,19 +49,23 @@ public class LoginController {
 	}
 
 	@PostMapping("/register")
-	public ModelAndView register(@RequestBody UserDto user, BindingResult bindingResult, Model model) {
+	public ModelAndView register(@ModelAttribute UserDto newUser, BindingResult bindingResult) {
 		log.debug("Entering register method.");
-		log.debug(user.toString());
-		userValidator.validate(user, bindingResult);
+		log.debug(newUser.toString());
+		userValidator.validate(newUser, bindingResult);
 		if (bindingResult.hasErrors()) {
-			ModelAndView modelAndView = new ModelAndView("login");
-			modelAndView.getModel().putAll(model.asMap());
+			log.debug("Errors while validating registration: {}.", bindingResult.getAllErrors());
+			ModelAndView modelAndView = new ModelAndView("login", bindingResult.getModel());
+			newUser.setPassword("");
+			newUser.setPasswordRepeat("");
+			modelAndView.addObject("newUser", newUser);
+			modelAndView.addObject("user", new UserDto());
 
 			return modelAndView;
 		}
 
-		userPersistenceService.save(user);
-		securityService.autologin(user.getUsername(), user.getPassword());
+		userPersistenceService.save(newUser);
+		securityService.autologin(newUser.getUsername(), newUser.getPassword());
 
 		//TODO: Return proper view.
 		return new ModelAndView("redirect:/profile");

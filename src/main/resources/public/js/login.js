@@ -8,11 +8,11 @@ function initDatepicker() {
 }
 
 function datepickerWidth() {
-	$('.input-group.date').width($('#email-register').outerWidth());
+    $('.input-group.date').width($('#email').outerWidth());
 }
 
 function initUpload() {
-	var profilePicture = $('#profile-picture');
+    var profilePicture = $('#picture');
 	var selectedFile = $('#selected-file');
 	profilePicture.change(function () {
 		var files = profilePicture.get(0).files;

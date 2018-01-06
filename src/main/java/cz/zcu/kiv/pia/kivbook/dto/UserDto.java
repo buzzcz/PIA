@@ -1,8 +1,8 @@
 package cz.zcu.kiv.pia.kivbook.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import cz.zcu.kiv.pia.kivbook.enums.Gender;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -22,7 +22,7 @@ public class UserDto {
 
 	private String lastName;
 
-	@JsonFormat(pattern = "dd.MM.yyyy")
+	@DateTimeFormat(pattern = "dd.MM.yyyy")
 	private LocalDate birthday;
 
 	private String email;
