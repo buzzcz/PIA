@@ -14,7 +14,11 @@ import org.springframework.validation.Validator;
 @Component
 public class UserValidatorImpl implements Validator {
 
-	private final String NOT_EMPTY = "NotEmpty";
+	private static final String NOT_EMPTY = "NotEmpty";
+
+	private static final String USERNAME = "username";
+
+	private static final String PASSWORD_REPEAT = "passwordRepeat";
 
 	@Autowired
 	private UserPersistenceService userPersistenceService;
@@ -26,24 +30,22 @@ public class UserValidatorImpl implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		UserDto user = (UserDto) target;
-
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", NOT_EMPTY);
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", NOT_EMPTY);
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", NOT_EMPTY);
-		if (userPersistenceService.get(user.getUsername()) != null) {
-			errors.reject("username", "AlreadyUsed");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, USERNAME, NOT_EMPTY);
+		if (userPersistenceService.get((String) errors.getFieldValue(USERNAME)) != null) {
+			errors.rejectValue(USERNAME, "AlreadyUsed");
 		}
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", NOT_EMPTY);
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", NOT_EMPTY);
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordRepeat", NOT_EMPTY);
-		if (!user.getPassword().equals(user.getPasswordRepeat())) {
-			errors.reject("passwordRepeat", "PasswordConfirm");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, PASSWORD_REPEAT, NOT_EMPTY);
+		if (!errors.getFieldValue("password").equals(errors.getFieldValue(PASSWORD_REPEAT))) {
+			errors.rejectValue(PASSWORD_REPEAT, "PasswordConfirm");
 		}
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "gender", NOT_EMPTY);

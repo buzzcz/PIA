@@ -38,6 +38,10 @@ nav {
 	padding-bottom: 5px;
 }
 
+.bottom-margin {
+    margin-bottom: 5px;
+}
+
 .bottom-border {
 	border-bottom: thin solid white;
 }

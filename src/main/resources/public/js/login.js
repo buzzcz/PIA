@@ -11,6 +11,10 @@ function datepickerWidth() {
     $('.input-group.date').width($('#email').outerWidth());
 }
 
+function errorsWidth() {
+    $('.errors').width($('#email').outerWidth() * 2);
+}
+
 function initUpload() {
     var profilePicture = $('#picture');
 	var selectedFile = $('#selected-file');
@@ -26,7 +30,9 @@ function init() {
 	initDatepicker();
 	initUpload();
 	datepickerWidth();
+    errorsWidth();
 	$(window).resize(datepickerWidth);
+    $(window).resize(errorsWidth());
 }
 
 $(init);

@@ -54,6 +54,14 @@
 			<h4>By signing up you can access other people's profiles, contributions etc.</h4>
 			<form:form class="form-horizontal" id="registerForm" action="/register" method="post"
 					   modelAttribute="newUser">
+                <c:set var="hasBindErrors">
+                    <form:errors path="*"/>
+                </c:set>
+                <c:if test="${not empty hasBindErrors}">
+                    <div class="well-sm form-inline bottom-margin errors">
+                        <form:errors path="*"/>
+                    </div>
+                </c:if>
 				<div class="form-inline bottom-padding">
 					<form:label class="sr-only" path="firstName">First Name</form:label>
 					<form:input class="form-control" type="text" id="first-name" path="firstName"
@@ -110,9 +118,6 @@
 				</div>
 				<button class="btn btn-default" type="submit" title="Sign Up">Sign Up</button>
 			</form:form>
-			<c:forEach items="${errors}" var="error">
-				${error.defaultMessage}<br>
-			</c:forEach>
 		</div>
 	</div>
 </div>
