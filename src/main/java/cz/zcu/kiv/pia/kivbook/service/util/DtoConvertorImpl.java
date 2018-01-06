@@ -1,9 +1,16 @@
 package cz.zcu.kiv.pia.kivbook.service.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.dozer.DozerBeanMapper;
+import org.dozer.converters.ConversionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,10 +20,30 @@ import java.util.List;
  * @author Jaroslav Klaus
  */
 @Service
+@Slf4j
 public class DtoConvertorImpl implements DtoConvertor {
 
 	@Autowired
+	private ApplicationContext ctx;
+
+	@Value("classpath*:mappings.xml")
+	private String mappings;
+
 	private DozerBeanMapper mapper;
+
+	@PostConstruct
+	private void init() {
+		mapper = new DozerBeanMapper();
+		try {
+			Resource[] resources = ctx.getResources(mappings);
+			for (Resource r : resources) {
+				mapper.addMapping(r.getInputStream());
+			}
+		} catch (IOException e) {
+			log.error("Error during loading mappings.xml.", e);
+			throw new ConversionException(e);
+		}
+	}
 
 	@Override
 	public <T> T map(Object source, Class<T> destinationClass) {

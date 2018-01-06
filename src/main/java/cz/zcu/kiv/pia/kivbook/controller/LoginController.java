@@ -6,6 +6,8 @@ import cz.zcu.kiv.pia.kivbook.service.auth.SecurityService;
 import cz.zcu.kiv.pia.kivbook.service.auth.UserValidatorImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,11 +48,22 @@ public class LoginController {
 	}
 
 	@PostMapping("/register")
-	public ModelAndView register(@RequestBody UserDto user) {
+	public ModelAndView register(@RequestBody UserDto user, BindingResult bindingResult, Model model) {
 		log.debug("Entering register method.");
 		log.debug(user.toString());
+		userValidator.validate(user, bindingResult);
+		if (bindingResult.hasErrors()) {
+			ModelAndView modelAndView = new ModelAndView("login");
+			modelAndView.getModel().putAll(model.asMap());
+
+			return modelAndView;
+		}
+
+		userPersistenceService.save(user);
+		securityService.autologin(user.getUsername(), user.getPassword());
+
 		//TODO: Return proper view.
-		return new ModelAndView("redirect:login");
+		return new ModelAndView("redirect:/profile");
 	}
 
 }
