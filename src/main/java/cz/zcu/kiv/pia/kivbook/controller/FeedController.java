@@ -39,6 +39,7 @@ public class FeedController {
 		log.debug("Entering showFeed method.");
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		List<UserDto> friends = friendService.getFriends(user);
+
 		ModelAndView modelAndView = new ModelAndView("/feed", "posts", postService.getPostsForUserAndFriends(user,
 				friends));
 		modelAndView.addObject("friends", friends);

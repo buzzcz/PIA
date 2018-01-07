@@ -39,7 +39,6 @@ public class LoginController {
 		log.debug("Entering showLogin method.");
 
 		ModelAndView modelAndView = securityService.checkAuthenticated();
-
 		if (modelAndView == null) {
 			modelAndView = new ModelAndView("/login", "newUser", new UserDto());
 			modelAndView.addObject("user", new UserDto());
@@ -53,11 +52,11 @@ public class LoginController {
 		log.debug("Entering authenticate method.");
 		if (securityService.authenticate(user.getUsername(), user.getPassword())) {
 			return new ModelAndView("redirect:/feed");
-		} else {
-			user.setPassword("");
-
-			return new ModelAndView("/login-error", "user", user);
 		}
+
+		user.setPassword("");
+
+		return new ModelAndView("/login-error", "user", user);
 	}
 
 	@PostMapping("/register")
@@ -91,7 +90,6 @@ public class LoginController {
 		userService.save(newUser);
 		securityService.authenticate(newUser.getUsername(), newUser.getPassword());
 
-		//TODO: Return proper view.
 		return new ModelAndView("redirect:/feed");
 	}
 
