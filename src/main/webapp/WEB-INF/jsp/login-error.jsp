@@ -25,8 +25,8 @@
 </nav>
 <div class="container-fluid full-height">
     <div class="row content full-height">
-        <div class="col-xs-5"></div>
-        <div class="col-xs-2 top-padding">
+        <div
+                class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-3 col-lg-offset-5 top-padding">
             <div class="bottom-padding">
                 <div class="well-sm bottom-margin errors">
                     Wrong username or password.
@@ -49,7 +49,6 @@
                 </button>
             </div>
         </div>
-        <div class="col-xs-5"></div>
     </div>
 </div>
 </body>
