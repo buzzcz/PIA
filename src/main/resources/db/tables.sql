@@ -41,7 +41,7 @@ CREATE TABLE `klaus_kivbook`.`comment` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-CREATE TABLE `klaus_kivbook`.`like` (
+CREATE TABLE `klaus_kivbook`.`reaction` (
   `id`      INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `post_id` INT NOT NULL,

@@ -45,4 +45,16 @@ public class FriendServiceImpl implements FriendService {
 		return retVal;
 	}
 
+	@Override
+	public FriendDto areFriends(UserDto user1, UserDto user2) {
+		Integer id1 = user1.getId();
+		Integer id2 = user2.getId();
+		FriendDto retVal = friendPersistenceService.get(id1, id2);
+		if (retVal == null) {
+			retVal = friendPersistenceService.get(id2, id1);
+		}
+
+		return retVal;
+	}
+
 }

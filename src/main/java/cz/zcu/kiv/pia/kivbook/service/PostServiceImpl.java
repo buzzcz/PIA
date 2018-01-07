@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Implementation of PostService.
@@ -27,9 +28,18 @@ public class PostServiceImpl implements PostService {
 	private FriendService friendService;
 
 	@Override
-	public List<PostDto> getPostsForUserAndFriends(UserDto user, List<UserDto> friends) {
+	public Set<PostDto> getPostsForUser(UserDto user) {
+		log.debug("Finding posts for {}.", user.getUsername());
+		Set<PostDto> retVal = new TreeSet<>(Comparator.comparing(PostDto::getCreated));
+		retVal.addAll(postPersistenceService.getAll(user));
+
+		return retVal;
+	}
+
+	@Override
+	public Set<PostDto> getPostsForUserAndFriends(UserDto user, List<UserDto> friends) {
 		log.debug("Finding posts for {} and friends.", user.getUsername());
-		List<PostDto> retVal = new LinkedList<>();
+		Set<PostDto> retVal = new TreeSet<>(Comparator.comparing(PostDto::getCreated));
 		retVal.addAll(postPersistenceService.getAllPublic());
 		retVal.addAll(postPersistenceService.getAll(user));
 
@@ -41,15 +51,11 @@ public class PostServiceImpl implements PostService {
 			retVal.addAll(postPersistenceService.getAll(friend));
 		}
 
-		retVal.sort(Comparator.comparing(PostDto::getCreated));
-
 		return retVal;
 	}
 
 	@Override
-	public List<PostDto> getPostsForUser(UserDto user) {
-		log.debug("Finding posts for {}.", user.getUsername());
-
+	public Set<PostDto> getPostsForUserAndFriends(UserDto user) {
 		return getPostsForUserAndFriends(user, null);
 	}
 

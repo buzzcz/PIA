@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -34,6 +36,8 @@ public class FeedController {
 	@Autowired
 	private FriendService friendService;
 
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss").withZone(ZoneOffset.UTC);
+
 	@GetMapping("/feed")
 	public ModelAndView showFeed() {
 		log.debug("Entering showFeed method.");
@@ -44,6 +48,7 @@ public class FeedController {
 				friends));
 		modelAndView.addObject("friends", friends);
 		modelAndView.addObject("user", user);
+		modelAndView.addObject("formatter", formatter);
 
 		return modelAndView;
 	}

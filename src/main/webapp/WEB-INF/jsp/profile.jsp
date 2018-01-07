@@ -1,3 +1,7 @@
+<%@ page import="cz.zcu.kiv.pia.kivbook.dto.UserDto" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.temporal.ChronoUnit" %>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
@@ -6,11 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="/css/common.css">
+    <link type="text/css" rel="stylesheet" href="/css/profile.css">
     <script type="application/javascript" src="/js/jquery.min.js"></script>
     <script type="application/javascript" src="/js/bootstrap.min.js"></script>
     <script type="application/javascript" src="/js/bootstrap-datepicker.min.js"></script>
     <script type="application/javascript" src="/js/common.js"></script>
-    <script type="application/javascript" src="/js/feed.js"></script>
+    <script type="application/javascript" src="/js/profile.js"></script>
     <title>User's Profile</title>
 </head>
 <body>
@@ -42,8 +47,7 @@
                     <img id="user-picture" src="${user.picture}" alt="Profile Picture">
                 </c:otherwise>
             </c:choose>
-            ${user.firstName} ${user.lastName}
-        </a>
+            ${user.firstName} ${user.lastName}</a>
         <button class="btn btn-default" name="log-out" onclick="window.location.href='/logout'" title="Log Out">Log
             Out
         </button>
@@ -51,19 +55,87 @@
 </nav>
 <div class="container-fluid content full-height">
     <div class="row full-height">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-4" id="profile-info">
+            <!-- TODO: Make the line not to break under the picture. -->
+            <h1>
+                <c:choose>
+                    <c:when test="${profile.picture == null || empty profile.picture}">
+                        <img class="profile-picture" id="profile-picture" src="/img/profile.png"
+                             alt="User's Profile Picture">
+                    </c:when>
+                    <c:otherwise>
+                        <img class="profile-picture" id="profile-picture" src="${profile.picture}"
+                             alt="User's Profile Picture">
+                    </c:otherwise>
+                </c:choose>
+                ${profile.firstName} ${profile.lastName}
+            </h1>
+        </div>
         <div class="visible-xs col-xs-12 bottom-padding" id="buttons">
-            <%-- TODO: Edit new post button --%>
-            <button class="btn btn-default">New Post
-                <span class="glyphicon glyphicon-edit" title="New Post"></span></button>
+            <button class="btn btn-default glyphicon glyphicon-briefcase" id="personal-info-toggle"
+                    onclick="showView('personal-info')" title="Personal Info"></button>
             <button class="btn btn-default glyphicon glyphicon-th-list" id="posts-toggle"
                     onclick="showView('posts')" title="Posts"></button>
             <button class="btn btn-default glyphicon glyphicon-user" id="friends-toggle"
                     onclick="showView('friends')" title="Friends"></button>
         </div>
         <div class="collapse in col-xs-12 col-sm-3 col-sm-offset-1 collapsible-view" id="personal-info">
+            <h2 class="bottom-border">Personal info:</h2>
+            <table>
+                <tr>
+                    <td><h4>First Name:</h4></td>
+                    <td class="info-row"><h4>${profile.firstName}</h4></td>
+                </tr>
+                <tr>
+                    <td><h4>Last Name:</h4></td>
+                    <td class="info-row"><h4>${profile.lastName}</h4></td>
+                </tr>
+                <tr>
+                    <td><h4>Birthday:</h4></td>
+                    <c:if test="${profile.birthday != null}">
+                        <td class="info-row"><h4>
+                            <%
+                                out.print(((UserDto) request.getAttribute("profile")).getBirthday().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+                            %>
+                        </h4></td>
+                    </c:if>
+                </tr>
+                <tr>
+                    <td><h4>Age:</h4></td>
+                    <c:if test="${profile.birthday != null}">
+                        <td class="info-row"><h4>
+                            <%
+                                out.print(ChronoUnit.YEARS.between(((UserDto) request.getAttribute("profile")).getBirthday(), LocalDate.now()));
+                            %>
+                        </h4>
+                        </td>
+                    </c:if>
+                </tr>
+                <tr>
+                    <td><h4>Email:</h4></td>
+                    <td class="info-row"><h4>${profile.email}</h4></td>
+                </tr>
+            </table>
             <div class="top-padding">
-                <h2 class="bottom-border">New Post:</h2>
-                <%-- TODO: Add new post form. --%>
+                <c:choose>
+                    <c:when test="${friendshipStatus != null}">
+                        <button class="btn btn-default" name="add-friend" disabled>${friendshipStatus ?
+                                "Already Friends" : "Request Pending"} <span
+                                class="glyphicon glyphicon-ok" title="Friendship Status"></span></button>
+                    </c:when>
+                    <c:otherwise>
+                        <c:if test="${profile.username != user.username}">
+                            <button class="btn btn-default" name="add-friend"
+                                    onclick="window.location.href='/friendship?user=${profile.username}'">Send
+                                Friendship
+                                Request <span class="glyphicon glyphicon-ok" title="Friendship Status"></span></button>
+                        </c:if>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <div class="top-padding">
+                <button class="btn btn-default" name="add-friend">New Message <span
+                        class="glyphicon glyphicon-send" title="New Message"></span></button>
             </div>
         </div>
         <div class="collapse in col-xs-12 col-sm-4 collapsible-view" id="posts">

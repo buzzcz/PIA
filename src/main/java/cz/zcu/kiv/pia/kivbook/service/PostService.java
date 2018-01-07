@@ -4,6 +4,7 @@ import cz.zcu.kiv.pia.kivbook.dto.PostDto;
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Interface for operations with posts.
@@ -12,8 +13,10 @@ import java.util.List;
  */
 public interface PostService {
 
-	List<PostDto> getPostsForUserAndFriends(UserDto user, List<UserDto> friends);
+	Set<PostDto> getPostsForUser(UserDto user);
 
-	List<PostDto> getPostsForUser(UserDto user);
+	Set<PostDto> getPostsForUserAndFriends(UserDto user, List<UserDto> friends);
+
+	Set<PostDto> getPostsForUserAndFriends(UserDto user);
 
 }

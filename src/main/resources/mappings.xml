@@ -12,6 +12,10 @@
 				<class-a>java.lang.String</class-a>
 				<class-b>java.time.LocalDate</class-b>
 			</converter>
+			<converter type="cz.zcu.kiv.pia.kivbook.service.util.InstantToInstantConverter">
+				<class-a>java.time.Instant</class-a>
+				<class-b>java.time.Instant</class-b>
+			</converter>
 		</custom-converters>
 	</configuration>
 </mappings>
