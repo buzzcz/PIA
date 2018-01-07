@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import java.time.Instant;
 
 /**
  * Class representing a message;
@@ -20,10 +23,14 @@ public class Message {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	private Integer userId;
-
 	private Integer conversationId;
 
+	private Instant created;
+
 	private String text;
+
+	@OneToOne
+	@JoinColumn(name = "userId")
+	private User owner;
 
 }

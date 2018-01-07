@@ -1,6 +1,7 @@
 package cz.zcu.kiv.pia.kivbook.persistence.repository;
 
 import cz.zcu.kiv.pia.kivbook.persistence.entity.Post;
+import cz.zcu.kiv.pia.kivbook.persistence.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,8 +15,10 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
-	List<Post> findByUserId(Integer userId);
+	List<Post> findByOwnerOrderByCreated(User owner);
 
-	List<Post> findByUserIdAndPrivacyFalse(Integer userId);
+	List<Post> findByOwnerAndPrivacyFalseOrderByCreated(User owner);
+
+	List<Post> findByPrivacyFalseOrderByCreated();
 
 }

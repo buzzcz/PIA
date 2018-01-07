@@ -16,6 +16,8 @@ public interface FriendRepository extends JpaRepository<Friend, Integer> {
 
 	List<Friend> findByUserId1(Integer userId);
 
+	List<Friend> findByUserId2(Integer userId);
+
 	Friend findByUserId1AndUserId2(Integer userId1, Integer userId2);
 
 }

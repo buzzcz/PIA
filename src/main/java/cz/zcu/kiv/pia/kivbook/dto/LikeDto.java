@@ -12,8 +12,8 @@ public class LikeDto {
 
 	private Integer id;
 
-	private Integer userId;
-
 	private Integer postId;
+
+	private UserDto owner;
 
 }

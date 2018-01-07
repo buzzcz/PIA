@@ -16,4 +16,6 @@ public class FriendDto {
 
 	private Integer userId2;
 
+	private Boolean ack;
+
 }

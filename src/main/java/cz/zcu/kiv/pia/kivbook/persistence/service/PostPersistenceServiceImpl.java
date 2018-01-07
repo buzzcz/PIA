@@ -1,10 +1,13 @@
 package cz.zcu.kiv.pia.kivbook.persistence.service;
 
 import cz.zcu.kiv.pia.kivbook.dto.PostDto;
+import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 import cz.zcu.kiv.pia.kivbook.persistence.entity.Post;
+import cz.zcu.kiv.pia.kivbook.persistence.entity.User;
 import cz.zcu.kiv.pia.kivbook.persistence.repository.PostRepository;
 import cz.zcu.kiv.pia.kivbook.service.util.DtoConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,6 +15,7 @@ import java.util.List;
 /**
  * @author Jaroslav Klaus
  */
+@Service
 public class PostPersistenceServiceImpl implements PostPersistenceService {
 
 	@Autowired
@@ -21,8 +25,9 @@ public class PostPersistenceServiceImpl implements PostPersistenceService {
 	private DtoConvertor mapper;
 
 	@Override
-	public List<PostDto> getAll(Integer userId) {
-		List<Post> posts = repository.findByUserId(userId);
+	public List<PostDto> getAll(UserDto owner) {
+		User user = mapper.map(owner, User.class);
+		List<Post> posts = repository.findByOwnerOrderByCreated(user);
 		List<PostDto> postDtos = new LinkedList<>();
 		for (Post p : posts) {
 			postDtos.add(mapper.map(p, PostDto.class));
@@ -32,8 +37,20 @@ public class PostPersistenceServiceImpl implements PostPersistenceService {
 	}
 
 	@Override
-	public List<PostDto> getPublic(Integer userId) {
-		List<Post> posts = repository.findByUserIdAndPrivacyFalse(userId);
+	public List<PostDto> getPublic(UserDto owner) {
+		User user = mapper.map(owner, User.class);
+		List<Post> posts = repository.findByOwnerAndPrivacyFalseOrderByCreated(user);
+		List<PostDto> postDtos = new LinkedList<>();
+		for (Post p : posts) {
+			postDtos.add(mapper.map(p, PostDto.class));
+		}
+
+		return postDtos;
+	}
+
+	@Override
+	public List<PostDto> getAllPublic() {
+		List<Post> posts = repository.findByPrivacyFalseOrderByCreated();
 		List<PostDto> postDtos = new LinkedList<>();
 		for (Post p : posts) {
 			postDtos.add(mapper.map(p, PostDto.class));

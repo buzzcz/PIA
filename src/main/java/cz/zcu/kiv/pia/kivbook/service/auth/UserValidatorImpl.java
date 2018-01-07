@@ -1,7 +1,7 @@
 package cz.zcu.kiv.pia.kivbook.service.auth;
 
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
-import cz.zcu.kiv.pia.kivbook.persistence.service.UserPersistenceService;
+import cz.zcu.kiv.pia.kivbook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -21,7 +21,7 @@ public class UserValidatorImpl implements Validator {
 	private static final String PASSWORD_REPEAT = "passwordRepeat";
 
 	@Autowired
-	private UserPersistenceService userPersistenceService;
+	private UserService userService;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -35,7 +35,7 @@ public class UserValidatorImpl implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", NOT_EMPTY);
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, USERNAME, NOT_EMPTY);
-		if (userPersistenceService.get((String) errors.getFieldValue(USERNAME)) != null) {
+		if (userService.getUser((String) errors.getFieldValue(USERNAME)) != null) {
 			errors.rejectValue(USERNAME, "AlreadyUsed");
 		}
 

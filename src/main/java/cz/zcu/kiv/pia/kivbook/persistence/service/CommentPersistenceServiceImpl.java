@@ -6,7 +6,6 @@ import cz.zcu.kiv.pia.kivbook.persistence.repository.CommentRepository;
 import cz.zcu.kiv.pia.kivbook.service.util.DtoConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,12 +22,8 @@ public class CommentPersistenceServiceImpl implements CommentPersistenceService 
 	@Override
 	public List<CommentDto> getAll(Integer postId) {
 		List<Comment> comments = repository.findByPostId(postId);
-		List<CommentDto> commentDtos = new LinkedList<>();
-		for (Comment c : comments) {
-			commentDtos.add(mapper.map(c, CommentDto.class));
-		}
 
-		return commentDtos;
+		return mapper.map(comments, CommentDto.class);
 	}
 
 	@Override

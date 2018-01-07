@@ -5,13 +5,14 @@ import cz.zcu.kiv.pia.kivbook.persistence.entity.Friend;
 import cz.zcu.kiv.pia.kivbook.persistence.repository.FriendRepository;
 import cz.zcu.kiv.pia.kivbook.service.util.DtoConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
  * @author Jaroslav Klaus
  */
+@Service
 public class FriendPersistenceServiceImpl implements FriendPersistenceService {
 
 	@Autowired
@@ -23,10 +24,9 @@ public class FriendPersistenceServiceImpl implements FriendPersistenceService {
 	@Override
 	public List<FriendDto> getAll(Integer userId) {
 		List<Friend> friends = repository.findByUserId1(userId);
-		List<FriendDto> friendDtos = new LinkedList<>();
-		for (Friend f : friends) {
-			friendDtos.add(mapper.map(f, FriendDto.class));
-		}
+		List<FriendDto> friendDtos = mapper.map(friends, FriendDto.class);
+		friends = repository.findByUserId2(userId);
+		friendDtos.addAll(mapper.map(friends, FriendDto.class));
 
 		return friendDtos;
 	}

@@ -2,6 +2,8 @@ package cz.zcu.kiv.pia.kivbook.dto;
 
 import lombok.Data;
 
+import java.time.Instant;
+
 /**
  * Class representing a comment.
  *
@@ -12,10 +14,12 @@ public class CommentDto {
 
 	private Integer id;
 
-	private Integer userId;
-
 	private Integer postId;
 
+	private Instant created;
+
 	private String text;
+
+	private UserDto owner;
 
 }

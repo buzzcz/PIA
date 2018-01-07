@@ -2,7 +2,7 @@ package cz.zcu.kiv.pia.kivbook.service.auth;
 
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 import cz.zcu.kiv.pia.kivbook.enums.Gender;
-import cz.zcu.kiv.pia.kivbook.persistence.service.UserPersistenceService;
+import cz.zcu.kiv.pia.kivbook.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -30,11 +30,11 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private UserPersistenceService userPersistenceService;
+	private UserService userService;
 
 	@EventListener(ApplicationReadyEvent.class)
 	public void init() {
-		if (userPersistenceService.get("user1") == null) {
+		if (userService.getUser("user1") == null) {
 			String[] lastNames = {"One", "Two", "Three"};
 			for (int i = 0; i < 3; i++) {
 				UserDto userDto = new UserDto();
@@ -46,7 +46,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				userDto.setPassword("User@1234");
 				userDto.setGender(Gender.MALE);
 
-				userPersistenceService.save(userDto);
+				userService.save(userDto);
 			}
 		}
 	}
@@ -54,7 +54,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) {
 		log.debug("Entering loadUserByUsername method.");
-		UserDto user = userPersistenceService.get(username);
+		UserDto user = userService.getUser(username);
 		if (user == null) {
 			throw new UsernameNotFoundException(String.format("%s not found. User does not exist", username));
 		}

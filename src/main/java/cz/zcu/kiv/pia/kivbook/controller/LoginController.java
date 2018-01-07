@@ -1,7 +1,7 @@
 package cz.zcu.kiv.pia.kivbook.controller;
 
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
-import cz.zcu.kiv.pia.kivbook.persistence.service.UserPersistenceService;
+import cz.zcu.kiv.pia.kivbook.service.UserService;
 import cz.zcu.kiv.pia.kivbook.service.auth.SecurityService;
 import cz.zcu.kiv.pia.kivbook.service.auth.UserValidatorImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +26,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 
 	@Autowired
-	private UserPersistenceService userPersistenceService;
+	private SecurityService securityService;
 
 	@Autowired
-	private SecurityService securityService;
+	private UserService userService;
 
 	@Autowired
 	private UserValidatorImpl userValidator;
@@ -88,7 +88,7 @@ public class LoginController {
 			return modelAndView;
 		}
 
-		userPersistenceService.save(newUser);
+		userService.save(newUser);
 		securityService.authenticate(newUser.getUsername(), newUser.getPassword());
 
 		//TODO: Return proper view.

@@ -24,4 +24,6 @@ public class Friend {
 
 	private Integer userId2;
 
+	private Boolean ack;
+
 }

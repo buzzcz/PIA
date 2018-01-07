@@ -72,3 +72,11 @@ nav {
 	color: white;
 	font-size: 150%;
 }
+
+.post-picture {
+	width: 100%;
+}
+
+.post-owner {
+	padding-left: 0;
+}

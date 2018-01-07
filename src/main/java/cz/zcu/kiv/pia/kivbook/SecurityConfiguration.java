@@ -26,8 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// TODO: Add all other pages to which user needs to be authenticated.
-		http.csrf().disable().authorizeRequests().antMatchers("/css/**", "/fonts/**", "/js/**", "/login",
+		http.csrf().disable().authorizeRequests().antMatchers("/css/**", "/fonts/**", "/js/**", "/img/**", "/login",
 				"/authenticate", "/register").permitAll().anyRequest().authenticated().and().formLogin().loginPage
 				("/login").permitAll().and().logout().permitAll();
 	}
