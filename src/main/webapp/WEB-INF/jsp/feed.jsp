@@ -42,7 +42,8 @@
                     <img id="user-picture" src="${user.picture}" alt="Profile Picture">
                 </c:otherwise>
             </c:choose>
-            ${user.firstName} ${user.lastName}</a>
+            ${user.firstName} ${user.lastName}
+        </a>
         <button class="btn btn-default" name="log-out" onclick="window.location.href='/logout'" title="Log Out">Log
             Out
         </button>
@@ -56,8 +57,7 @@
             <button class="btn btn-default glyphicon glyphicon-user" id="friends-toggle"
                     onclick="showView('friends')" title="Friends"></button>
         </div>
-        <div class="col-lg-3"></div>
-        <div class="collapse in col-xs-12 col-sm-6 collapsible-view" id="posts">
+        <div class="collapse in col-xs-12 col-sm-4 col-sm-offset-4 collapsible-view" id="posts">
             <div>
                 <h2 class="bottom-border">Posts:</h2>
                 <c:forEach items="${posts}" var="p">
