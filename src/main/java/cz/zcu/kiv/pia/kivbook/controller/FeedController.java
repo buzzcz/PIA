@@ -129,6 +129,7 @@ public class FeedController {
 		log.debug("Entering newPost method.");
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		comment.setOwner(user);
+		comment.setCreated(Instant.now());
 		commentService.save(comment);
 
 		return new ModelAndView("redirect:/feed");

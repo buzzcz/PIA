@@ -190,7 +190,7 @@
                                     <div class="modal-footer">
                                         <form:form class="form-horizontal" action="/new-comment" method="post"
                                                    modelAttribute="comment">
-                                            <form:input cssClass="hidden" path="postId" value="${p.id}"/>
+                                            <form:input class="hidden" path="postId" value="${p.id}"/>
                                             <form:label class="sr-only" path="text">Comment text</form:label>
                                             <form:textarea class="form-control bottom-margin" path="text"
                                                            placeholder="Type your comment..."/>
