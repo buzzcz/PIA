@@ -97,6 +97,7 @@ public class FeedController {
 
 	@GetMapping("/like")
 	public ModelAndView like(@RequestParam Integer postId) {
+		log.debug("Entering like method.");
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		LikeDto like = new LikeDto();
 		like.setOwner(user);
@@ -108,6 +109,7 @@ public class FeedController {
 
 	@GetMapping("/unlike")
 	public ModelAndView unlike(@RequestParam Integer postId) {
+		log.debug("Entering unlike method.");
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		PostDto post = postService.get(postId);
 		for (LikeDto l : post.getLikes()) {
@@ -122,6 +124,7 @@ public class FeedController {
 
 	@PostMapping("/new-comment")
 	public ModelAndView newPost(@ModelAttribute CommentDto comment) {
+		log.debug("Entering newPost method.");
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		comment.setOwner(user);
 		commentService.save(comment);

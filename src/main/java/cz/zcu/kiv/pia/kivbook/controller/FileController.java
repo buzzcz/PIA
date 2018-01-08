@@ -26,6 +26,7 @@ public class FileController {
 	@GetMapping("/upload-dir/{filename:.+}")
 	@ResponseBody
 	public ResponseEntity<Resource> getFile(@PathVariable String filename) {
+		log.debug("Entering getFile method.");
 		Resource file = fileService.load(filename);
 
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file
