@@ -19,4 +19,6 @@ public interface PostService {
 
 	Set<PostDto> getPostsForUserAndFriends(UserDto user);
 
+	PostDto save(PostDto post);
+
 }

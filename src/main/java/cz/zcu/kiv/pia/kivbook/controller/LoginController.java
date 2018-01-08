@@ -1,5 +1,6 @@
 package cz.zcu.kiv.pia.kivbook.controller;
 
+import cz.zcu.kiv.pia.kivbook.dto.PostDto;
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 import cz.zcu.kiv.pia.kivbook.service.UserService;
 import cz.zcu.kiv.pia.kivbook.service.auth.SecurityService;
@@ -51,7 +52,7 @@ public class LoginController {
 	public ModelAndView authenticate(@ModelAttribute UserDto user) {
 		log.debug("Entering authenticate method.");
 		if (securityService.authenticate(user.getUsername(), user.getPassword())) {
-			return new ModelAndView("redirect:/feed");
+			return new ModelAndView("redirect:/feed", "post", new PostDto());
 		}
 
 		user.setPassword("");
@@ -90,7 +91,7 @@ public class LoginController {
 		userService.save(newUser);
 		securityService.authenticate(newUser.getUsername(), newUser.getPassword());
 
-		return new ModelAndView("redirect:/feed");
+		return new ModelAndView("redirect:/feed", "post", new PostDto());
 	}
 
 }

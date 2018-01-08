@@ -72,8 +72,7 @@ public class ProfileController {
 		FriendDto friendship = friendService.areFriends(user, profile);
 		Set<PostDto> posts = postService.getPostsForUser(profile);
 		if ((friendship == null || !friendship.getAck()) && !user.getUsername().equals(username)) {
-			posts = posts.stream().filter(postDto -> !postDto.getPrivacy()).collect(Collectors.toCollection(() -> new
-					TreeSet<>(Comparator.comparing(PostDto::getCreated))));
+			posts = posts.stream().filter(postDto -> !postDto.getPrivacy()).collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(PostDto::getCreated).reversed())));
 		}
 
 		ModelAndView modelAndView = new ModelAndView("/profile", "profile", profile);

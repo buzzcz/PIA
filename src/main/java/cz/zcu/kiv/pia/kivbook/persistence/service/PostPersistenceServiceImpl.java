@@ -27,7 +27,7 @@ public class PostPersistenceServiceImpl implements PostPersistenceService {
 	@Override
 	public List<PostDto> getAll(UserDto owner) {
 		User user = mapper.map(owner, User.class);
-		List<Post> posts = repository.findByOwnerOrderByCreated(user);
+		List<Post> posts = repository.findByOwnerOrderByCreatedDesc(user);
 		List<PostDto> postDtos = new LinkedList<>();
 		for (Post p : posts) {
 			postDtos.add(mapper.map(p, PostDto.class));
@@ -39,7 +39,7 @@ public class PostPersistenceServiceImpl implements PostPersistenceService {
 	@Override
 	public List<PostDto> getPublic(UserDto owner) {
 		User user = mapper.map(owner, User.class);
-		List<Post> posts = repository.findByOwnerAndPrivacyFalseOrderByCreated(user);
+		List<Post> posts = repository.findByOwnerAndPrivacyFalseOrderByCreatedDesc(user);
 		List<PostDto> postDtos = new LinkedList<>();
 		for (Post p : posts) {
 			postDtos.add(mapper.map(p, PostDto.class));
@@ -50,7 +50,7 @@ public class PostPersistenceServiceImpl implements PostPersistenceService {
 
 	@Override
 	public List<PostDto> getAllPublic() {
-		List<Post> posts = repository.findByPrivacyFalseOrderByCreated();
+		List<Post> posts = repository.findByPrivacyFalseOrderByCreatedDesc();
 		List<PostDto> postDtos = new LinkedList<>();
 		for (Post p : posts) {
 			postDtos.add(mapper.map(p, PostDto.class));

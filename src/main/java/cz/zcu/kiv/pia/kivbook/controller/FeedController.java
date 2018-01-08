@@ -1,5 +1,6 @@
 package cz.zcu.kiv.pia.kivbook.controller;
 
+import cz.zcu.kiv.pia.kivbook.dto.PostDto;
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 import cz.zcu.kiv.pia.kivbook.service.FriendService;
 import cz.zcu.kiv.pia.kivbook.service.PostService;
@@ -8,9 +9,12 @@ import cz.zcu.kiv.pia.kivbook.service.auth.SecurityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -48,9 +52,21 @@ public class FeedController {
 				friends));
 		modelAndView.addObject("friends", friends);
 		modelAndView.addObject("user", user);
+		modelAndView.addObject("post", new PostDto());
 		modelAndView.addObject("formatter", formatter);
 
 		return modelAndView;
+	}
+
+	@PostMapping("/new-post")
+	public ModelAndView newPost(@ModelAttribute("post") PostDto post) {
+		log.debug("Entering newPost method.");
+		UserDto user = userService.getUser(securityService.getLoggedInUsername());
+		post.setOwner(user);
+		post.setCreated(Instant.now());
+		postService.save(post);
+
+		return new ModelAndView("redirect:/feed", "post", new PostDto());
 	}
 
 }

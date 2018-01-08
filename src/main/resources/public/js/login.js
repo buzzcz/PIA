@@ -15,20 +15,8 @@ function errorsWidth() {
     $('.errors').width($('#email').outerWidth() * 2);
 }
 
-function initUpload() {
-    var profilePicture = $('#picture');
-	var selectedFile = $('#selected-file');
-	profilePicture.change(function () {
-		var files = profilePicture.get(0).files;
-		if (files.length > 0) {
-			selectedFile.get(0).value = files[0].name;
-		}
-	});
-}
-
 function init() {
 	initDatepicker();
-	initUpload();
 	datepickerWidth();
     errorsWidth();
 	$(window).resize(datepickerWidth);

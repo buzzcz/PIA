@@ -15,10 +15,10 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
-	List<Post> findByOwnerOrderByCreated(User owner);
+	List<Post> findByOwnerOrderByCreatedDesc(User owner);
 
-	List<Post> findByOwnerAndPrivacyFalseOrderByCreated(User owner);
+	List<Post> findByOwnerAndPrivacyFalseOrderByCreatedDesc(User owner);
 
-	List<Post> findByPrivacyFalseOrderByCreated();
+	List<Post> findByPrivacyFalseOrderByCreatedDesc();
 
 }

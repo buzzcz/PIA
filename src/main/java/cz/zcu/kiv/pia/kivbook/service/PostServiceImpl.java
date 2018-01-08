@@ -30,7 +30,7 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public Set<PostDto> getPostsForUser(UserDto user) {
 		log.debug("Finding posts for {}.", user.getUsername());
-		Set<PostDto> retVal = new TreeSet<>(Comparator.comparing(PostDto::getCreated));
+		Set<PostDto> retVal = new TreeSet<>(Comparator.comparing(PostDto::getCreated).reversed());
 		retVal.addAll(postPersistenceService.getAll(user));
 
 		return retVal;
@@ -39,7 +39,7 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public Set<PostDto> getPostsForUserAndFriends(UserDto user, List<UserDto> friends) {
 		log.debug("Finding posts for {} and friends.", user.getUsername());
-		Set<PostDto> retVal = new TreeSet<>(Comparator.comparing(PostDto::getCreated));
+		Set<PostDto> retVal = new TreeSet<>(Comparator.comparing(PostDto::getCreated).reversed());
 		retVal.addAll(postPersistenceService.getAllPublic());
 		retVal.addAll(postPersistenceService.getAll(user));
 
@@ -57,6 +57,13 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public Set<PostDto> getPostsForUserAndFriends(UserDto user) {
 		return getPostsForUserAndFriends(user, null);
+	}
+
+	@Override
+	public PostDto save(PostDto post) {
+		log.debug("Saving post {}.", post);
+
+		return postPersistenceService.save(post);
 	}
 
 }
