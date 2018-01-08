@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import java.time.Instant;
 
 /**
  * Class representing a conversation.
@@ -20,8 +23,15 @@ public class Conversation {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	private Integer userId1;
+	private Instant created;
 
-	private Integer userId2;
+	@OneToOne
+	@JoinColumn(name = "userId1")
+	private User user1;
+
+	@OneToOne
+	@JoinColumn(name = "userId2")
+	private User user2;
+
 
 }

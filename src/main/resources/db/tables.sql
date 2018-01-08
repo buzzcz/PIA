@@ -65,9 +65,10 @@ CREATE TABLE `klaus_kivbook`.`friend` (
   DEFAULT CHARSET = utf8;
 
 CREATE TABLE `klaus_kivbook`.`conversation` (
-  `id`       INT NOT NULL AUTO_INCREMENT,
-  `user_id1` INT NOT NULL,
-  `user_id2` INT NOT NULL,
+  `id`       INT       NOT NULL AUTO_INCREMENT,
+  `user_id1` INT       NOT NULL,
+  `user_id2` INT       NOT NULL,
+  `created`  TIMESTAMP NOT NULL,
   FOREIGN KEY (`user_id1`) REFERENCES `klaus_kivbook`.`user` (`id`),
   FOREIGN KEY (`user_id2`) REFERENCES `klaus_kivbook`.`user` (`id`),
   PRIMARY KEY (`id`)

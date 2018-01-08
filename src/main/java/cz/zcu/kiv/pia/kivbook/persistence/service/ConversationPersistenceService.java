@@ -1,6 +1,7 @@
 package cz.zcu.kiv.pia.kivbook.persistence.service;
 
 import cz.zcu.kiv.pia.kivbook.dto.ConversationDto;
+import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 
 import java.util.List;
 
@@ -14,10 +15,10 @@ public interface ConversationPersistenceService {
 	/**
 	 * Retrieves all conversations for specified user.
 	 *
-	 * @param userId Id of the user whose conversations to get.
+	 * @param user User whose conversations to get.
 	 * @return All conversations for specified user.
 	 */
-	List<ConversationDto> getAll(Integer userId);
+	List<ConversationDto> getAll(UserDto user);
 
 	/**
 	 * Saves new conversation.

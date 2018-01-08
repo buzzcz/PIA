@@ -2,6 +2,8 @@ package cz.zcu.kiv.pia.kivbook.dto;
 
 import lombok.Data;
 
+import java.time.Instant;
+
 /**
  * Class representing a conversation.
  *
@@ -12,8 +14,10 @@ public class ConversationDto {
 
 	private Integer id;
 
-	private Integer userId1;
+	private Instant created;
 
-	private Integer userId2;
+	private UserDto user1;
+
+	private UserDto user2;
 
 }

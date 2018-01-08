@@ -38,6 +38,6 @@ public class UserDto {
 
 	private MultipartFile file;
 
-
+	private Boolean selected = false;
 
 }

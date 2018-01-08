@@ -19,8 +19,3 @@
 	margin-left: 50%;
 	text-align: right;
 }
-
-#message {
-	resize: none;
-	overflow: auto;
-}
