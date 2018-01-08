@@ -2,7 +2,6 @@ package cz.zcu.kiv.pia.kivbook.persistence.entity;
 
 import lombok.Data;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,11 +37,11 @@ public class Post {
 	@JoinColumn(name = "userId")
 	private User owner;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "postId")
 	private List<Comment> comments;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "postId")
 	private List<Like> likes;
 

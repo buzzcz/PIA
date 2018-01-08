@@ -23,7 +23,7 @@ nav {
 	color: white;
 }
 
-.content {
+.content, .modal-content {
 	background-color: #204d8f;
 	color: white;
 	overflow: auto;
@@ -79,4 +79,9 @@ nav {
 
 .post-owner {
 	padding-left: 0;
+}
+
+.close {
+    color: white;
+    opacity: 1;
 }

@@ -5,6 +5,7 @@ import cz.zcu.kiv.pia.kivbook.persistence.entity.Like;
 import cz.zcu.kiv.pia.kivbook.persistence.repository.LikeRepository;
 import cz.zcu.kiv.pia.kivbook.service.util.DtoConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * @author Jaroslav Klaus
  */
+@Service
 public class LikePersistenceServiceImpl implements LikePersistenceService {
 
 	@Autowired
@@ -37,6 +39,11 @@ public class LikePersistenceServiceImpl implements LikePersistenceService {
 		entity = repository.save(entity);
 
 		return mapper.map(entity, LikeDto.class);
+	}
+
+	@Override
+	public void remove(Integer likeId) {
+		repository.delete(likeId);
 	}
 
 }

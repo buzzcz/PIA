@@ -28,6 +28,13 @@ public class PostServiceImpl implements PostService {
 	private FriendService friendService;
 
 	@Override
+	public PostDto get(Integer postId) {
+		log.debug("Finding post {}.", postId);
+
+		return postPersistenceService.get(postId);
+	}
+
+	@Override
 	public Set<PostDto> getPostsForUser(UserDto user) {
 		log.debug("Finding posts for {}.", user.getUsername());
 		Set<PostDto> retVal = new TreeSet<>(Comparator.comparing(PostDto::getCreated).reversed());

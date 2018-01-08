@@ -27,4 +27,6 @@ public interface LikePersistenceService {
 	 */
 	LikeDto save(LikeDto like);
 
+	void remove(Integer likeId);
+
 }

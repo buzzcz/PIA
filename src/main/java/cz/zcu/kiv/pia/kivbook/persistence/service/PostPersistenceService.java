@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface PostPersistenceService {
 
+	PostDto get(Integer postId);
+
 	/**
 	 * Retrieves all posts of specified user.
 	 *

@@ -1,6 +1,5 @@
 package cz.zcu.kiv.pia.kivbook.service.auth;
 
-import cz.zcu.kiv.pia.kivbook.dto.PostDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -65,7 +64,7 @@ public class SecurityServiceImpl implements SecurityService {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication != null && authentication.isAuthenticated() && !(authentication instanceof
 				AnonymousAuthenticationToken)) {
-			return new ModelAndView("redirect:/feed", "post", new PostDto());
+			return new ModelAndView("redirect:/feed");
 		}
 
 		return null;

@@ -1,5 +1,6 @@
 package cz.zcu.kiv.pia.kivbook.controller;
 
+import cz.zcu.kiv.pia.kivbook.dto.CommentDto;
 import cz.zcu.kiv.pia.kivbook.dto.FriendDto;
 import cz.zcu.kiv.pia.kivbook.dto.PostDto;
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
@@ -50,11 +51,19 @@ public class ProfileController {
 		log.debug("Entering showProfile method.");
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		List<UserDto> friends = friendService.getFriends(user);
+		Set<PostDto> posts = postService.getPostsForUser(user);
+		for (PostDto p : posts) {
+			if (p.getLikes().stream().anyMatch(likeDto -> likeDto.getOwner().equals(user))) {
+				p.setLiked(true);
+			}
+		}
 
-		ModelAndView modelAndView = new ModelAndView("/profile", "posts", postService.getPostsForUser(user));
+		ModelAndView modelAndView = new ModelAndView("/profile", "posts", posts);
 		modelAndView.addObject("friends", friends);
 		modelAndView.addObject("user", user);
 		modelAndView.addObject("profile", user);
+		modelAndView.addObject("comment", new CommentDto());
+		modelAndView.addObject("myProfile", true);
 		modelAndView.addObject("formatter", formatter);
 
 		return modelAndView;
@@ -74,11 +83,17 @@ public class ProfileController {
 		if ((friendship == null || !friendship.getAck()) && !user.getUsername().equals(username)) {
 			posts = posts.stream().filter(postDto -> !postDto.getPrivacy()).collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(PostDto::getCreated).reversed())));
 		}
+		for (PostDto p : posts) {
+			if (p.getLikes().stream().anyMatch(likeDto -> likeDto.getOwner().equals(user))) {
+				p.setLiked(true);
+			}
+		}
 
 		ModelAndView modelAndView = new ModelAndView("/profile", "profile", profile);
 		modelAndView.addObject("user", user);
 		modelAndView.addObject("friends", friends);
 		modelAndView.addObject("posts", posts);
+		modelAndView.addObject("comment", new CommentDto());
 		if (friendship != null) {
 			modelAndView.addObject("friendshipStatus", friendship.getAck());
 		}

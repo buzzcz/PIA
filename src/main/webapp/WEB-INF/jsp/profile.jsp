@@ -3,6 +3,7 @@
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.temporal.ChronoUnit" %>
 <!DOCTYPE html>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
@@ -29,7 +30,6 @@
                 title="Menu"></button>
     </div>
     <div class="collapse in col-xs-12 col-sm-4 top-padding collapsible-menu" id="menu">
-        <!-- TODO: Add some sort of menu. -->
         <button class="btn btn-default glyphicon glyphicon-th-list" onclick="window.location.href='/feed'"
                 title="Posts"></button>
         <button class="btn btn-default glyphicon glyphicon-comment" onclick="window.location.href='/messages'"
@@ -133,10 +133,12 @@
                     </c:otherwise>
                 </c:choose>
             </div>
-            <div class="top-padding">
-                <button class="btn btn-default" name="add-friend">New Message <span
-                        class="glyphicon glyphicon-send" title="New Message"></span></button>
-            </div>
+            <c:if test="${empty myProfile}">
+                <div class="top-padding">
+                    <button class="btn btn-default" name="add-friend">New Message <span
+                            class="glyphicon glyphicon-send" title="New Message"></span></button>
+                </div>
+            </c:if>
         </div>
         <div class="collapse in col-xs-12 col-sm-4 collapsible-view" id="posts">
             <div>
@@ -156,14 +158,45 @@
                             </c:if>
                         </div>
                         <div>
-                            <button class="btn btn-default" title="Like"><span class="glyphicon glyphicon-star"></span>
-                                <span
-                                        class="badge">${p.likes.size()}</span></button>
-                            <button class="btn btn-default" title="Comment"><span
-                                    class="glyphicon glyphicon-list-alt"></span>
-                                Comments
-                                <span class="badge">${p.comments.size()}</span>
+                            <button class="btn btn-default" title="Like"
+                                    onclick="window.location.href='/${p.liked ? 'un' : ''}like?postId=${p.id}'"><span
+                                    class="glyphicon glyphicon-star${p.liked ? '' : '-empty'}"></span><span
+                                    class="badge">${p.likes.size()}</span>
                             </button>
+                            <button class="btn btn-default" title="Comment" data-toggle="modal"
+                                    data-target="#post-comments${p.id}"><span
+                                    class="glyphicon glyphicon-list-alt"></span> Comments <span
+                                    class="badge">${p.comments.size()}</span>
+                            </button>
+                            <div id="post-comments${p.id}" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-content">
+                                    <div class="modal-header">
+                                        <button class="close" title="Close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <c:forEach items="${p.comments}" var="c">
+                                            <div class="well well-sm">
+                                                <a class="btn btn-link friend-link post-owner"
+                                                   href="/profile?user=${c.owner.username}">
+                                                        ${c.owner.firstName} ${c.owner.lastName}
+                                                </a><br>
+                                                    ${formatter.format(c.created)}
+                                                <h4>${c.text}</h4>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form:form class="form-horizontal" action="/new-comment" method="post"
+                                                   modelAttribute="comment">
+                                            <form:input cssClass="hidden" path="postId" value="${p.id}"/>
+                                            <form:label class="sr-only" path="text">Comment text</form:label>
+                                            <form:textarea class="form-control bottom-margin" path="text"
+                                                           placeholder="Type your comment..."/>
+                                            <button class="btn btn-default" type="submit" title="Post">Post</button>
+                                        </form:form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </c:forEach>

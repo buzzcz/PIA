@@ -25,6 +25,16 @@ public class PostPersistenceServiceImpl implements PostPersistenceService {
 	private DtoConvertor mapper;
 
 	@Override
+	public PostDto get(Integer postId) {
+		Post post = repository.findOne(postId);
+		if (post != null) {
+			return mapper.map(post, PostDto.class);
+		}
+
+		return null;
+	}
+
+	@Override
 	public List<PostDto> getAll(UserDto owner) {
 		User user = mapper.map(owner, User.class);
 		List<Post> posts = repository.findByOwnerOrderByCreatedDesc(user);

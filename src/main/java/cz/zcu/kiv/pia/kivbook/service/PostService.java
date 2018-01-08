@@ -13,6 +13,8 @@ import java.util.Set;
  */
 public interface PostService {
 
+	PostDto get(Integer postId);
+
 	Set<PostDto> getPostsForUser(UserDto user);
 
 	Set<PostDto> getPostsForUserAndFriends(UserDto user, List<UserDto> friends);

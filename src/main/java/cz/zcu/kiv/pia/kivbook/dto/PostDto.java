@@ -28,6 +28,8 @@ public class PostDto {
 
 	private UserDto owner;
 
+	private boolean liked = false;
+
 	private List<CommentDto> comments;
 
 	private List<LikeDto> likes;

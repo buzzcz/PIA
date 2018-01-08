@@ -5,12 +5,14 @@ import cz.zcu.kiv.pia.kivbook.persistence.entity.Comment;
 import cz.zcu.kiv.pia.kivbook.persistence.repository.CommentRepository;
 import cz.zcu.kiv.pia.kivbook.service.util.DtoConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @author Jaroslav Klaus
  */
+@Service
 public class CommentPersistenceServiceImpl implements CommentPersistenceService {
 
 	@Autowired
