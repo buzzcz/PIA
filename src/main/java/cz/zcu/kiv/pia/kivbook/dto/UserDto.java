@@ -3,6 +3,7 @@ package cz.zcu.kiv.pia.kivbook.dto;
 import cz.zcu.kiv.pia.kivbook.enums.Gender;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 
@@ -34,5 +35,9 @@ public class UserDto {
 	private Gender gender;
 
 	private String picture;
+
+	private MultipartFile file;
+
+
 
 }

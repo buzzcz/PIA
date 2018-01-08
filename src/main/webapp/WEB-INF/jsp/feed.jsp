@@ -65,14 +65,16 @@
         <div class="collapse in col-xs-12 col-sm-3 col-sm-offset-1 collapsible-view" id="personal-info">
             <div class="top-padding">
                 <h2 class="bottom-border">New Post:</h2>
-                <form:form class="form-horizontal" id="postForm" action="/new-post" method="post" modelAttribute="post">
+                <form:form class="form-horizontal" id="postForm" action="/new-post" method="post"
+                           modelAttribute="post" enctype="multipart/form-data">
                     <form:label class="sr-only" path="text">Post text</form:label>
                     <form:textarea class="form-control bottom-padding" path="text"
                                    placeholder="Type your post..."/>
                     <form:label path="privacy">Private: </form:label>
                     <form:checkbox id="privacy" path="privacy"/><br>
-                    <form:label path="picture">Profile Picture:</form:label>
-                    <form:input class="form-control" type="file" id="picture" path="picture" accept="image/*"/>
+                    <form:label path="file">Profile Picture:</form:label>
+                    <form:input class="form-control bottom-padding" type="file" id="picture" path="file"
+                                accept="image/*"/>
                     <button class="btn btn-default" type="submit" title="Post">Post</button>
                 </form:form>
             </div>

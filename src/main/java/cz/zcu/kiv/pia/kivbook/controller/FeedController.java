@@ -2,6 +2,7 @@ package cz.zcu.kiv.pia.kivbook.controller;
 
 import cz.zcu.kiv.pia.kivbook.dto.PostDto;
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
+import cz.zcu.kiv.pia.kivbook.service.FileService;
 import cz.zcu.kiv.pia.kivbook.service.FriendService;
 import cz.zcu.kiv.pia.kivbook.service.PostService;
 import cz.zcu.kiv.pia.kivbook.service.UserService;
@@ -40,6 +41,9 @@ public class FeedController {
 	@Autowired
 	private FriendService friendService;
 
+	@Autowired
+	private FileService fileService;
+
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss").withZone(ZoneOffset.UTC);
 
 	@GetMapping("/feed")
@@ -62,6 +66,10 @@ public class FeedController {
 	public ModelAndView newPost(@ModelAttribute("post") PostDto post) {
 		log.debug("Entering newPost method.");
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
+		if (post.getFile() != null) {
+			String filename = fileService.save(post.getFile());
+			post.setPicture(filename);
+		}
 		post.setOwner(user);
 		post.setCreated(Instant.now());
 		postService.save(post);

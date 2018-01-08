@@ -2,6 +2,7 @@ package cz.zcu.kiv.pia.kivbook.controller;
 
 import cz.zcu.kiv.pia.kivbook.dto.PostDto;
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
+import cz.zcu.kiv.pia.kivbook.service.FileService;
 import cz.zcu.kiv.pia.kivbook.service.UserService;
 import cz.zcu.kiv.pia.kivbook.service.auth.SecurityService;
 import cz.zcu.kiv.pia.kivbook.service.auth.UserValidatorImpl;
@@ -34,6 +35,9 @@ public class LoginController {
 
 	@Autowired
 	private UserValidatorImpl userValidator;
+
+	@Autowired
+	private FileService fileService;
 
 	@GetMapping({"/", "/login"})
 	public ModelAndView showLogin() {
@@ -88,6 +92,10 @@ public class LoginController {
 			return modelAndView;
 		}
 
+		if (newUser.getFile() != null) {
+			String filename = fileService.save(newUser.getFile());
+			newUser.setPicture(filename);
+		}
 		userService.save(newUser);
 		securityService.authenticate(newUser.getUsername(), newUser.getPassword());
 

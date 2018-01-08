@@ -1,6 +1,7 @@
 package cz.zcu.kiv.pia.kivbook.dto;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.Instant;
 import java.util.List;
@@ -18,6 +19,8 @@ public class PostDto {
 	private Instant created;
 
 	private String text;
+
+	private MultipartFile file;
 
 	private String picture;
 

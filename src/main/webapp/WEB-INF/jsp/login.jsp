@@ -52,7 +52,7 @@
             <h1>Sign Up!</h1>
             <h4>By signing up you can access other people's profiles, contributions etc.</h4>
             <form:form class="form-horizontal" id="registerForm" action="/register" method="post"
-                       modelAttribute="newUser">
+                       modelAttribute="newUser" enctype="multipart/form-data">
                 <c:set var="hasBindErrors">
                     <form:errors path="*"/>
                 </c:set>
@@ -105,8 +105,8 @@
                     </div>
                 </div>
                 <div class="form-inline bottom-padding">
-                    <form:label path="picture">Profile Picture:</form:label>
-                    <form:input class="form-control" type="file" id="picture" path="picture" accept="image/*"/>
+                    <form:label path="file">Profile Picture:</form:label>
+                    <form:input class="form-control" type="file" id="picture" path="file" accept="image/*"/>
                 </div>
                 <button class="btn btn-default" type="submit" title="Sign Up">Sign Up</button>
             </form:form>
