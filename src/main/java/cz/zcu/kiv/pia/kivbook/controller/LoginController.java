@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -91,8 +92,9 @@ public class LoginController {
 			return modelAndView;
 		}
 
-		if (newUser.getFile() != null) {
-			String filename = fileService.save(newUser.getFile());
+		MultipartFile file = newUser.getFile();
+		if (file != null && !file.isEmpty()) {
+			String filename = fileService.save(file);
 			newUser.setPicture(filename);
 		}
 		userService.save(newUser);

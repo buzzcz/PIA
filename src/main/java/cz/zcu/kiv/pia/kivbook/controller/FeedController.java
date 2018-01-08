@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.Instant;
@@ -84,8 +85,9 @@ public class FeedController {
 	public ModelAndView newPost(@ModelAttribute PostDto post) {
 		log.debug("Entering newPost method.");
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
-		if (post.getFile() != null) {
-			String filename = fileService.save(post.getFile());
+		MultipartFile file = post.getFile();
+		if (file != null && !file.isEmpty()) {
+			String filename = fileService.save(file);
 			post.setPicture(filename);
 		}
 		post.setOwner(user);

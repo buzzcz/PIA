@@ -192,7 +192,8 @@
                                             <form:label class="sr-only" path="text">Comment text</form:label>
                                             <form:textarea class="form-control bottom-margin" path="text"
                                                            placeholder="Type your comment..."/>
-                                            <button class="btn btn-default" type="submit" title="Post">Post</button>
+                                            <button class="btn btn-default pull-left" type="submit" title="Post">Post
+                                            </button>
                                         </form:form>
                                     </div>
                                 </div>
