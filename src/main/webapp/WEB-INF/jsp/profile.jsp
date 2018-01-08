@@ -1,9 +1,9 @@
 <%@ page import="cz.zcu.kiv.pia.kivbook.dto.UserDto" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.temporal.ChronoUnit" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,29 +116,31 @@
                     <td class="info-row"><h4>${profile.email}</h4></td>
                 </tr>
             </table>
-            <div class="top-padding">
-                <c:choose>
-                    <c:when test="${friendshipStatus != null}">
+            <c:choose>
+                <c:when test="${friendshipStatus != null}">
+                    <div class="top-padding">
                         <button class="btn btn-default" name="add-friend" disabled>${friendshipStatus ?
                                 "Already Friends" : "Request Pending"} <span
                                 class="glyphicon glyphicon-ok" title="Friendship Status"></span></button>
-                    </c:when>
-                    <c:otherwise>
-                        <c:if test="${profile.username != user.username}">
+
+                    </div>
+                    <div class="top-padding">
+                        <button class="btn btn-default" name="add-friend">New Message <span
+                                class="glyphicon glyphicon-send" title="New Message"></span></button>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <c:if test="${profile.username != user.username}">
+                        <div class="top-padding">
                             <button class="btn btn-default" name="add-friend"
                                     onclick="window.location.href='/friendship?user=${profile.username}'">Send
-                                Friendship
-                                Request <span class="glyphicon glyphicon-ok" title="Friendship Status"></span></button>
-                        </c:if>
-                    </c:otherwise>
-                </c:choose>
-            </div>
-            <c:if test="${empty myProfile}">
-                <div class="top-padding">
-                    <button class="btn btn-default" name="add-friend">New Message <span
-                            class="glyphicon glyphicon-send" title="New Message"></span></button>
-                </div>
-            </c:if>
+                                Friendship Request <span class="glyphicon glyphicon-ok"
+                                                         title="Friendship Status"></span></button>
+
+                        </div>
+                    </c:if>
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="collapse in col-xs-12 col-sm-4 collapsible-view" id="posts">
             <div>
@@ -192,8 +194,7 @@
                                             <form:label class="sr-only" path="text">Comment text</form:label>
                                             <form:textarea class="form-control bottom-margin" path="text"
                                                            placeholder="Type your comment..."/>
-                                            <button class="btn btn-default pull-left" type="submit" title="Post">Post
-                                            </button>
+                                            <button class="btn btn-default" type="submit" title="Post">Post</button>
                                         </form:form>
                                     </div>
                                 </div>
