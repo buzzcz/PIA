@@ -7,6 +7,17 @@ function toggleMenu(){
 	}
 }
 
+function showView(viewToShow) {
+    var view = $('#' + viewToShow);
+    if (!view.hasClass('in')) {
+        var collapsible = $('.collapsible-view.in');
+        collapsible.collapse('hide');
+        collapsible.first().one('hidden.bs.collapse', function () {
+            view.collapse('show');
+        });
+    }
+}
+
 function init() {
 	toggleMenu();
 	$(window).resize(toggleMenu);
