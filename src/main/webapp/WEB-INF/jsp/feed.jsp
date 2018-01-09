@@ -70,8 +70,8 @@
                                    placeholder="Type your post..."/>
                     <form:label path="privacy">Private: </form:label>
                     <form:checkbox id="privacy" path="privacy"/><br>
-                    <form:label path="file">Profile Picture:</form:label>
-                    <form:input class="form-control bottom-margin" type="file" id="picture" path="file"
+                    <form:label path="file">Picture:</form:label>
+                    <form:input class="bottom-margin" type="file" id="picture" path="file"
                                 accept="image/*"/>
                     <button class="btn btn-default" type="submit" title="Post">Post</button>
                 </form:form>

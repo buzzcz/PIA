@@ -106,7 +106,7 @@
                 </div>
                 <div class="form-inline bottom-padding">
                     <form:label path="file">Profile Picture:</form:label>
-                    <form:input class="form-control" type="file" id="picture" path="file" accept="image/*"/>
+                    <form:input type="file" id="picture" path="file" accept="image/*"/>
                 </div>
                 <button class="btn btn-default" type="submit" title="Sign Up">Sign Up</button>
             </form:form>
