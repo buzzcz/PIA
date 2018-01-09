@@ -49,6 +49,7 @@ public class MessagesController {
 
 	@GetMapping("/messages")
 	public ModelAndView showMessages() {
+		log.debug("Entering showMessages method");
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		Set<ConversationDto> conversations = conversationService.getAllForUser(user);
 		List<UserDto> friends = userService.getUsersFromConversations(conversations, user);
@@ -72,7 +73,8 @@ public class MessagesController {
 	}
 
 	@GetMapping(value = "/messages", params = "user")
-	public ModelAndView showMessagesForUser(@RequestParam("user") String username) {
+	public ModelAndView showMessages(@RequestParam("user") String username) {
+		log.debug("Entering showMessages method for {}.", username);
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		if (user.getUsername().equals(username)) {
 			return new ModelAndView("redirect:/messages");
@@ -134,6 +136,7 @@ public class MessagesController {
 
 	@PostMapping("/new-message")
 	public ModelAndView newMessage(@ModelAttribute MessageDto message) {
+		log.debug("Entering newMessage method");
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		message.setOwner(user);
 		message.setCreated(Instant.now());

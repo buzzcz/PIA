@@ -104,6 +104,7 @@ public class ProfileController {
 
 	@GetMapping("/new-friendship")
 	public ModelAndView newFriendship(@RequestParam("user") String username) {
+		log.debug("Entering newFriendship method for {}.", username);
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		if (user.getUsername().equals(username)) {
 			return new ModelAndView("redirect:/profile");
@@ -126,6 +127,7 @@ public class ProfileController {
 
 	@GetMapping("/ack-friendship")
 	public ModelAndView ackFriendship(@RequestParam("user") String username) {
+		log.debug("Entering ackFriendship method for {}.", username);
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		if (user.getUsername().equals(username)) {
 			return new ModelAndView("redirect:/profile");
