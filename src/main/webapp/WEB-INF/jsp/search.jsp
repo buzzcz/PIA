@@ -17,7 +17,7 @@
 <body>
 <nav class="navbar navbar-default navbar-fixed-top container-fluid row">
     <div class="col-xs-9 col-sm-4">
-        <a class="btn btn-link" href="/feed" id="logo">Kiv<span class="logo-border">Book</span></a>
+        <a class="btn btn-link" href="feed" id="logo">Kiv<span class="logo-border">Book</span></a>
     </div>
     <div class="visible-xs col-xs-3 pull-right top-padding">
         <button class="btn btn-default glyphicon glyphicon-menu-hamburger" data-toggle="collapse"
@@ -25,15 +25,15 @@
                 title="Menu"></button>
     </div>
     <div class="collapse in col-xs-12 col-sm-4 top-padding collapsible-menu" id="menu">
-        <button class="btn btn-default glyphicon glyphicon-th-list" onclick="window.location.href='/feed'"
+        <button class="btn btn-default glyphicon glyphicon-th-list" onclick="window.location.href='feed'"
                 title="Posts"></button>
-        <button class="btn btn-default glyphicon glyphicon-comment" onclick="window.location.href='/messages'"
+        <button class="btn btn-default glyphicon glyphicon-comment" onclick="window.location.href='messages'"
                 title="Messages"></button>
-        <button class="btn btn-default glyphicon glyphicon-search" onclick="window.location.href='/search'"
+        <button class="btn btn-default glyphicon glyphicon-search" onclick="window.location.href='search'"
                 title="Search"></button>
     </div>
     <div class="collapse in col-xs-12 col-sm-4 collapsible-menu" id="log-out-form">
-        <a class="btn btn-link" id="logged-user" href="/profile">
+        <a class="btn btn-link" id="logged-user" href="profile">
             <c:choose>
                 <c:when test="${user.picture == null || empty user.picture}">
                     <img id="user-picture" src="${pageContext.request.contextPath}/img/profile.png"
@@ -45,7 +45,7 @@
             </c:choose>
             ${user.firstName} ${user.lastName}
         </a>
-        <button class="btn btn-default" name="log-out" onclick="window.location.href='/logout'" title="Log Out">Log
+        <button class="btn btn-default" name="log-out" onclick="window.location.href='logout'" title="Log Out">Log
             Out
         </button>
     </div>
@@ -55,7 +55,7 @@
         <div class="collapse in col-xs-12 col-sm-4 col-sm-offset-4 collapsible-view">
             <div>
                 <h2 class="bottom-border">Search Users:</h2>
-                <form:form class="form-inline" action="/search" method="post"
+                <form:form class="form-inline" action="search" method="post"
                            modelAttribute="text">
                     <form:label class="sr-only" path="text">Search text</form:label>
                     <form:input class="form-control" path="text" placeholder="Type your search..."
@@ -75,7 +75,7 @@
                         <c:when test="${not empty result}">
                             <c:forEach items="${result}" var="r">
                                 <div class="well well-sm">
-                                    <a class="btn btn-link friend-link" href="/profile?user=${r.username}">
+                                    <a class="btn btn-link friend-link" href="profile?user=${r.username}">
                                         <c:choose>
                                             <c:when test="${r.picture == null || empty r.picture}">
                                                 <img class="friend-picture"

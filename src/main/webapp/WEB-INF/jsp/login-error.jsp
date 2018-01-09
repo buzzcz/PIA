@@ -29,7 +29,7 @@
                 <div class="well-sm bottom-margin errors">
                     Wrong username or password.
                 </div>
-                <form:form class="form-horizontal" id="loginForm" action="/authenticate" method="post"
+                <form:form class="form-horizontal" id="loginForm" action="authenticate" method="post"
                            modelAttribute="user">
                     <form:label class="sr-only" path="username">Username</form:label>
                     <form:input class="form-control" type="text" id="username" path="username" placeholder="Username"
@@ -42,7 +42,7 @@
                 </form:form>
             </div>
             <div>
-                <button class="btn btn-default form-control" type="button" onclick="window.location.href='/login'"
+                <button class="btn btn-default form-control" type="button" onclick="window.location.href='login'"
                         title="Register">Register
                 </button>
             </div>

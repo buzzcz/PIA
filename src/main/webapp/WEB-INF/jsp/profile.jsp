@@ -23,7 +23,7 @@
 <body>
 <nav class="navbar navbar-default navbar-fixed-top container-fluid row">
     <div class="col-xs-9 col-sm-4">
-        <a class="btn btn-link" href="/feed" id="logo">Kiv<span class="logo-border">Book</span></a>
+        <a class="btn btn-link" href="feed" id="logo">Kiv<span class="logo-border">Book</span></a>
     </div>
     <div class="visible-xs col-xs-3 pull-right top-padding">
         <button class="btn btn-default glyphicon glyphicon-menu-hamburger" data-toggle="collapse"
@@ -31,15 +31,15 @@
                 title="Menu"></button>
     </div>
     <div class="collapse in col-xs-12 col-sm-4 top-padding collapsible-menu" id="menu">
-        <button class="btn btn-default glyphicon glyphicon-th-list" onclick="window.location.href='/feed'"
+        <button class="btn btn-default glyphicon glyphicon-th-list" onclick="window.location.href='feed'"
                 title="Posts"></button>
-        <button class="btn btn-default glyphicon glyphicon-comment" onclick="window.location.href='/messages'"
+        <button class="btn btn-default glyphicon glyphicon-comment" onclick="window.location.href='messages'"
                 title="Messages"></button>
-        <button class="btn btn-default glyphicon glyphicon-search" onclick="window.location.href='/search'"
+        <button class="btn btn-default glyphicon glyphicon-search" onclick="window.location.href='search'"
                 title="Search"></button>
     </div>
     <div class="collapse in col-xs-12 col-sm-4 collapsible-menu" id="log-out-form">
-        <a class="btn btn-link" id="logged-user" href="/profile">
+        <a class="btn btn-link" id="logged-user" href="profile">
             <c:choose>
                 <c:when test="${user.picture == null || empty user.picture}">
                     <img id="user-picture" src="${pageContext.request.contextPath}/img/profile.png"
@@ -50,7 +50,7 @@
                 </c:otherwise>
             </c:choose>
             ${user.firstName} ${user.lastName}</a>
-        <button class="btn btn-default" name="log-out" onclick="window.location.href='/logout'" title="Log Out">Log
+        <button class="btn btn-default" name="log-out" onclick="window.location.href='logout'" title="Log Out">Log
             Out
         </button>
     </div>
@@ -132,7 +132,7 @@
                                         class="glyphicon glyphicon-time" title="Friendship Status"></span></button>
                                 <c:if test="${profile.username != user.username && friendship.userId1 != user.id}">
                                     <button class="btn btn-default" name="ack-friend"
-                                            onclick="window.location.href='/ack-friendship?user=${profile.username}'">
+                                            onclick="window.location.href='ack-friendship?user=${profile.username}'">
                                         Accept Friendship <span class="glyphicon glyphicon-ok"
                                                                 title="Accept Friendship"></span></button>
                                 </c:if>
@@ -141,7 +141,7 @@
                     </div>
                     <div class="top-padding">
                         <button class="btn btn-default" name="new-message"
-                                onclick="window.location.href='/messages?user=${profile.username}'">New Message
+                                onclick="window.location.href='messages?user=${profile.username}'">New Message
                             <span class="glyphicon glyphicon-send" title="New Message"></span></button>
                     </div>
                 </c:when>
@@ -149,7 +149,7 @@
                     <c:if test="${profile.username != user.username}">
                         <div class="top-padding">
                             <button class="btn btn-default" name="add-friend"
-                                    onclick="window.location.href='/new-friendship?user=${profile.username}'">Send
+                                    onclick="window.location.href='new-friendship?user=${profile.username}'">Send
                                 Friendship Request <span class="glyphicon glyphicon-ok"
                                                          title="Friendship Status"></span></button>
 
@@ -164,7 +164,7 @@
                 <c:forEach items="${posts}" var="p">
                     <div class="well well-sm">
                         <div>
-                            <a class="btn btn-link friend-link post-owner" href="/profile?user=${p.owner.username}">
+                            <a class="btn btn-link friend-link post-owner" href="profile?user=${p.owner.username}">
                                     ${p.owner.firstName} ${p.owner.lastName}
                             </a><br>
                                 ${formatter.format(p.created)}
@@ -177,7 +177,7 @@
                         </div>
                         <div>
                             <button class="btn btn-default" title="Like"
-                                    onclick="window.location.href='/${p.liked ? 'un' : ''}like?postId=${p.id}'"><span
+                                    onclick="window.location.href='${p.liked ? 'un' : ''}like?postId=${p.id}'"><span
                                     class="glyphicon glyphicon-star${p.liked ? '' : '-empty'}"></span> <span
                                     class="badge">${p.likes.size()}</span>
                             </button>
@@ -195,7 +195,7 @@
                                         <c:forEach items="${p.comments}" var="c">
                                             <div class="well well-sm">
                                                 <a class="btn btn-link friend-link post-owner"
-                                                   href="/profile?user=${c.owner.username}">
+                                                   href="profile?user=${c.owner.username}">
                                                         ${c.owner.firstName} ${c.owner.lastName}
                                                 </a><br>
                                                     ${formatter.format(c.created)}
@@ -204,7 +204,7 @@
                                         </c:forEach>
                                     </div>
                                     <div class="modal-footer">
-                                        <form:form class="form-horizontal" action="/new-comment" method="post"
+                                        <form:form class="form-horizontal" action="new-comment" method="post"
                                                    modelAttribute="comment">
                                             <form:input class="hidden" path="postId" value="${p.id}"/>
                                             <form:label class="sr-only" path="text">Comment text</form:label>
@@ -227,7 +227,7 @@
             <h2 class="bottom-border">Friends:</h2>
             <c:forEach items="${friends}" var="f">
                 <div class="well well-sm">
-                    <a class="btn btn-link friend-link" href="/profile?user=${f.username}">
+                    <a class="btn btn-link friend-link" href="profile?user=${f.username}">
                         <c:choose>
                             <c:when test="${f.picture == null || empty f.picture}">
                                 <img class="friend-picture" src="${pageContext.request.contextPath}/img/profile.png"
