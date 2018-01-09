@@ -47,18 +47,23 @@ public class PostServiceImpl implements PostService {
 	public Set<PostDto> getPostsForUserAndFriends(UserDto user, List<UserDto> friends, int pageNumber, int pageSize) {
 		log.debug("Finding posts for {} and friends.", user.getUsername());
 		TreeSet<PostDto> posts = new TreeSet<>(Comparator.comparing(PostDto::getCreated).reversed());
-		posts.addAll(postPersistenceService.getAllPublic(pageNumber, pageSize));
-		posts.addAll(postPersistenceService.getAll(user, pageNumber, pageSize));
+		posts.addAll(postPersistenceService.getAllPublic());
+		posts.addAll(postPersistenceService.getAll(user));
 
 		if (friends == null) {
 			friends = friendService.getFriends(user);
 		}
 
 		for (UserDto friend : friends) {
-			posts.addAll(postPersistenceService.getAll(friend, pageNumber, pageSize));
+			posts.addAll(postPersistenceService.getAll(friend));
 		}
 
 		Set<PostDto> retVal = new TreeSet<>(Comparator.comparing(PostDto::getCreated).reversed());
+		for (int i = 0; i < pageNumber; i++) {
+			for (int j = 0; j < pageSize && !posts.isEmpty(); j++) {
+				posts.pollFirst();
+			}
+		}
 		for (int i = 0; i < pageSize && !posts.isEmpty(); i++) {
 			retVal.add(posts.pollFirst());
 		}
