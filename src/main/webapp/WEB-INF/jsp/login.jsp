@@ -92,7 +92,7 @@
                 </div>
                 <div class="form-inline bottom-padding">
                     <form:label class="sr-only" path="month">What month is it today?</form:label>
-                    <form:input class="form-control" type="number" id="month" path="month"
+                    <form:input class="form-control" type="text" id="month" path="month"
                                 placeholder="What month is it today?" value="${month}" required="true"/> <span
                         class="required">*
                 </span>
