@@ -76,7 +76,8 @@ public class LoginController {
 				result.addError(error);
 			}
 			for (FieldError error : bindingResult.getFieldErrors()) {
-				if ("password".equals(error.getField()) || "passwordRepeat".equals(error.getField())) {
+				String field = error.getField();
+				if ("password".equals(field) || "passwordRepeat".equals(field)) {
 					result.addError(new FieldError(error.getObjectName(), error.getField(), null, error
 							.isBindingFailure(), error.getCodes(), error.getArguments(), error.getDefaultMessage()));
 				} else {

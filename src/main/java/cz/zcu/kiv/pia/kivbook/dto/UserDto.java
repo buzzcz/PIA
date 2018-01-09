@@ -38,6 +38,8 @@ public class UserDto {
 
 	private MultipartFile file;
 
+	private String month;
+
 	private Boolean selected = false;
 
 }

@@ -64,28 +64,37 @@
                 <div class="form-inline bottom-padding">
                     <form:label class="sr-only" path="firstName">First Name</form:label>
                     <form:input class="form-control" type="text" id="first-name" path="firstName"
-                                placeholder="First Name" value="${firstName}" required="true"/>
+                                placeholder="First Name" value="${firstName}" required="true"/> <span class="required">*
+                </span>
                     <form:label class="sr-only" path="lastName">Last Name</form:label>
                     <form:input class="form-control" type="text" id="last-name" path="lastName" placeholder="Last Name"
-                                value="${lastName}" required="true"/>
+                                value="${lastName}" required="true"/> <span class="required">*</span>
                 </div>
                 <div class="form-inline bottom-padding">
                     <form:label class="sr-only" path="username">Username</form:label>
                     <form:input class="form-control" type="text" id="username-register" path="username"
-                                placeholder="Username" value="${username}" required="true"/>
+                                placeholder="Username" value="${username}" required="true"/> <span
+                        class="required">*</span>
                     <form:label class="sr-only" path="email">Email</form:label>
                     <form:input class="form-control" type="email" id="email" path="email" placeholder="Email"
-                                value="${email}" required="true"/>
+                                value="${email}" required="true"/> <span class="required">*</span>
                 </div>
                 <div class="form-inline bottom-padding">
                     <form:label class="sr-only" path="password">Password</form:label>
                     <form:input class="form-control" type="password" id="password-register" path="password"
-                                placeholder="Password" value="${password}" required="true"/>
+                                placeholder="Password" value="${password}" required="true"/> <span
+                        class="required">*</span>
                     <form:label class="sr-only" path="passwordRepeat">Password Repeat</form:label>
                     <form:input class="form-control" type="password" id="password-repeat" path="passwordRepeat"
-                                placeholder="Repeat Password" value="${passwordRepeat}" required="true"/>
+                                placeholder="Repeat Password" value="${passwordRepeat}" required="true"/> <span
+                        class="required">*</span>
                 </div>
                 <div class="form-inline bottom-padding">
+                    <form:label class="sr-only" path="month">What month is it today?</form:label>
+                    <form:input class="form-control" type="number" id="month" path="month"
+                                placeholder="What month is it today?" value="${month}" required="true"/> <span
+                        class="required">*
+                </span>
                     <form:label class="sr-only" path="birthday">Birthday</form:label>
                     <div class="input-group date">
                         <form:input class="form-control" type="text" id="birthday" path="birthday"
@@ -103,12 +112,18 @@
                         <form:radiobutton path="gender" id="male" value="MALE" required="true"/>
                         <form:label path="gender">Male</form:label>
                     </div>
+                    <span class="required">*</span>
                 </div>
                 <div class="form-inline bottom-padding">
                     <form:label path="file">Profile Picture:</form:label>
                     <form:input type="file" id="picture" path="file" accept="image/*"/>
                 </div>
                 <button class="btn btn-default" type="submit" title="Sign Up">Sign Up</button>
+                <div>
+                    <small><span class="glyphicon glyphicon-question-sign"></span> <span class="required">*</span>
+                        Required field.
+                    </small>
+                </div>
             </form:form>
         </div>
     </div>

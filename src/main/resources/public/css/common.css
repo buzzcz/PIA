@@ -85,3 +85,8 @@ nav {
     color: white;
     opacity: 1;
 }
+
+.required {
+    font-size: 150%;
+    color: red;
+}

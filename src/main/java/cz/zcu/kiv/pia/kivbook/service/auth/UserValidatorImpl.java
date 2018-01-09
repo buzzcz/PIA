@@ -8,6 +8,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import java.time.Instant;
+import java.time.ZoneOffset;
+
 /**
  * @author Jaroslav Klaus
  */
@@ -19,6 +22,10 @@ public class UserValidatorImpl implements Validator {
 	private static final String USERNAME = "username";
 
 	private static final String PASSWORD_REPEAT = "passwordRepeat";
+
+	private static final String MONTH = "month";
+
+	private static final String GENDER = "gender";
 
 	@Autowired
 	private UserService userService;
@@ -48,8 +55,21 @@ public class UserValidatorImpl implements Validator {
 			errors.rejectValue(PASSWORD_REPEAT, "PasswordConfirm");
 		}
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "gender", NOT_EMPTY);
-		// TODO: More complex validation.
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, MONTH, NOT_EMPTY);
+		Integer month = null;
+		try {
+			month = Integer.parseInt((String) errors.getFieldValue(MONTH));
+		} catch (NumberFormatException e) {
+			errors.rejectValue(MONTH, "WrongFormat");
+		}
+		if (month != null && Instant.now().atZone(ZoneOffset.UTC).getMonthValue() != month) {
+			errors.rejectValue(MONTH, "WrongMonth");
+		}
+
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, GENDER, NOT_EMPTY);
+		if (!"MALE".equals(errors.getFieldValue(GENDER)) && !"FEMALE".equals(errors.getFieldValue(GENDER))) {
+			errors.rejectValue(GENDER, "WrongGender");
+		}
 	}
 
 }
