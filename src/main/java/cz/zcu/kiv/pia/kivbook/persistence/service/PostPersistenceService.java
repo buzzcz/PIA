@@ -23,19 +23,23 @@ public interface PostPersistenceService {
 	Set<PostDto> getAll(UserDto owner);
 
 	/**
-	 * Retrieves all public posts of specified user.
+	 * Retrieves all posts of specified user.
 	 *
-	 * @param owner User of whose public posts to find.
-	 * @return All public posts of specified user.
+	 * @param owner      User of whose posts to find.
+	 * @param pageNumber Number of page.
+	 * @param pageSize   Size of page
+	 * @return All posts of specified user.
 	 */
-	Set<PostDto> getPublic(UserDto owner);
+	Set<PostDto> getAll(UserDto owner, int pageNumber, int pageSize);
 
 	/**
 	 * Retrieves all public posts.
 	 *
+	 * @param pageNumber Number of page.
+	 * @param pageSize   Size of page
 	 * @return All public posts.
 	 */
-	Set<PostDto> getAllPublic();
+	Set<PostDto> getAllPublic(int pageNumber, int pageSize);
 
 	/**
 	 * Saves new post.

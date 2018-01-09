@@ -60,11 +60,14 @@ public class FeedController {
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss").withZone(ZoneOffset.UTC);
 
 	@GetMapping("/feed")
-	public ModelAndView showFeed() {
+	public ModelAndView showFeed(@RequestParam(value = "page", required = false) Integer pageNumber, @RequestParam
+			(value = "size", required = false) Integer pageSize) {
 		log.debug("Entering showFeed method.");
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		List<UserDto> friends = friendService.getFriends(user);
-		Set<PostDto> posts = postService.getPostsForUserAndFriends(user, friends);
+		pageNumber = pageNumber != null ? pageNumber : 0;
+		pageSize = pageSize != null ? pageSize : 25;
+		Set<PostDto> posts = postService.getPostsForUserAndFriends(user, friends, pageNumber, pageSize);
 		for (PostDto p : posts) {
 			if (p.getLikes().stream().anyMatch(likeDto -> likeDto.getOwner().equals(user))) {
 				p.setLiked(true);
@@ -76,6 +79,8 @@ public class FeedController {
 		modelAndView.addObject("user", user);
 		modelAndView.addObject("post", new PostDto());
 		modelAndView.addObject("comment", new CommentDto());
+		modelAndView.addObject("page", pageNumber);
+		modelAndView.addObject("size", pageSize);
 		modelAndView.addObject("formatter", formatter);
 
 		return modelAndView;

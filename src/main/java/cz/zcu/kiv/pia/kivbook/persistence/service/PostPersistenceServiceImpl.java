@@ -7,6 +7,7 @@ import cz.zcu.kiv.pia.kivbook.persistence.entity.User;
 import cz.zcu.kiv.pia.kivbook.persistence.repository.PostRepository;
 import cz.zcu.kiv.pia.kivbook.service.util.DtoConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -45,18 +46,20 @@ public class PostPersistenceServiceImpl implements PostPersistenceService {
 	}
 
 	@Override
-	public Set<PostDto> getPublic(UserDto owner) {
+	public Set<PostDto> getAll(UserDto owner, int pageNumber, int pageSize) {
 		User user = mapper.map(owner, User.class);
 		Set<Post> posts = new TreeSet<>(Comparator.comparing(Post::getCreated).reversed());
-		posts.addAll(repository.findByOwnerAndPrivacyFalseOrderByCreatedDesc(user));
+		posts.addAll(repository.findByOwnerOrderByCreatedDesc(user, new PageRequest(pageNumber, pageSize)).getContent
+				());
 
 		return mapper.map(posts, PostDto.class);
 	}
 
 	@Override
-	public Set<PostDto> getAllPublic() {
+	public Set<PostDto> getAllPublic(int pageNumber, int pageSize) {
 		Set<Post> posts = new TreeSet<>(Comparator.comparing(Post::getCreated).reversed());
-		posts.addAll(repository.findByPrivacyFalseOrderByCreatedDesc());
+		posts.addAll(repository.findByPrivacyFalseOrderByCreatedDesc(new PageRequest(pageNumber, pageSize)).getContent
+				());
 
 		return mapper.map(posts, PostDto.class);
 	}

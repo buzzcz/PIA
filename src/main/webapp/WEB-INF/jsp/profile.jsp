@@ -219,9 +219,6 @@
                     </div>
                 </c:forEach>
             </div>
-            <div>
-                <%-- TODO: Pagination --%>
-            </div>
         </div>
         <div class="collapse in col-xs-12 col-sm-3 collapsible-view" id="friends">
             <h2 class="bottom-border">Friends:</h2>

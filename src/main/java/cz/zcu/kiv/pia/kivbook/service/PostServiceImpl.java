@@ -44,26 +44,26 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Set<PostDto> getPostsForUserAndFriends(UserDto user, List<UserDto> friends) {
+	public Set<PostDto> getPostsForUserAndFriends(UserDto user, List<UserDto> friends, int pageNumber, int pageSize) {
 		log.debug("Finding posts for {} and friends.", user.getUsername());
-		Set<PostDto> retVal = new TreeSet<>(Comparator.comparing(PostDto::getCreated).reversed());
-		retVal.addAll(postPersistenceService.getAllPublic());
-		retVal.addAll(postPersistenceService.getAll(user));
+		TreeSet<PostDto> posts = new TreeSet<>(Comparator.comparing(PostDto::getCreated).reversed());
+		posts.addAll(postPersistenceService.getAllPublic(pageNumber, pageSize));
+		posts.addAll(postPersistenceService.getAll(user, pageNumber, pageSize));
 
 		if (friends == null) {
 			friends = friendService.getFriends(user);
 		}
 
 		for (UserDto friend : friends) {
-			retVal.addAll(postPersistenceService.getAll(friend));
+			posts.addAll(postPersistenceService.getAll(friend, pageNumber, pageSize));
+		}
+
+		Set<PostDto> retVal = new TreeSet<>(Comparator.comparing(PostDto::getCreated).reversed());
+		for (int i = 0; i < pageSize && !posts.isEmpty(); i++) {
+			retVal.add(posts.pollFirst());
 		}
 
 		return retVal;
-	}
-
-	@Override
-	public Set<PostDto> getPostsForUserAndFriends(UserDto user) {
-		return getPostsForUserAndFriends(user, null);
 	}
 
 	@Override

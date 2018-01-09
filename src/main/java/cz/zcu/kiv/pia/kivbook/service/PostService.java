@@ -17,9 +17,7 @@ public interface PostService {
 
 	Set<PostDto> getPostsForUser(UserDto user);
 
-	Set<PostDto> getPostsForUserAndFriends(UserDto user, List<UserDto> friends);
-
-	Set<PostDto> getPostsForUserAndFriends(UserDto user);
+	Set<PostDto> getPostsForUserAndFriends(UserDto user, List<UserDto> friends, int pageNumber, int pageSize);
 
 	PostDto save(PostDto post);
 

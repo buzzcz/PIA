@@ -6,7 +6,7 @@
 
 	<groupId>cz.zcu.kiv.pia</groupId>
 	<artifactId>kivbook</artifactId>
-	<version>0.0.0</version>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
 
 	<parent>
@@ -98,6 +98,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>kivbook</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

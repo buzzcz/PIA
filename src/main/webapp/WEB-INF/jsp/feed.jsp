@@ -142,7 +142,32 @@
                 </c:forEach>
             </div>
             <div>
-                <%-- TODO: Pagination --%>
+                <div class="bottom-margin">
+                    <button class="btn btn-default" type="button" title="Page Size 5"
+                            onclick="window.location.href='feed?size=${5}'" ${size == 5 ? 'disabled' : ''}>5
+                    </button>
+                    <button class="btn btn-default" type="button" title="Page Size 10"
+                            onclick="window.location.href='feed?size=${10}'" ${size == 10 ? 'disabled' : ''}>10
+                    </button>
+                    <button class="btn btn-default" type="button" title="Page Size 25"
+                            onclick="window.location.href='feed?size=${25}'" ${size == 25 ? 'disabled' : ''}>25
+                    </button>
+                    <button class="btn btn-default" type="button" title="Page Size 50"
+                            onclick="window.location.href='feed?size=${50}'" ${size == 50 ? 'disabled' : ''}>50
+                    </button>
+                </div>
+                <div>
+                    <c:if test="${page > 0}">
+                        <button class="btn btn-default" type="button" title="Previous"
+                                onclick="window.location.href='feed?page=${page - 1}&size=${size}'">Previous
+                        </button>
+                    </c:if>
+                    <c:if test="${posts.size() == size}">
+                        <button class="btn btn-default" type="button" title="Next"
+                                onclick="window.location.href='feed?page=${page + 1}&size=${size}'">Next
+                        </button>
+                    </c:if>
+                </div>
             </div>
         </div>
         <div class="collapse in col-xs-12 col-sm-3 collapsible-view" id="friends">
