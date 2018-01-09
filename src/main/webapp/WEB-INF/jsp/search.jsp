@@ -60,7 +60,7 @@
                     <form:label class="sr-only" path="text">Search text</form:label>
                     <form:input class="form-control" path="text" placeholder="Type your search..."
                                 value="${text.text}"/>
-                    <button class="btn btn-default" type="submit" title="Post">Post</button>
+                    <button class="btn btn-default" type="submit" title="Search">Search</button>
                     <div>
                         <small><span class="glyphicon glyphicon-question-sign"></span> Hint: Empty search retrieves all
                             users.
