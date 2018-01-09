@@ -58,4 +58,11 @@ public class FriendServiceImpl implements FriendService {
 		return retVal;
 	}
 
+	@Override
+	public FriendDto save(FriendDto friendship) {
+		log.debug("Saving friendship {}.", friendship);
+
+		return friendPersistenceService.save(friendship);
+	}
+
 }

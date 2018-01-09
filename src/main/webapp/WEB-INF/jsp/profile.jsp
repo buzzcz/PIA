@@ -117,25 +117,36 @@
                 </tr>
             </table>
             <c:choose>
-                <c:when test="${friendshipStatus != null}">
+                <c:when test="${friendship != null}">
                     <div class="top-padding">
-                        <button class="btn btn-default" name="add-friend" disabled>${friendshipStatus ?
-                                "Already Friends" : "Request Pending"} <span
-                                class="glyphicon glyphicon-ok" title="Friendship Status"></span></button>
-
+                        <c:choose>
+                            <c:when test="${friendship.ack}">
+                                <button class="btn btn-default" name="add-friend" disabled>Already Friends <span
+                                        class="glyphicon glyphicon-ok" title="Friendship Status"></span></button>
+                            </c:when>
+                            <c:otherwise>
+                                <button class="btn btn-default" name="add-friend" disabled>Request Pending <span
+                                        class="glyphicon glyphicon-dashboard" title="Friendship Status"></span></button>
+                                <c:if test="${profile.username != user.username && friendship.userId1 != user.id}">
+                                    <button class="btn btn-default" name="ack-friend"
+                                            onclick="window.location.href='/ack-friendship?user=${profile.username}'">
+                                        Accept Friendship <span class="glyphicon glyphicon-ok"
+                                                                title="Accept Friendship"></span></button>
+                                </c:if>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                     <div class="top-padding">
-                        <button class="btn btn-default" name="add-friend"
+                        <button class="btn btn-default" name="new-message"
                                 onclick="window.location.href='/messages?user=${profile.username}'">New Message
-                            <span
-                                class="glyphicon glyphicon-send" title="New Message"></span></button>
+                            <span class="glyphicon glyphicon-send" title="New Message"></span></button>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <c:if test="${profile.username != user.username}">
                         <div class="top-padding">
                             <button class="btn btn-default" name="add-friend"
-                                    onclick="window.location.href='/friendship?user=${profile.username}'">Send
+                                    onclick="window.location.href='/new-friendship?user=${profile.username}'">Send
                                 Friendship Request <span class="glyphicon glyphicon-ok"
                                                          title="Friendship Status"></span></button>
 
@@ -164,7 +175,7 @@
                         <div>
                             <button class="btn btn-default" title="Like"
                                     onclick="window.location.href='/${p.liked ? 'un' : ''}like?postId=${p.id}'"><span
-                                    class="glyphicon glyphicon-star${p.liked ? '' : '-empty'}"></span><span
+                                    class="glyphicon glyphicon-star${p.liked ? '' : '-empty'}"></span> <span
                                     class="badge">${p.likes.size()}</span>
                             </button>
                             <button class="btn btn-default" title="Comment" data-toggle="modal"

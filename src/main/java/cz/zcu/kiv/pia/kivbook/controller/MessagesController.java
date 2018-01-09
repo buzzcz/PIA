@@ -137,8 +137,12 @@ public class MessagesController {
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
 		message.setOwner(user);
 		message.setCreated(Instant.now());
-
-		messageService.save(message);
+		ConversationDto conversation = conversationService.get(message.getConversationId());
+		if (conversation != null) {
+			conversation.setCreated(Instant.now());
+			conversationService.save(conversation);
+			messageService.save(message);
+		}
 
 		return new ModelAndView("redirect:/messages");
 	}

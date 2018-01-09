@@ -12,6 +12,8 @@ import java.util.Set;
  */
 public interface ConversationPersistenceService {
 
+	ConversationDto get(Integer id);
+
 	/**
 	 * Retrieves all conversations for specified user.
 	 *

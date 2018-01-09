@@ -16,4 +16,6 @@ public interface FriendService {
 
 	FriendDto areFriends(UserDto user1, UserDto user2);
 
+	FriendDto save(FriendDto friendship);
+
 }

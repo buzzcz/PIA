@@ -22,6 +22,13 @@ public class ConversationServiceImpl implements ConversationService {
 	private ConversationPersistenceService conversationPersistenceService;
 
 	@Override
+	public ConversationDto get(Integer id) {
+		log.debug("Getting conversation {}.", id);
+
+		return conversationPersistenceService.get(id);
+	}
+
+	@Override
 	public Set<ConversationDto> getAllForUser(UserDto userDto) {
 		log.debug("Getting conversations for user {}.", userDto);
 

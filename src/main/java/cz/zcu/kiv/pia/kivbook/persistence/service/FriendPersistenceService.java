@@ -31,9 +31,9 @@ public interface FriendPersistenceService {
 	/**
 	 * Saves new friendship information.
 	 *
-	 * @param user New friendship information to save.
+	 * @param friend New friendship information to save.
 	 * @return Saved friendship information.
 	 */
-	FriendDto save(FriendDto user);
+	FriendDto save(FriendDto friend);
 
 }

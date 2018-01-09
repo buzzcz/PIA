@@ -12,6 +12,8 @@ import java.util.Set;
  */
 public interface ConversationService {
 
+	ConversationDto get(Integer id);
+
 	Set<ConversationDto> getAllForUser(UserDto userDto);
 
 	ConversationDto save(ConversationDto conversation);

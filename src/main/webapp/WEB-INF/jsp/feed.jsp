@@ -97,7 +97,7 @@
                         <div>
                             <button class="btn btn-default" title="Like"
                                     onclick="window.location.href='/${p.liked ? 'un' : ''}like?postId=${p.id}'"><span
-                                    class="glyphicon glyphicon-star${p.liked ? '' : '-empty'}"></span><span
+                                    class="glyphicon glyphicon-star${p.liked ? '' : '-empty'}"></span> <span
                                     class="badge">${p.likes.size()}</span>
                             </button>
                             <button class="btn btn-default" title="Comment" data-toggle="modal"

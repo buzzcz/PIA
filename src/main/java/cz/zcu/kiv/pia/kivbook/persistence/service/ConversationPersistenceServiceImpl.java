@@ -26,6 +26,16 @@ public class ConversationPersistenceServiceImpl implements ConversationPersisten
 	private DtoConvertor mapper;
 
 	@Override
+	public ConversationDto get(Integer id) {
+		Conversation conversation = repository.findOne(id);
+		if (conversation != null) {
+			return mapper.map(conversation, ConversationDto.class);
+		}
+
+		return null;
+	}
+
+	@Override
 	public Set<ConversationDto> getAll(UserDto user) {
 		User entity = mapper.map(user, User.class);
 		Set<Conversation> conversations = new TreeSet<>(Comparator.comparing(Conversation::getCreated).reversed());

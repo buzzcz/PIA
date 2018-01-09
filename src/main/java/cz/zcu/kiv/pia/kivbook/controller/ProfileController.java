@@ -95,11 +95,52 @@ public class ProfileController {
 		modelAndView.addObject("posts", posts);
 		modelAndView.addObject("comment", new CommentDto());
 		if (friendship != null) {
-			modelAndView.addObject("friendshipStatus", friendship.getAck());
+			modelAndView.addObject("friendship", friendship);
 		}
 		modelAndView.addObject("formatter", formatter);
 
 		return modelAndView;
+	}
+
+	@GetMapping("/new-friendship")
+	public ModelAndView newFriendship(@RequestParam("user") String username) {
+		UserDto user = userService.getUser(securityService.getLoggedInUsername());
+		if (user.getUsername().equals(username)) {
+			return new ModelAndView("redirect:/profile");
+		}
+
+		UserDto friend = userService.getUser(username);
+		FriendDto friendship = friendService.areFriends(user, friend);
+		if (friendship != null) {
+			return new ModelAndView("redirect:/profile?user=" + username);
+		}
+
+		friendship = new FriendDto();
+		friendship.setUserId1(user.getId());
+		friendship.setUserId2(friend.getId());
+		friendship.setAck(false);
+		friendService.save(friendship);
+
+		return new ModelAndView("redirect:/profile?user=" + username);
+	}
+
+	@GetMapping("/ack-friendship")
+	public ModelAndView ackFriendship(@RequestParam("user") String username) {
+		UserDto user = userService.getUser(securityService.getLoggedInUsername());
+		if (user.getUsername().equals(username)) {
+			return new ModelAndView("redirect:/profile");
+		}
+
+		UserDto friend = userService.getUser(username);
+		FriendDto friendship = friendService.areFriends(user, friend);
+		if (friendship == null || !friendship.getUserId2().equals(user.getId())) {
+			return new ModelAndView("redirect:/profile?user=" + username);
+		}
+
+		friendship.setAck(true);
+		friendService.save(friendship);
+
+		return new ModelAndView("redirect:/profile?user=" + username);
 	}
 
 }
