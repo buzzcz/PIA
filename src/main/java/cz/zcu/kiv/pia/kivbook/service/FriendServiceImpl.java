@@ -30,7 +30,7 @@ public class FriendServiceImpl implements FriendService {
 	public List<UserDto> getFriends(UserDto userDto) {
 		log.debug("Finding friends for {}.", userDto.getUsername());
 		int id = userDto.getId();
-		List<FriendDto> friends = friendPersistenceService.getAll(id);
+		List<FriendDto> friends = friendPersistenceService.getAllAckTrue(id);
 		List<UserDto> retVal = new LinkedList<>();
 
 		for (FriendDto f : friends) {

@@ -22,10 +22,10 @@ public class FriendPersistenceServiceImpl implements FriendPersistenceService {
 	private DtoConvertor mapper;
 
 	@Override
-	public List<FriendDto> getAll(Integer userId) {
-		List<Friend> friends = repository.findByUserId1(userId);
+	public List<FriendDto> getAllAckTrue(Integer userId) {
+		List<Friend> friends = repository.findByUserId1AndAckTrue(userId);
 		List<FriendDto> friendDtos = mapper.map(friends, FriendDto.class);
-		friends = repository.findByUserId2(userId);
+		friends = repository.findByUserId2AndAckTrue(userId);
 		friendDtos.addAll(mapper.map(friends, FriendDto.class));
 
 		return friendDtos;

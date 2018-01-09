@@ -17,7 +17,7 @@ public interface FriendPersistenceService {
 	 * @param userId Id of the user whose friendship information to get.
 	 * @return All friendship information for specified user.
 	 */
-	List<FriendDto> getAll(Integer userId);
+	List<FriendDto> getAllAckTrue(Integer userId);
 
 	/**
 	 * Retrieves friendship information between specified users.
