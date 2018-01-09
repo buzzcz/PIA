@@ -126,7 +126,7 @@
                             </c:when>
                             <c:otherwise>
                                 <button class="btn btn-default" name="add-friend" disabled>Request Pending <span
-                                        class="glyphicon glyphicon-dashboard" title="Friendship Status"></span></button>
+                                        class="glyphicon glyphicon-time" title="Friendship Status"></span></button>
                                 <c:if test="${profile.username != user.username && friendship.userId1 != user.id}">
                                     <button class="btn btn-default" name="ack-friend"
                                             onclick="window.location.href='/ack-friendship?user=${profile.username}'">

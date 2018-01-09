@@ -54,6 +54,17 @@ public class UserPersistenceServiceImpl implements UserPersistenceService {
 	}
 
 	@Override
+	public List<UserDto> searchUsers(String text) {
+		String query = String.format("%s%s%s", "%", text, "%");
+		List<User> users = repository.findByUsernameLike(query);
+		users.addAll(repository.findByFirstNameLike(query));
+		users.addAll(repository.findByLastNameLike(query));
+		users.addAll(repository.findByEmailLike(query));
+
+		return mapper.map(users, UserDto.class);
+	}
+
+	@Override
 	public UserDto save(UserDto user) {
 		User entity = mapper.map(user, User.class);
 		entity.setPassword(passwordEncoder.encode(user.getPassword()));

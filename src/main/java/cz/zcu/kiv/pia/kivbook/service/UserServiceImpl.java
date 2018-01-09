@@ -47,6 +47,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public List<UserDto> searchUsers(String text) {
+		log.debug("Searching user with text {}.", text);
+
+		return userPersistenceService.searchUsers(text);
+	}
+
+	@Override
 	public UserDto getUser(String username) {
 		log.debug("Finding user {}.", username);
 

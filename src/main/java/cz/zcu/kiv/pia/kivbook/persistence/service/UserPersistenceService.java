@@ -32,6 +32,8 @@ public interface UserPersistenceService {
 	 */
 	UserDto get(String username);
 
+	List<UserDto> searchUsers(String text);
+
 	/**
 	 * Saves new user.
 	 *

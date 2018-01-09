@@ -17,6 +17,8 @@ public interface UserService {
 
 	List<UserDto> getUsersFromConversations(Set<ConversationDto> conversations, UserDto user);
 
+	List<UserDto> searchUsers(String text);
+
 	UserDto save(UserDto user);
 
 }
