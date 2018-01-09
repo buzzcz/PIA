@@ -5,14 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="/css/common.css">
-    <link type="text/css" rel="stylesheet" href="/css/feed.css">
-    <script type="application/javascript" src="/js/jquery.min.js"></script>
-    <script type="application/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="/js/bootstrap-datepicker.min.js"></script>
-    <script type="application/javascript" src="/js/common.js"></script>
-    <script type="application/javascript" src="/js/feed.js"></script>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/feed.css">
+    <script type="application/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script type="application/javascript"
+            src="${pageContext.request.contextPath}/js/bootstrap-datepicker.min.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/js/feed.js"></script>
     <title>Feed of Posts</title>
 </head>
 <body>
@@ -37,7 +38,8 @@
         <a class="btn btn-link" id="logged-user" href="/profile">
             <c:choose>
                 <c:when test="${user.picture == null || empty user.picture}">
-                    <img id="user-picture" src="/img/profile.png" alt="Profile Picture">
+                    <img id="user-picture" src="${pageContext.request.contextPath}/img/profile.png"
+                         alt="Profile Picture">
                 </c:when>
                 <c:otherwise>
                     <img id="user-picture" src="${user.picture}" alt="Profile Picture">
@@ -150,7 +152,8 @@
                     <a class="btn btn-link friend-link" href="/profile?user=${f.username}">
                         <c:choose>
                             <c:when test="${f.picture == null || empty f.picture}">
-                                <img class="friend-picture" src="/img/profile.png" alt="Friend's Picture">
+                                <img class="friend-picture" src="${pageContext.request.contextPath}/img/profile.png"
+                                     alt="Friend's Picture">
                             </c:when>
                             <c:otherwise>
                                 <img class="friend-picture" src="${f.picture}" alt="Friend's Picture">

@@ -5,14 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap-datepicker3.min.css">
-    <link type="text/css" rel="stylesheet" href="/css/common.css">
-    <script type="application/javascript" src="/js/jquery.min.js"></script>
-    <script type="application/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="/js/bootstrap-datepicker.min.js"></script>
-    <script type="application/javascript" src="/js/common.js"></script>
-    <script type="application/javascript" src="/js/login.js"></script>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-datepicker3.min.css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+    <script type="application/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script type="application/javascript"
+            src="${pageContext.request.contextPath}/js/bootstrap-datepicker.min.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
     <title>Login</title>
 </head>
 <body>
