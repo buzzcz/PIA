@@ -125,7 +125,9 @@
 
                     </div>
                     <div class="top-padding">
-                        <button class="btn btn-default" name="add-friend">New Message <span
+                        <button class="btn btn-default" name="add-friend"
+                                onclick="window.location.href='/messages?user=${profile.username}'">New Message
+                            <span
                                 class="glyphicon glyphicon-send" title="New Message"></span></button>
                     </div>
                 </c:when>

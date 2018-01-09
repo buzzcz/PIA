@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Implementation of UserService.
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserDto> getUsersFromConversations(List<ConversationDto> conversations, UserDto user) {
+	public List<UserDto> getUsersFromConversations(Set<ConversationDto> conversations, UserDto user) {
 		log.debug("Getting users from conversations {}.", conversations);
 		List<UserDto> retVal = new LinkedList<>();
 		for (ConversationDto c : conversations) {

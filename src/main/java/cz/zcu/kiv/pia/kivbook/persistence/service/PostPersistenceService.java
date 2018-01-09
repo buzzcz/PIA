@@ -3,7 +3,7 @@ package cz.zcu.kiv.pia.kivbook.persistence.service;
 import cz.zcu.kiv.pia.kivbook.dto.PostDto;
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Service for working with Post persistence.
@@ -20,7 +20,7 @@ public interface PostPersistenceService {
 	 * @param owner User of whose posts to find.
 	 * @return All posts of specified user.
 	 */
-	List<PostDto> getAll(UserDto owner);
+	Set<PostDto> getAll(UserDto owner);
 
 	/**
 	 * Retrieves all public posts of specified user.
@@ -28,14 +28,14 @@ public interface PostPersistenceService {
 	 * @param owner User of whose public posts to find.
 	 * @return All public posts of specified user.
 	 */
-	List<PostDto> getPublic(UserDto owner);
+	Set<PostDto> getPublic(UserDto owner);
 
 	/**
 	 * Retrieves all public posts.
 	 *
 	 * @return All public posts.
 	 */
-	List<PostDto> getAllPublic();
+	Set<PostDto> getAllPublic();
 
 	/**
 	 * Saves new post.

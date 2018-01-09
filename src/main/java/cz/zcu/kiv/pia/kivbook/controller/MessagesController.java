@@ -19,9 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Controller of the messages page.
@@ -49,18 +50,21 @@ public class MessagesController {
 	@GetMapping("/messages")
 	public ModelAndView showMessages() {
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
-		List<ConversationDto> conversations = conversationService.getAllForUser(user);
+		Set<ConversationDto> conversations = conversationService.getAllForUser(user);
 		List<UserDto> friends = userService.getUsersFromConversations(conversations, user);
-		Set<MessageDto> messages = new HashSet<>();
+		Set<MessageDto> messages = new TreeSet<>();
+		Integer conversationId = null;
 		if (!friends.isEmpty()) {
 			friends.get(0).setSelected(true);
-			messages = messageService.getAllForConversation(conversations.get(0));
+			ConversationDto c = conversations.iterator().next();
+			messages = messageService.getAllForConversation(c);
+			conversationId = c.getId();
 		}
 
 		ModelAndView modelAndView = new ModelAndView("/messages", "user", user);
 		modelAndView.addObject("conversations", friends);
 		modelAndView.addObject("messages", messages);
-		modelAndView.addObject("conversationId", conversations.get(0).getId());
+		modelAndView.addObject("conversationId", conversationId);
 		modelAndView.addObject("message", new MessageDto());
 		modelAndView.addObject("formatter", formatter);
 
@@ -70,37 +74,62 @@ public class MessagesController {
 	@GetMapping(value = "/messages", params = "user")
 	public ModelAndView showMessagesForUser(@RequestParam("user") String username) {
 		UserDto user = userService.getUser(securityService.getLoggedInUsername());
-		List<ConversationDto> conversations = conversationService.getAllForUser(user);
-		List<UserDto> friends = userService.getUsersFromConversations(conversations, user);
-		Set<MessageDto> messages = new HashSet<>();
-		if (!friends.isEmpty()) {
-			UserDto f = null;
-			for (UserDto u : friends) {
-				if (u.getUsername().equals(username)) {
-					u.setSelected(true);
-					f = u;
-					break;
-				}
-			}
+		if (user.getUsername().equals(username)) {
+			return new ModelAndView("redirect:/messages");
+		}
 
-			if (f != null) {
-				for (ConversationDto c : conversations) {
-					if (c.getUser1().equals(f) || c.getUser2().equals(f)) {
-						messages = messageService.getAllForConversation(c);
-						break;
-					}
-				}
-			}
+		Set<ConversationDto> conversations = conversationService.getAllForUser(user);
+		List<UserDto> friends = userService.getUsersFromConversations(conversations, user);
+		Set<MessageDto> messages = new TreeSet<>(Comparator.comparing(MessageDto::getCreated));
+		Integer conversationId = loadMessages(conversations, friends, messages, username);
+
+		if (conversationId == null) {
+			ConversationDto c = new ConversationDto();
+			UserDto f = userService.getUser(username);
+			f.setSelected(true);
+			friends.add(0, f);
+			c.setUser1(user);
+			c.setUser2(f);
+			c.setCreated(Instant.now());
+			c = conversationService.save(c);
+			conversations.add(c);
+			conversationId = c.getId();
+			messages.addAll(messageService.getAllForConversation(c));
 		}
 
 		ModelAndView modelAndView = new ModelAndView("/messages", "user", user);
 		modelAndView.addObject("conversations", friends);
 		modelAndView.addObject("messages", messages);
-		modelAndView.addObject("conversationId", conversations.get(0).getId());
+		modelAndView.addObject("conversationId", conversationId);
 		modelAndView.addObject("message", new MessageDto());
 		modelAndView.addObject("formatter", formatter);
 
 		return modelAndView;
+	}
+
+	private Integer loadMessages(Set<ConversationDto> conversations, List<UserDto> friends, Set<MessageDto> messages,
+	                             String username) {
+		Integer retVal = null;
+		UserDto f = null;
+		for (UserDto u : friends) {
+			if (u.getUsername().equals(username)) {
+				u.setSelected(true);
+				f = u;
+				break;
+			}
+		}
+
+		if (f != null) {
+			for (ConversationDto c : conversations) {
+				if (c.getUser1().equals(f) || c.getUser2().equals(f)) {
+					messages.addAll(messageService.getAllForConversation(c));
+					retVal = c.getId();
+					break;
+				}
+			}
+		}
+
+		return retVal;
 	}
 
 	@PostMapping("/new-message")

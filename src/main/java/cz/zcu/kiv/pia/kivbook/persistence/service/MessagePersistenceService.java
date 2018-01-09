@@ -3,7 +3,7 @@ package cz.zcu.kiv.pia.kivbook.persistence.service;
 import cz.zcu.kiv.pia.kivbook.dto.MessageDto;
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Service for working with Message persistence.
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface MessagePersistenceService {
 
-	List<MessageDto> getForConversation(Integer conversationId, UserDto user1, UserDto user2);
+	Set<MessageDto> getForConversation(Integer conversationId, UserDto user1, UserDto user2);
 
 	/**
 	 * Saves new message.

@@ -3,7 +3,7 @@ package cz.zcu.kiv.pia.kivbook.persistence.service;
 import cz.zcu.kiv.pia.kivbook.dto.ConversationDto;
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Service for working with Conversation persistence.
@@ -18,7 +18,7 @@ public interface ConversationPersistenceService {
 	 * @param user User whose conversations to get.
 	 * @return All conversations for specified user.
 	 */
-	List<ConversationDto> getAll(UserDto user);
+	Set<ConversationDto> getAll(UserDto user);
 
 	/**
 	 * Saves new conversation.

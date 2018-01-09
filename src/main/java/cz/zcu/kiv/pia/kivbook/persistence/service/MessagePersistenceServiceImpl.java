@@ -9,7 +9,9 @@ import cz.zcu.kiv.pia.kivbook.service.util.DtoConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author Jaroslav Klaus
@@ -24,9 +26,10 @@ public class MessagePersistenceServiceImpl implements MessagePersistenceService 
 	private DtoConvertor mapper;
 
 	@Override
-	public List<MessageDto> getForConversation(Integer conversationId, UserDto user1, UserDto user2) {
+	public Set<MessageDto> getForConversation(Integer conversationId, UserDto user1, UserDto user2) {
 		User entity = mapper.map(user1, User.class);
-		List<Message> messages = repository.findByConversationIdAndOwnerOrderByCreated(conversationId, entity);
+		Set<Message> messages = new TreeSet<>(Comparator.comparing(Message::getCreated));
+		messages.addAll(repository.findByConversationIdAndOwnerOrderByCreated(conversationId, entity));
 		entity = mapper.map(user2, User.class);
 		messages.addAll(repository.findByConversationIdAndOwnerOrderByCreated(conversationId, entity));
 

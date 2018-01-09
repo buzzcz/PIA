@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Implementation of ConversationService.
@@ -22,10 +22,17 @@ public class ConversationServiceImpl implements ConversationService {
 	private ConversationPersistenceService conversationPersistenceService;
 
 	@Override
-	public List<ConversationDto> getAllForUser(UserDto userDto) {
+	public Set<ConversationDto> getAllForUser(UserDto userDto) {
 		log.debug("Getting conversations for user {}.", userDto);
 
 		return conversationPersistenceService.getAll(userDto);
+	}
+
+	@Override
+	public ConversationDto save(ConversationDto conversation) {
+		log.debug("Saving conversation {}.", conversation);
+
+		return conversationPersistenceService.save(conversation);
 	}
 
 }

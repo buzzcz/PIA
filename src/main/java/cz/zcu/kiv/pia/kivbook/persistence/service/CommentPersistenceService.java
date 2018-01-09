@@ -2,7 +2,7 @@ package cz.zcu.kiv.pia.kivbook.persistence.service;
 
 import cz.zcu.kiv.pia.kivbook.dto.CommentDto;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Service for working with Comment persistence.
@@ -17,7 +17,7 @@ public interface CommentPersistenceService {
 	 * @param postId Id of the post of which comments to get.
 	 * @return All comments for specified post.
 	 */
-	List<CommentDto> getAll(Integer postId);
+	Set<CommentDto> getAll(Integer postId);
 
 	/**
 	 * Saves new comment.

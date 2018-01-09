@@ -86,17 +86,15 @@
                     </div>
                 </c:forEach>
             </div>
-            <c:if test="${not empty messages}">
-                <div>
-                    <form:form class="form-horizontal" action="/new-message" method="post" modelAttribute="message">
-                        <form:input class="hidden" path="conversationId" value="${conversationId}"/>
-                        <form:label class="sr-only" path="text">Message</form:label>
-                        <form:textarea class="form-control bottom-margin" id="message" path="text"
-                                       placeholder="Type your message..."/>
-                        <button class="btn btn-default" type="submit" title="Send">Send</button>
-                    </form:form>
-                </div>
-            </c:if>
+            <div>
+                <form:form class="form-horizontal" action="/new-message" method="post" modelAttribute="message">
+                    <form:input class="hidden" path="conversationId" value="${conversationId}"/>
+                    <form:label class="sr-only" path="text">Message</form:label>
+                    <form:textarea class="form-control bottom-margin" id="message" path="text"
+                                   placeholder="Type your message..."/>
+                    <button class="btn btn-default" type="submit" title="Send">Send</button>
+                </form:form>
+            </div>
         </div>
     </div>
 </div>

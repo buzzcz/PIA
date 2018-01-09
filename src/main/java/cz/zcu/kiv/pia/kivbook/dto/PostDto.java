@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Call representing a post.
@@ -30,7 +31,7 @@ public class PostDto {
 
 	private boolean liked = false;
 
-	private List<CommentDto> comments;
+	private Set<CommentDto> comments;
 
 	private List<LikeDto> likes;
 

@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.time.Instant;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Call representing a post.
@@ -39,7 +40,7 @@ public class Post {
 
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "postId")
-	private List<Comment> comments;
+	private Set<Comment> comments;
 
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "postId")

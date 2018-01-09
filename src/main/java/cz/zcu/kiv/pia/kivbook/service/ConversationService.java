@@ -3,7 +3,7 @@ package cz.zcu.kiv.pia.kivbook.service;
 import cz.zcu.kiv.pia.kivbook.dto.ConversationDto;
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Interface for operations with Conversations.
@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface ConversationService {
 
-	List<ConversationDto> getAllForUser(UserDto userDto);
+	Set<ConversationDto> getAllForUser(UserDto userDto);
+
+	ConversationDto save(ConversationDto conversation);
 
 }

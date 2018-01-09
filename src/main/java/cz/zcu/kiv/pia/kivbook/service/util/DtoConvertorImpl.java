@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Service for converting entities to dtos and vice versa.
@@ -53,6 +55,16 @@ public class DtoConvertorImpl implements DtoConvertor {
 	@Override
 	public <T> List<T> map(List<?> sourceList, Class<T> destinationClass) {
 		List<T> retVal = new LinkedList<>();
+		for (Object o : sourceList) {
+			retVal.add(mapper.map(o, destinationClass));
+		}
+
+		return retVal;
+	}
+
+	@Override
+	public <T> Set<T> map(Set<?> sourceList, Class<T> destinationClass) {
+		Set<T> retVal = new HashSet<>();
 		for (Object o : sourceList) {
 			retVal.add(mapper.map(o, destinationClass));
 		}

@@ -7,7 +7,9 @@ import cz.zcu.kiv.pia.kivbook.service.util.DtoConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author Jaroslav Klaus
@@ -22,8 +24,9 @@ public class CommentPersistenceServiceImpl implements CommentPersistenceService 
 	private DtoConvertor mapper;
 
 	@Override
-	public List<CommentDto> getAll(Integer postId) {
-		List<Comment> comments = repository.findByPostId(postId);
+	public Set<CommentDto> getAll(Integer postId) {
+		Set<Comment> comments = new TreeSet<>(Comparator.comparing(Comment::getCreated));
+		comments.addAll(repository.findByPostId(postId));
 
 		return mapper.map(comments, CommentDto.class);
 	}

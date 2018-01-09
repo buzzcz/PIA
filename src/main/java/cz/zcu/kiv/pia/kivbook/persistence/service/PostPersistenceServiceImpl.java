@@ -9,8 +9,9 @@ import cz.zcu.kiv.pia.kivbook.service.util.DtoConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author Jaroslav Klaus
@@ -35,38 +36,29 @@ public class PostPersistenceServiceImpl implements PostPersistenceService {
 	}
 
 	@Override
-	public List<PostDto> getAll(UserDto owner) {
+	public Set<PostDto> getAll(UserDto owner) {
 		User user = mapper.map(owner, User.class);
-		List<Post> posts = repository.findByOwnerOrderByCreatedDesc(user);
-		List<PostDto> postDtos = new LinkedList<>();
-		for (Post p : posts) {
-			postDtos.add(mapper.map(p, PostDto.class));
-		}
+		Set<Post> posts = new TreeSet<>(Comparator.comparing(Post::getCreated).reversed());
+		posts.addAll(repository.findByOwnerOrderByCreatedDesc(user));
 
-		return postDtos;
+		return mapper.map(posts, PostDto.class);
 	}
 
 	@Override
-	public List<PostDto> getPublic(UserDto owner) {
+	public Set<PostDto> getPublic(UserDto owner) {
 		User user = mapper.map(owner, User.class);
-		List<Post> posts = repository.findByOwnerAndPrivacyFalseOrderByCreatedDesc(user);
-		List<PostDto> postDtos = new LinkedList<>();
-		for (Post p : posts) {
-			postDtos.add(mapper.map(p, PostDto.class));
-		}
+		Set<Post> posts = new TreeSet<>(Comparator.comparing(Post::getCreated).reversed());
+		posts.addAll(repository.findByOwnerAndPrivacyFalseOrderByCreatedDesc(user));
 
-		return postDtos;
+		return mapper.map(posts, PostDto.class);
 	}
 
 	@Override
-	public List<PostDto> getAllPublic() {
-		List<Post> posts = repository.findByPrivacyFalseOrderByCreatedDesc();
-		List<PostDto> postDtos = new LinkedList<>();
-		for (Post p : posts) {
-			postDtos.add(mapper.map(p, PostDto.class));
-		}
+	public Set<PostDto> getAllPublic() {
+		Set<Post> posts = new TreeSet<>(Comparator.comparing(Post::getCreated).reversed());
+		posts.addAll(repository.findByPrivacyFalseOrderByCreatedDesc());
 
-		return postDtos;
+		return mapper.map(posts, PostDto.class);
 	}
 
 	@Override

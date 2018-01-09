@@ -4,6 +4,7 @@ import cz.zcu.kiv.pia.kivbook.dto.ConversationDto;
 import cz.zcu.kiv.pia.kivbook.dto.UserDto;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Interface for operations with Users.
@@ -14,7 +15,7 @@ public interface UserService {
 
 	UserDto getUser(String username);
 
-	List<UserDto> getUsersFromConversations(List<ConversationDto> conversations, UserDto user);
+	List<UserDto> getUsersFromConversations(Set<ConversationDto> conversations, UserDto user);
 
 	UserDto save(UserDto user);
 
