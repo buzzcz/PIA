@@ -79,7 +79,7 @@
             </c:forEach>
         </div>
         <div class="collapse in col-xs-12 col-sm-7 collapsible-view" id="messages">
-		<h2 class="bottom-border">${c.firstName} ${c.lastName}:</h2>
+		<h2 class="bottom-border">Messages:</h2>
             <div class="well well-sm">
                 <c:forEach items="${messages}" var="m">
                     <div class="well well-sm message-${m.owner.username == user.username ? 'to' : 'from'}">
